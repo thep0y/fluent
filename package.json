@@ -1,0 +1,44 @@
+{
+  "name": "fluent-solid",
+  "version": "0.3.7",
+  "repository": "https://github.com/thep0y/fluent",
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solid-js",
+    "component",
+    "components",
+    "framework",
+    "frontend",
+    "ui",
+    "fluent",
+    "fluentui"
+  ],
+  "author": "thepoy <thepoy@163.com>",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "check": "biome check --write src"
+  },
+  "peerDependencies": {
+    "solid-icons": "^1.1.0",
+    "solid-js": "^1.9.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "@types/node": "^22.10.1",
+    "rollup-plugin-external-globals": "^0.13.0",
+    "sass": "^1.81.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-plugin-solid": "^2.11.0"
+  },
+  "files": ["lib"],
+  "sideEffects": ["**/*.css"],
+  "module": "./lib/index.js",
+  "typings": "./lib/index.d.ts"
+}
