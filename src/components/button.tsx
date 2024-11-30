@@ -1,6 +1,72 @@
 import { FiCalendar } from "solid-icons/fi";
+import { ImCheckmark } from "solid-icons/im";
 import { RiBusinessCalendarFill } from "solid-icons/ri";
+import { children, createMemo, createSignal } from "solid-js";
 import Button from "~/button";
+import Spinner from "~/spinner";
+import { useTimeout } from "~/utils/timeout";
+
+type LoadingState = "initial" | "loading" | "loaded";
+
+const buttonNonInteractive = {
+  "background-color": "var(--colorNeutralBackground1)",
+  border: "var(--strokeWidthThin) solid var(--colorNeutralStroke1)",
+  color: "var(--colorNeutralForeground1)",
+  cursor: "default",
+  pointerEvents: "none",
+};
+
+const LoadingButton = () => {
+  const [loadingState, setLoadingState] = createSignal<LoadingState>("initial");
+
+  const [setTimeout, cancelTimeout] = useTimeout();
+
+  const onButtonClick = () => {
+    setLoadingState("loading");
+    setTimeout(() => setLoadingState("loaded"), 5000);
+  };
+
+  const buttonContent = createMemo(() =>
+    loadingState() === "loading"
+      ? "Loading"
+      : loadingState() === "loaded"
+        ? "Loaded"
+        : "Start loading",
+  );
+
+  const buttonIcon = children(() =>
+    loadingState() === "loading" ? (
+      <Spinner size="tiny" />
+    ) : loadingState() === "loaded" ? (
+      <ImCheckmark
+        color={
+          loadingState() === "loaded"
+            ? "var(--colorStatusSuccessForeground1)"
+            : undefined
+        }
+      />
+    ) : null,
+  );
+
+  const onResetButtonClick = () => {
+    cancelTimeout();
+    setLoadingState("initial");
+  };
+
+  return (
+    <div>
+      <Button
+        style={loadingState() === "initial" ? undefined : buttonNonInteractive}
+        disabledFocusable={loadingState() !== "initial"}
+        icon={buttonIcon()}
+        onClick={onButtonClick}
+      >
+        {buttonContent()}
+      </Button>
+      <Button onClick={onResetButtonClick}>Reset loading state</Button>
+    </div>
+  );
+};
 
 const ButtonDemo = () => {
   return (
@@ -82,19 +148,7 @@ const ButtonDemo = () => {
         </div>
       </div>
 
-      {/*
-      <div>
-        <Button
-          class={buttonClassName}
-          disabledFocusable={loadingState !== "initial"}
-          icon={buttonIcon}
-          onClick={onButtonClick}
-        >
-          {buttonContent}
-        </Button>
-        <Button onClick={onResetButtonClick}>Reset loading state</Button>
-      </div>
-      */}
+      <LoadingButton />
 
       <div>
         <Button>Short text</Button>
