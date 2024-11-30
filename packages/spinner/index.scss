@@ -1,0 +1,169 @@
+.fluent-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  gap: 8px;
+  overflow: hidden;
+
+  &__spinner {
+    --fui-Spinner--strokeWidth: var(--strokeWidthThicker);
+
+    width: 32px;
+    height: 32px;
+    position: relative;
+    flex-shrink: 0;
+    mask-image: radial-gradient(
+      closest-side,
+      transparent calc(100% - var(--fui-Spinner--strokeWidth) - 1px),
+      white calc(100% - var(--fui-Spinner--strokeWidth)) calc(100% - 1px),
+      transparent 100%
+    );
+    background-color: var(--colorBrandStroke2Contrast);
+    color: var(--colorBrandStroke1);
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: fluent-spinner-animation;
+
+    &Tail {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      mask-image: conic-gradient(transparent 105deg, white 105deg);
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: var(--curveEasyEase);
+      animation-name: fluent-spinner-tail-animation;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        animation: inherit;
+        background-image: conic-gradient(
+          currentcolor 135deg,
+          transparent 135deg
+        );
+      }
+
+      &::before {
+        animation-name: fluent-spinner-tail-before-animation;
+      }
+
+      &::after {
+        animation-name: fluent-spinner-tail-after-animation;
+      }
+    }
+  }
+
+  &-inverted {
+    .fluent-spinner__spinner {
+      color: var(--colorNeutralStrokeOnBrand2);
+      background-color: var(--colorNeutralStrokeAlpha2);
+    }
+  }
+
+  &-tiny {
+    .fluent-spinner__spinner {
+      --fui-Spinner--strokeWidth: var(--strokeWidthThick);
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &-extra-tiny {
+    .fluent-spinner__spinner {
+      --fui-Spinner--strokeWidth: var(--strokeWidthThick);
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &-extra-small {
+    .fluent-spinner__spinner {
+      --fui-Spinner--strokeWidth: var(--strokeWidthThick);
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &-small {
+    .fluent-spinner__spinner {
+      --fui-Spinner--strokeWidth: var(--strokeWidthThick);
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &-large {
+    .fluent-spinner__spinner {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &-extra-large {
+    .fluent-spinner__spinner {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &-huge {
+    .fluent-spinner__spinner {
+      --fui-Spinner--strokeWidth: var(--strokeWidthThickest);
+      width: 44px;
+      height: 44px;
+    }
+  }
+}
+
+@keyframes fluent-spinner-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fluent-spinner-tail-animation {
+  0% {
+    transform: rotate(-135deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(225deg);
+  }
+}
+
+@keyframes fluent-spinner-tail-before-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(105deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes fluent-spinner-tail-after-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(225deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
