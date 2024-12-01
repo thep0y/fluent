@@ -1,0 +1,62 @@
+.fluent-progress-bar {
+  height: 2px;
+  background-color: var(--colorNeutralBackground6);
+  width: 100%;
+  display: block;
+  border-radius: var(--borderRadiusMedium);
+  overflow: hidden;
+
+  &__bar {
+    background-color: var(--colorCompoundBrandBackground);
+    transition-timing-function: ease;
+    transition-duration: 0.3s;
+    transition-property: width;
+    height: 100%;
+    border-radius: inherit;
+
+    &-success {
+      background-color: var(--colorPaletteGreenBackground3);
+    }
+
+    &-error {
+      background-color: var(--colorPaletteRedBackground3);
+    }
+
+    &-warning {
+      background-color: var(--colorPaletteDarkOrangeBackground3);
+    }
+
+    &-indeterminate {
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-duration: 3s;
+      animation-name: fluent-progress-bar__bar-indeterminate-animation;
+      background-image: linear-gradient(
+        to right,
+        var(--colorNeutralBackground6) 0%,
+        var(--colorTransparentBackground) 50%,
+        var(--colorNeutralBackground6) 100%
+      );
+      max-width: 33%;
+      position: relative;
+    }
+  }
+
+  &-large {
+    height: 4px;
+    margin: 20px 0;
+  }
+
+  &-square {
+    border-radius: var(--borderRadiusNone);
+  }
+}
+
+@keyframes fluent-progress-bar__bar-indeterminate-animation {
+  0% {
+    left: -33%;
+  }
+  100% {
+    left: 100%;
+  }
+}

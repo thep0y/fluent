@@ -4,7 +4,7 @@ import { RiBusinessCalendarFill } from "solid-icons/ri";
 import { children, createMemo, createSignal } from "solid-js";
 import Button from "~/button";
 import Spinner from "~/spinner";
-import { useTimeout } from "~/utils/timeout";
+import { useTimeout } from "~/utils/time";
 
 type LoadingState = "initial" | "loading" | "loaded";
 
