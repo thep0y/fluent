@@ -1,6 +1,6 @@
 {
   "name": "fluent-solid",
-  "version": "0.3.7",
+  "version": "0.1.0",
   "repository": "https://github.com/thep0y/fluent",
   "keywords": [
     "solid",
@@ -32,13 +32,18 @@
     "@types/node": "^22.10.1",
     "rollup-plugin-external-globals": "^0.13.0",
     "sass": "^1.81.0",
+    "tsc-alias": "^1.8.10",
     "tslib": "^2.8.1",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
     "vite-plugin-solid": "^2.11.0"
   },
-  "files": ["lib"],
-  "sideEffects": ["**/*.css"],
+  "files": [
+    "lib"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "module": "./lib/index.js",
   "typings": "./lib/index.d.ts"
 }

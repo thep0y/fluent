@@ -1,5 +1,5 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
-import ProgressBar from "~/progress";
+import ProgressBar from "~/components/progress";
 import { useInterval, useTimeout } from "~/utils/time";
 
 const ProgressDemo = () => {
