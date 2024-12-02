@@ -1,15 +1,15 @@
 import "./index.scss";
 
-export * as Button from "./button";
-export type { ButtonProps } from "./button";
+export { default as Button } from "./components/button";
+export type { ButtonProps } from "./components/button";
 
-export * as Label from "./label";
-export type { LabelProps } from "./label";
+export { default as Label } from "./components/label";
+export type { LabelProps } from "./components/label";
 
-export * as ProgressBar from "./progress";
-export type { ProgressBarProps } from "./progress";
+export { default as ProgressBar } from "./components/progress";
+export type { ProgressBarProps } from "./components/progress";
 
-export * as Spinner from "./spinner";
-export type { SpinnerProps } from "./spinner";
+export { default as Spinner } from "./components/spinner";
+export type { SpinnerProps } from "./components/spinner";
 
 export * from "./utils";
