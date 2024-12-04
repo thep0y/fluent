@@ -1,0 +1,107 @@
+.fluent-switch {
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: inline-flex;
+  position: relative;
+
+  &__input {
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 100%;
+    margin: 0px;
+    opacity: 0;
+    position: absolute;
+    width: calc(40px + 2 * var(--spacingHorizontalS));
+
+    &:checked ~ .fluent-switch__indicator > * {
+      transform: translateX(20px);
+    }
+
+    &:enabled:checked ~ .fluent-switch__indicator {
+      background-color: var(--colorCompoundBrandBackground);
+      color: var(--colorNeutralForegroundInverted);
+      border-color: var(--colorTransparentStroke);
+    }
+
+    &:enabled:checked:hover:active ~ .fluent-switch__indicator {
+      background-color: var(--colorCompoundBrandBackgroundPressed);
+      border-color: var(--colorTransparentStrokeInteractive);
+    }
+
+    &:enabled:checked:hover ~ .fluent-switch__indicator {
+      background-color: var(--colorCompoundBrandBackgroundPressed);
+      border-color: var(--colorTransparentStrokeInteractive);
+    }
+
+    &:enabled:checked ~ .fluent-switch__indicator {
+      background-color: var(--colorCompoundBrandBackgroundPressed);
+      border-color: var(--colorTransparentStrokeInteractive);
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &:disabled:not(:checked) ~ .fluent-switch__indicator {
+      border-color: var(--colorNeutralStrokeDisabled);
+    }
+
+    &:disabled:checked ~ .fluent-switch__indicator {
+      background-color: var(--colorNeutralBackgroundDisabled);
+      border-color: var(--colorTransparentStrokeDisabled);
+    }
+
+    &:disabled ~ .fluent-switch__indicator {
+      color: var(--colorNeutralForegroundDisabled);
+    }
+
+    &:disabled ~ .fluent-switch__label {
+      cursor: default;
+      color: var(--colorNeutralForegroundDisabled);
+    }
+  }
+
+  &__label {
+    margin-top: calc((20px - var(--lineHeightBase300)) / 2);
+    margin-bottom: calc((20px - var(--lineHeightBase300)) / 2);
+    cursor: pointer;
+    padding-left: var(--spacingHorizontalXS);
+    padding: var(--spacingVerticalS) var(--spacingHorizontalS);
+  }
+
+  &__indicator {
+    color: var(--colorNeutralStrokeAccessible);
+    border-color: var(--colorNeutralStrokeAccessible);
+    border-radius: var(--borderRadiusCircular);
+    border: 1px solid;
+    line-height: 0;
+    box-sizing: border-box;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 18px;
+    height: 20px;
+    margin: var(--spacingVerticalS) var(--spacingHorizontalS);
+    pointer-events: none;
+    transition-duration: var(--durationNormal);
+    transition-timing-function: var(--curveEasyEase);
+    transition-property: background, border, color;
+    width: 40px;
+
+    & > svg {
+      transition-duration: var(--durationNormal);
+      transition-timing-function: var(--curveEasyEase);
+      transition-property: transform;
+    }
+
+    & > svg {
+      display: inline;
+      line-height: 0;
+    }
+  }
+
+  &-label-above {
+    flex-direction: column;
+  }
+}
