@@ -18,7 +18,7 @@ type ButtonType = "submit" | "reset" | "button";
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-  BaseSizeComponentProps<HTMLButtonElement> {
+    BaseSizeComponentProps<HTMLButtonElement> {
   /**
    * A button can have its content and borders styled for greater emphasis or to be subtle.
    * - 'secondary' (default): Gives emphasis to the button in such a way that it indicates a secondary action.
@@ -61,6 +61,8 @@ export interface ButtonProps
    */
   shape?: ButtonShape;
 
+  danger?: boolean;
+
   icon?: JSX.Element;
   isLoading?: boolean;
 }
@@ -81,8 +83,10 @@ const Button = (props: ButtonProps) => {
       others: {
         [`${merged.class}`]: merged.class,
         [`${baseClassName}-disabled`]: disabled(),
+        [`${baseClassName}-danger`]: merged.danger,
         [`${baseClassName}-${merged.shape}`]: merged.shape,
-        [`${baseClassName}-${merged.appearance}`]: merged.appearance,
+        [`${baseClassName}-${merged.danger ? "primary" : merged.appearance}`]:
+          merged.danger ?? merged.appearance,
         [`${baseClassName}-${merged.size}`]: merged.size,
         [`${baseClassName}-icon-only`]: iconOnly(),
       },

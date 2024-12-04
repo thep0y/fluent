@@ -156,6 +156,12 @@ const ButtonDemo = () => {
           Long text wraps after it hits the max width of the component
         </Button>
       </div>
+
+      <div>
+        <Button icon={<FiCalendar />} danger>
+          Danger
+        </Button>
+      </div>
     </>
   );
 };
