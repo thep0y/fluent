@@ -11,7 +11,8 @@ import type { JSX } from "solid-js";
 
 const LazyLabel = lazy(() => import("~/components/label"));
 
-interface SwitchProps extends BaseNoChildrenComponentProps<HTMLDivElement> {
+export interface SwitchProps
+  extends BaseNoChildrenComponentProps<HTMLDivElement> {
   /**
    * Defines the controlled checked state of the Switch.
    * If passed, Switch ignores the `defaultChecked` property.
