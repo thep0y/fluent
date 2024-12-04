@@ -2,10 +2,7 @@ import { children, lazy, mergeProps, Show, type JSX } from "solid-js";
 import "./index.scss";
 import { addClassList } from "~/utils/class";
 import type { BaseNoChildrenComponentProps } from "~/interface";
-import {
-  typographyStyles,
-  type TypographyStyle,
-} from "~/components/styles/global";
+import { typographyStyles, type TypographyStyle } from "~/styles/global";
 
 const LazyLabel = lazy(() => import("~/components/label"));
 
@@ -34,14 +31,14 @@ export interface SpinnerProps
    * @default 'medium'
    */
   size?:
-    | "extra-tiny"
-    | "tiny"
-    | "extra-small"
-    | "small"
-    | "medium"
-    | "large"
-    | "extra-large"
-    | "huge";
+  | "extra-tiny"
+  | "tiny"
+  | "extra-small"
+  | "small"
+  | "medium"
+  | "large"
+  | "extra-large"
+  | "huge";
 
   /**
    * The animated spinning ring.
