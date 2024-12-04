@@ -74,6 +74,18 @@
     }
   }
 
+  &-danger {
+    background-color: var(--colorStatusDangerBackground3);
+
+    &:hover {
+      background-color: var(--colorStatusDangerBackground3Hover);
+
+      &:active {
+        background-color: var(--colorStatusDangerBackground3Pressed);
+      }
+    }
+  }
+
   &-subtle {
     color: var(--colorNeutralForeground2);
     background-color: var(--colorSubtleBackground);
