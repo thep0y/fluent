@@ -7,7 +7,7 @@ type HTMLInputElementProps = JSX.HTMLElementTags["input"];
 
 export interface InputProps
   extends BaseNoChildrenComponentProps<HTMLInputElement>,
-  Omit<HTMLInputElementProps, "style" | "onChange" | "onInput"> {
+    Omit<HTMLInputElementProps, "style" | "onChange" | "onInput"> {
   /** Input can't have children. */
   children?: never;
 
@@ -27,12 +27,12 @@ export interface InputProps
    * Note: 'filled-darker-shadow' and 'filled-lighter-shadow' are deprecated and will be removed in the future.
    */
   appearance?:
-  | "outline"
-  | "underline"
-  | "filled-darker"
-  | "filled-lighter"
-  | "filled-darker-shadow"
-  | "filled-lighter-shadow";
+    | "outline"
+    | "underline"
+    | "filled-darker"
+    | "filled-lighter"
+    | "filled-darker-shadow"
+    | "filled-lighter-shadow";
 
   /**
    * Default value of the input. Provide this if the input should be an uncontrolled component
@@ -72,18 +72,18 @@ export interface InputProps
    * @default 'text'
    */
   type?:
-  | "text"
-  | "email"
-  | "password"
-  | "search"
-  | "tel"
-  | "url"
-  | "date"
-  | "datetime-local"
-  | "month"
-  | "number"
-  | "time"
-  | "week";
+    | "text"
+    | "email"
+    | "password"
+    | "search"
+    | "tel"
+    | "url"
+    | "date"
+    | "datetime-local"
+    | "month"
+    | "number"
+    | "time"
+    | "week";
 
   /** Element before the input text, within the input border */
   contentBefore?: JSX.Element;
@@ -149,7 +149,7 @@ const Input = (props: InputProps) => {
   );
 
   return (
-    <span classList={classList()}>
+    <span classList={classList()} style={props.style}>
       {contentBefore()}
       <input
         class={`${baseClassName}__input`}
