@@ -1,5 +1,9 @@
 import type { JSX } from "solid-js";
 
+export type FluentMouseEvent<T extends HTMLElement> = MouseEvent & {
+  currentTarget: T;
+};
+
 export type SizeType = "small" | "medium" | "large";
 export type Direction = "left" | "center" | "right" | "top" | "bottom";
 export type Placement =
@@ -17,7 +21,7 @@ export interface BaseComponentProps<T extends HTMLElement> {
 
 export interface BaseOnClickComponentProps<T extends HTMLElement>
   extends BaseComponentProps<T> {
-  onClick?: (event: MouseEvent & { currentTarget: T }) => void;
+  onClick?: (event: FluentMouseEvent<T>) => void;
 }
 
 export type BaseNoChildrenComponentProps<T extends HTMLElement> = Omit<
