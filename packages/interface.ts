@@ -1,5 +1,8 @@
 import type { JSX } from "solid-js";
 
+export type HTMLInputElementProps = JSX.HTMLElementTags["input"];
+export type HTMLDivElementProps = JSX.HTMLElementTags["div"];
+
 export type FluentMouseEvent<T extends HTMLElement> = MouseEvent & {
   currentTarget: T;
 };
