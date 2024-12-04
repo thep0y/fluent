@@ -120,7 +120,7 @@ const Switch = (props: SwitchProps) => {
   });
 
   return (
-    <div classList={classList()} onClick={onClick}>
+    <div classList={classList()} style={merged.style} onClick={onClick}>
       <input
         class={`${baseClassName}__input`}
         role="switch"
