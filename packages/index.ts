@@ -12,4 +12,10 @@ export type { ProgressBarProps } from "./components/progress";
 export { default as Spinner } from "./components/spinner";
 export type { SpinnerProps } from "./components/spinner";
 
+export { default as Input } from "./components/input";
+export type { InputProps } from "./components/input";
+
+export { default as Switch } from "./components/switch";
+export type { SwitchProps } from "./components/switch";
+
 export * from "./utils";
