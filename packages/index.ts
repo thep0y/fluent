@@ -18,4 +18,7 @@ export type { InputProps } from "./components/input";
 export { default as Switch } from "./components/switch";
 export type { SwitchProps } from "./components/switch";
 
+export { default as Divider } from "./components/divider";
+export type { DividerProps } from "./components/divider";
+
 export * from "./utils";
