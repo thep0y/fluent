@@ -1,0 +1,140 @@
+.fluent-divider {
+  text-align: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  font-size: var(--fontSizeBase200);
+  color: var(--colorNeutralForeground2);
+  line-height: var(--lineHeightBase200);
+  flex-grow: 1;
+  display: flex;
+  font-weight: var(--fontWeightRegular);
+  font-family: var(--fontFamilyBase);
+
+  &::before,
+  &::after {
+    border-color: var(--colorNeutralStroke2);
+    margin-right: 0px;
+    margin-bottom: 0px;
+    flex-grow: 1;
+    display: flex;
+    box-sizing: border-box;
+    content: "";
+  }
+
+  &:not(.fluent-divider-vertical) {
+    &::before,
+    &::after {
+      border-top-width: var(--strokeWidthThin);
+      border-top-style: solid;
+      min-width: 8px;
+    }
+  }
+
+  &-align-center,
+  &-align-start,
+  &-align-end {
+    &:not(.fluent-divider-vertical) {
+      &::before {
+        margin-right: 12px;
+      }
+
+      &::after {
+        margin-left: 12px;
+      }
+    }
+  }
+
+  &-align-start {
+    &:not(.fluent-divider-vertical)::before {
+      max-width: 8px;
+    }
+
+    &.fluent-divider-vertical::before {
+      max-height: 8px;
+    }
+  }
+
+  &-align-end {
+    &:not(.fluent-divider-vertical)::after {
+      max-width: 8px;
+    }
+
+    &.fluent-divider-vertical::after {
+      max-height: 8px;
+    }
+  }
+
+  &-vertical {
+    min-height: 20px;
+    flex-direction: column;
+
+    &::before,
+    &::after {
+      min-height: 8px;
+      border-right-width: var(--strokeWidthThin);
+      border-right-style: solid;
+    }
+
+    &.fluent-divider-align-center,
+    &.fluent-divider-align-start,
+    &.fluent-divider-align-end {
+      &::before {
+        margin-bottom: 12px;
+      }
+
+      &::after {
+        margin-top: 12px;
+      }
+    }
+
+    &::before {
+      margin-bottom: 0px;
+    }
+
+    &::after {
+      margin-top: 0px;
+    }
+  }
+
+  &-subtle {
+    color: var(--colorNeutralForeground3);
+
+    &::before,
+    &::after {
+      border-color: var(--colorNeutralStroke3);
+    }
+  }
+
+  &-brand {
+    color: var(--colorBrandForeground1);
+
+    &::before,
+    &::after {
+      border-color: var(--colorBrandStroke1);
+    }
+  }
+
+  &-strong {
+    color: var(--colorNeutralForeground1);
+
+    &::before,
+    &::after {
+      border-color: var(--colorNeutralStroke1);
+    }
+  }
+
+  &-inset {
+    &:not(.fluent-divider-vertical) {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    &.fluent-divider-vertical {
+      margin-bottom: 12px;
+      margin-top: 12px;
+    }
+  }
+}
