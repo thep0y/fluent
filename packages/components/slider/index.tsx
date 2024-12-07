@@ -112,12 +112,6 @@ const Slider = (props: SliderProps) => {
     merged.onChange?.(newValue);
   };
 
-  const thumbStyle = createMemo(() => {
-    return merged.vertical
-      ? { bottom: `${valuePercent()}%` }
-      : { left: `${valuePercent()}%` };
-  });
-
   return (
     <div classList={classes()} style={style()}>
       <input
