@@ -6,6 +6,8 @@ const examples = [
   lazy(() => import("./components/progress")),
   lazy(() => import("./components/input")),
   lazy(() => import("./components/switch")),
+  lazy(() => import("./components/divider")),
+  lazy(() => import("./components/slider")),
 ];
 
 //const menus = ["Button"];
