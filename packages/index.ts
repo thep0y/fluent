@@ -21,4 +21,7 @@ export type { SwitchProps } from "./components/switch";
 export { default as Divider } from "./components/divider";
 export type { DividerProps } from "./components/divider";
 
+export { default as Slider } from "./components/slider";
+export type { SliderProps } from "./components/slider";
+
 export * from "./utils";
