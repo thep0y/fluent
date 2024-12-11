@@ -24,4 +24,7 @@ export type { DividerProps } from "./components/divider";
 export { default as Slider } from "./components/slider";
 export type { SliderProps } from "./components/slider";
 
+export { Badge } from "./components/badge";
+export type { BadgeProps } from "./components/badge";
+
 export * from "./utils";
