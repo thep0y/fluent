@@ -8,6 +8,7 @@ const examples = [
   lazy(() => import("./components/switch")),
   lazy(() => import("./components/divider")),
   lazy(() => import("./components/slider")),
+  lazy(() => import("./components/badge")),
 ];
 
 //const menus = ["Button"];
