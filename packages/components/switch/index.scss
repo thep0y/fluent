@@ -31,13 +31,14 @@
     }
 
     &:enabled:checked:hover ~ .fluent-switch__indicator {
-      background-color: var(--colorCompoundBrandBackgroundPressed);
+      background-color: var(--colorCompoundBrandBackgroundHover);
       border-color: var(--colorTransparentStrokeInteractive);
     }
 
     &:enabled:checked ~ .fluent-switch__indicator {
-      background-color: var(--colorCompoundBrandBackgroundPressed);
-      border-color: var(--colorTransparentStrokeInteractive);
+      background-color: var(--colorCompoundBrandBackground);
+      color: var(--colorNeutralForegroundInverted);
+      border-color: var(--colorTransparentStroke);
     }
 
     &:disabled {
