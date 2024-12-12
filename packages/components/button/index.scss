@@ -36,14 +36,6 @@
     }
   }
 
-  &-circular {
-    border-radius: var(--borderRadiusCircular);
-  }
-
-  &-square {
-    border-radius: var(--borderRadiusNone);
-  }
-
   &-primary {
     color: var(--colorNeutralForegroundOnBrand);
     background-color: var(--colorBrandBackground);
@@ -71,6 +63,14 @@
           border-color: transparent;
         }
       }
+    }
+  }
+
+  &-outline {
+    background-color: var(--colorTransparentBackground);
+
+    &:hover {
+      background-color: var(--colorTransparentBackground);
     }
   }
 
@@ -248,5 +248,13 @@
         background-color: var(--colorNeutralBackgroundDisabled);
       }
     }
+  }
+
+  &-circular {
+    border-radius: var(--borderRadiusCircular);
+  }
+
+  &-square {
+    border-radius: var(--borderRadiusNone);
   }
 }
