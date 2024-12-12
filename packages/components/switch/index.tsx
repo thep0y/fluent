@@ -60,6 +60,8 @@ export interface SwitchProps
    */
   label?: string;
 
+  lively?: boolean;
+
   disabled?: boolean;
   required?: boolean;
 }
@@ -68,7 +70,7 @@ const baseClassName = "fluent-switch";
 
 const Switch = (props: SwitchProps) => {
   const merged = mergeProps(
-    { indicator: <BiSolidCircle />, labelPosition: "after" },
+    { indicator: <BiSolidCircle />, labelPosition: "after", lively: true },
     props,
   );
 
@@ -93,6 +95,7 @@ const Switch = (props: SwitchProps) => {
         [`${baseClassName}-label-${merged.labelPosition}`]:
           merged.label && merged.labelPosition,
         [`${baseClassName}-disabled`]: merged.disabled,
+        [`${baseClassName}-lively`]: merged.lively,
         [`${merged.class}`]: merged.class,
       },
     });
