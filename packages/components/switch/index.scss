@@ -4,6 +4,23 @@
   display: inline-flex;
   position: relative;
 
+  &-lively {
+    .fluent-switch__indicator {
+      font-size: 14px;
+      padding: 2px;
+      transition:
+        font-size 0.075s ease,
+        padding 0.075s ease;
+    }
+
+    .fluent-switch__input:not(:disabled):hover {
+      & ~ .fluent-switch__indicator {
+        font-size: 16px;
+        padding: 1px;
+      }
+    }
+  }
+
   &__input {
     top: 0;
     left: 0;
@@ -85,6 +102,17 @@
     }
   }
 
+  &-label-above {
+    flex-direction: column;
+  }
+
+  &-label-before {
+    & .fluent-switch__input {
+      right: 0;
+      left: unset;
+    }
+  }
+
   &__label {
     margin-top: calc((20px - var(--lineHeightBase300)) / 2);
     margin-bottom: calc((20px - var(--lineHeightBase300)) / 2);
@@ -121,9 +149,5 @@
       display: inline;
       line-height: 0;
     }
-  }
-
-  &-label-above {
-    flex-direction: column;
   }
 }
