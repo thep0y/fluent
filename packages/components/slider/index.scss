@@ -15,6 +15,20 @@
   position: relative;
   align-items: center;
 
+  &:hover {
+    --fui-Slider__progress--color: var(--colorCompoundBrandBackgroundHover);
+    --fui-Slider__thumb--color: var(--colorCompoundBrandBackgroundHover);
+  }
+
+  &:active {
+    --fui-Slider__progress--color: var(--colorCompoundBrandBackgroundPressed);
+    --fui-Slider__thumb--color: var(--colorCompoundBrandBackgroundPressed);
+  }
+
+  &:focus {
+    outline-style: none;
+  }
+
   &__input {
     grid-column-end: -1;
     grid-column-start: 1;
