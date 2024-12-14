@@ -6,7 +6,6 @@ import type {
   HTMLInputElementProps,
 } from "~/interface";
 import { children, createSignal, lazy, mergeProps } from "solid-js";
-import { BiSolidCircle } from "solid-icons/bi";
 import type { JSX } from "solid-js";
 
 const LazyLabel = lazy(() => import("~/components/label"));
@@ -70,7 +69,7 @@ const baseClassName = "fluent-switch";
 
 const Switch = (props: SwitchProps) => {
   const merged = mergeProps(
-    { indicator: <BiSolidCircle />, labelPosition: "after", lively: true },
+    { indicator: <Indicator />, labelPosition: "after", lively: true },
     props,
   );
 
@@ -146,5 +145,7 @@ const Switch = (props: SwitchProps) => {
     </div>
   );
 };
+
+const Indicator = () => <div class={`${baseClassName}__default-indicator`} />;
 
 export default Switch;
