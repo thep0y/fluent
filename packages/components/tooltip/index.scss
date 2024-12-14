@@ -1,0 +1,32 @@
+.fluent-tooltip {
+  z-index: 1000000;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  line-height: var(--lineHeightBase300);
+  font-weight: var(--fontWeightRegular);
+  font-size: var(--fontSizeBase300);
+  font-family: var(--fontFamilyBase);
+  text-align: left;
+  background-color: var(--colorNeutralBackground1);
+  color: var(--colorNeutralForeground1);
+
+  &__content {
+    filter: drop-shadow(0 0 2px var(--colorNeutralShadowAmbient))
+      drop-shadow(0 4px 8px var(--colorNeutralShadowKey));
+    overflow-wrap: break-word;
+    cursor: default;
+    max-width: 240px;
+    box-sizing: border-box;
+    line-height: var(--lineHeightBase200);
+    font-size: var(--fontSizeBase200);
+    font-family: var(--fontFamilyBase);
+    background-color: var(--colorNeutralBackground1);
+    color: var(--colorNeutralForeground1);
+    padding: 4px 11px 6px;
+    border-radius: var(--borderRadiusMedium);
+    border: 1px solid var(--colorTransparentStroke);
+    position: absolute;
+  }
+}

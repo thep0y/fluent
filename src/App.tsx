@@ -9,6 +9,7 @@ const examples = [
   lazy(() => import("./components/divider")),
   lazy(() => import("./components/slider")),
   lazy(() => import("./components/badge")),
+  lazy(() => import("./components/tooltip")),
 ];
 
 //const menus = ["Button"];
