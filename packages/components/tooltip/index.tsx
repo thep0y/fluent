@@ -142,16 +142,28 @@ const Tooltip = (props: TooltipProps) => {
     const trigger = triggerRef!;
 
     if (tooltip && trigger) {
-      const calculatedPosition = calculatePosition(
-        trigger,
-        tooltip,
-        merged.positioning,
-      );
-      setPosition(calculatedPosition);
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          if (
+            entry.target === tooltip &&
+            tooltip.offsetWidth > 0 &&
+            tooltip.offsetHeight > 0
+          ) {
+            const calculatedPosition = calculatePosition(
+              trigger,
+              tooltip,
+              merged.positioning,
+            );
+            setPosition(calculatedPosition);
+          }
+        }
+      });
 
-      // Apply calculated position
-      //tooltip.style.top = `${calculatedPosition.top}px`;
-      //tooltip.style.left = `${calculatedPosition.left}px`;
+      resizeObserver.observe(tooltip);
+
+      onCleanup(() => {
+        resizeObserver.disconnect();
+      });
     }
   });
 
@@ -174,8 +186,6 @@ const Tooltip = (props: TooltipProps) => {
 
     // TODO: Show immediately if another tooltip is already visible
     //const delay = context.visibleTooltip ? 0 : state.showDelay;
-
-    calculatePosition(triggerRef!, tooltipRef!, merged.positioning);
 
     setDelayTimeout(() => {
       setVisible(true);
@@ -237,7 +247,9 @@ const Tooltip = (props: TooltipProps) => {
           <div
             ref={tooltipRef}
             role="tooltip"
-            style={{ left: `${position().left}px`, top: `${position().top}px` }}
+            style={{
+              transform: `translate3d(${position().left}px, ${position().top}px, 0)`,
+            }}
             class={`${baseClassName}__content`}
             data-popper-placement={merged.positioning}
           >
