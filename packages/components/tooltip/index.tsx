@@ -6,7 +6,6 @@ import {
   createEffect,
   createSignal,
   onCleanup,
-  onMount,
   Show,
   type JSX,
 } from "solid-js";
@@ -222,10 +221,14 @@ const Tooltip = (props: TooltipProps) => {
 
   const resolved = children(() => merged.children);
 
-  onMount(() => {
+  createEffect(() => {
+    if (triggerRef) return;
+
     triggerRef = resolved()! as HTMLElement;
-    triggerRef.onpointerenter = onEnterTrigger;
-    triggerRef.onpointerleave = onLeaveTrigger;
+    if (triggerRef) {
+      triggerRef.onpointerenter = onEnterTrigger;
+      triggerRef.onpointerleave = onLeaveTrigger;
+    }
   });
 
   return (
