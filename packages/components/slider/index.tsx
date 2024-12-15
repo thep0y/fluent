@@ -65,12 +65,14 @@ export interface SliderProps
    * Triggers a callback when the value has been changed. This will be called on every individual step.
    */
   onChange?: (value: number) => void;
+
+  lively?: boolean;
 }
 
 const baseClassName = "fluent-slider";
 
 const Slider = (props: SliderProps) => {
-  const merged = mergeProps({ min: 0, max: 100 }, props);
+  const merged = mergeProps({ min: 0, max: 100, lively: true }, props);
 
   const [currentValue, setCurrentValue] = createSignal(
     props.value ?? props.defaultValue ?? merged.min,
@@ -95,6 +97,7 @@ const Slider = (props: SliderProps) => {
         [`${baseClassName}-vertical`]: merged.vertical,
         [`${baseClassName}-${merged.size}`]: merged.size,
         [`${baseClassName}-disabled`]: merged.disabled,
+        [`${baseClassName}-lively`]: merged.lively,
       },
     });
 

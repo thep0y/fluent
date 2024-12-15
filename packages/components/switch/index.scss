@@ -1,3 +1,28 @@
+$color-neutral-stroke-accessible: var(--colorNeutralStrokeAccessible);
+$color-neutral-stroke-accessible-hover: var(
+  --colorNeutralStrokeAccessibleHover
+);
+$color-neutral-stroke-accessible-pressed: var(
+  --colorNeutralStrokeAccessiblePressed
+);
+$color-compound-brand-background: var(--colorCompoundBrandBackground);
+$color-compound-brand-background-hover: var(
+  --colorCompoundBrandBackgroundHover
+);
+$color-compound-brand-background-pressed: var(
+  --colorCompoundBrandBackgroundPressed
+);
+$color-transparent-stroke: var(--colorTransparentStroke);
+$color-transparent-stroke-interactive: var(--colorTransparentStrokeInteractive);
+$color-neutral-background-disabled: var(--colorNeutralBackgroundDisabled);
+$color-transparent-stroke-disabled: var(--colorTransparentStrokeDisabled);
+$color-neutral-foreground-disabled: var(--colorNeutralForegroundDisabled);
+$color-neutral-foreground-inverted: var(--colorNeutralForegroundInverted);
+
+@mixin transition($properties, $duration, $timing-function) {
+  transition: $properties $duration $timing-function;
+}
+
 .fluent-switch {
   align-items: flex-start;
   box-sizing: border-box;
@@ -6,17 +31,27 @@
 
   &-lively {
     .fluent-switch__indicator {
-      font-size: 14px;
-      padding: 2px;
-      transition:
-        font-size 0.075s ease,
-        padding 0.075s ease;
+      font-size: 12px;
+      padding: 3px;
+      @include transition(font-size, 0.1s, ease);
+      @include transition(padding, 0.1s, ease);
+
+      & > .fluent-switch__default-indicator {
+        @include transition(width, 0.1s, ease);
+      }
     }
 
     .fluent-switch__input:not(:disabled):hover {
       & ~ .fluent-switch__indicator {
-        font-size: 16px;
-        padding: 1px;
+        font-size: 14px;
+        padding: 2px;
+      }
+    }
+
+    .fluent-switch__input:not(:disabled):active {
+      & ~ .fluent-switch__indicator > .fluent-switch__default-indicator {
+        width: 1.25em;
+        border-radius: 0.5em;
       }
     }
   }
@@ -27,53 +62,55 @@
     box-sizing: border-box;
     cursor: pointer;
     height: 100%;
-    margin: 0px;
+    margin: 0;
     opacity: 0;
     position: absolute;
     width: calc(40px + 2 * var(--spacingHorizontalS));
 
-    &:checked ~ .fluent-switch__indicator > * {
-      transform: translateX(20px);
-    }
-
     &:enabled {
       &:checked {
         & ~ .fluent-switch__indicator {
-          background-color: var(--colorCompoundBrandBackground);
-          color: var(--colorNeutralForegroundInverted);
-          border-color: var(--colorTransparentStroke);
+          background-color: $color-compound-brand-background;
+          border-color: $color-transparent-stroke;
+          display: flex;
+          justify-content: flex-end;
+
+          > .fluent-switch__default-indicator {
+            position: relative;
+            background-color: $color-neutral-foreground-inverted;
+            @include transition(transform, 0.5s, ease-in-out);
+            @include transition(width, 0.2s, ease);
+          }
         }
 
         &:hover {
           & ~ .fluent-switch__indicator {
-            background-color: var(--colorCompoundBrandBackgroundHover);
-            border-color: var(--colorTransparentStrokeInteractive);
+            background-color: $color-compound-brand-background-hover;
+            border-color: $color-transparent-stroke-interactive;
           }
 
           &:active ~ .fluent-switch__indicator {
-            background-color: var(--colorCompoundBrandBackgroundPressed);
-            border-color: var(--colorTransparentStrokeInteractive);
+            background-color: $color-compound-brand-background-pressed;
+            border-color: $color-transparent-stroke-interactive;
           }
         }
       }
 
       &:not(:checked) {
         & ~ .fluent-switch__indicator {
-          color: var(--colorNeutralStrokeAccessible);
-          border-color: var(--colorNeutralStrokeAccessible);
-          color: var(--colorNeutralStrokeAccessible);
-          border-color: var(--colorNeutralStrokeAccessible);
+          color: $color-neutral-stroke-accessible;
+          border-color: $color-neutral-stroke-accessible;
         }
 
         &:hover {
           & ~ .fluent-switch__indicator {
-            color: var(--colorNeutralStrokeAccessibleHover);
-            border-color: var(--colorNeutralStrokeAccessibleHover);
+            color: $color-neutral-stroke-accessible-hover;
+            border-color: $color-neutral-stroke-accessible-hover;
           }
 
           &:active ~ .fluent-switch__indicator {
-            color: var(--colorNeutralStrokeAccessiblePressed);
-            border-color: var(--colorNeutralStrokeAccessiblePressed);
+            color: $color-neutral-stroke-accessible-pressed;
+            border-color: $color-neutral-stroke-accessible-pressed;
           }
         }
       }
@@ -81,24 +118,24 @@
 
     &:disabled {
       cursor: default;
-    }
 
-    &:disabled:not(:checked) ~ .fluent-switch__indicator {
-      border-color: var(--colorNeutralStrokeDisabled);
-    }
+      &:not(:checked) ~ .fluent-switch__indicator {
+        border-color: var(--colorNeutralStrokeDisabled);
+      }
 
-    &:disabled:checked ~ .fluent-switch__indicator {
-      background-color: var(--colorNeutralBackgroundDisabled);
-      border-color: var(--colorTransparentStrokeDisabled);
-    }
+      &:checked ~ .fluent-switch__indicator {
+        background-color: $color-neutral-background-disabled;
+        border-color: $color-transparent-stroke-disabled;
+      }
 
-    &:disabled ~ .fluent-switch__indicator {
-      color: var(--colorNeutralForegroundDisabled);
-    }
+      ~ .fluent-switch__indicator {
+        color: $color-neutral-foreground-disabled;
+      }
 
-    &:disabled ~ .fluent-switch__label {
-      cursor: default;
-      color: var(--colorNeutralForegroundDisabled);
+      ~ .fluent-switch__label {
+        cursor: default;
+        color: $color-neutral-foreground-disabled;
+      }
     }
   }
 
@@ -121,9 +158,19 @@
     padding: var(--spacingVerticalS) var(--spacingHorizontalS);
   }
 
+  &__default-indicator {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: $color-neutral-stroke-accessible;
+    @include transition(transform, var(--durationNormal), var(--curveEasyEase));
+  }
+
   &__indicator {
-    color: var(--colorNeutralStrokeAccessible);
-    border-color: var(--colorNeutralStrokeAccessible);
+    color: $color-neutral-stroke-accessible;
+    border-color: $color-neutral-stroke-accessible;
     border-radius: var(--borderRadiusCircular);
     border: 1px solid;
     line-height: 0;
@@ -134,20 +181,13 @@
     height: 20px;
     margin: var(--spacingVerticalS) var(--spacingHorizontalS);
     pointer-events: none;
-    transition-duration: var(--durationNormal);
-    transition-timing-function: var(--curveEasyEase);
-    transition-property: background, border, color;
+    @include transition(
+      background,
+      var(--durationNormal),
+      var(--curveEasyEase)
+    );
+    @include transition(border, var(--durationNormal), var(--curveEasyEase));
+    @include transition(color, var(--durationNormal), var(--curveEasyEase));
     width: 40px;
-
-    & > svg {
-      transition-duration: var(--durationNormal);
-      transition-timing-function: var(--curveEasyEase);
-      transition-property: transform;
-    }
-
-    & > svg {
-      display: inline;
-      line-height: 0;
-    }
   }
 }

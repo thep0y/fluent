@@ -98,6 +98,21 @@
     }
   }
 
+  &.fluent-slider-lively {
+    .fluent-slider__thumb {
+      box-shadow: 0 0 0 calc(var(--fui-Slider__thumb--size) * 0.3)
+        var(--colorNeutralBackground1) inset;
+      transition: box-shadow 0.075s ease;
+    }
+
+    &:hover {
+      .fluent-slider__thumb {
+        box-shadow: 0 0 0 calc(var(--fui-Slider__thumb--size) * 0.2)
+          var(--colorNeutralBackground1) inset;
+      }
+    }
+  }
+
   &__thumb {
     --fui-Slider__thumb--position: clamp(
       var(--fui-Slider__inner-thumb--radius),
