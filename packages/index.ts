@@ -27,4 +27,7 @@ export type { SliderProps } from "./components/slider";
 export { Badge } from "./components/badge";
 export type { BadgeProps } from "./components/badge";
 
+export { default as Tooltip } from "./components/tooltip";
+export type { TooltipProps } from "./components/tooltip";
+
 export * from "./utils";
