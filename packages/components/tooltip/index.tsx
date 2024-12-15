@@ -2,9 +2,11 @@ import type { BaseComponentProps } from "~/interface";
 import "./index.scss";
 import { mergeProps, Portal } from "solid-js/web";
 import {
+  children,
   createEffect,
   createSignal,
   onCleanup,
+  onMount,
   Show,
   type JSX,
 } from "solid-js";
@@ -115,7 +117,7 @@ const baseClassName = "fluent-tooltip";
 
 const Tooltip = (props: TooltipProps) => {
   let tooltipRef: HTMLDivElement | undefined;
-  let triggerRef: HTMLDivElement | undefined;
+  let triggerRef: HTMLElement | undefined;
 
   // Used to skip showing the tooltip  in certain situations when the trigger is focused.
   // See comments where this is set for more info.
@@ -141,7 +143,7 @@ const Tooltip = (props: TooltipProps) => {
     const tooltip = tooltipRef!;
     const trigger = triggerRef!;
 
-    if (tooltip && trigger) {
+    if (visible() && tooltip && trigger) {
       const resizeObserver = new ResizeObserver((entries) => {
         for (const entry of entries) {
           if (
@@ -161,9 +163,9 @@ const Tooltip = (props: TooltipProps) => {
 
       resizeObserver.observe(tooltip);
 
-      onCleanup(() => {
+      return () => {
         resizeObserver.disconnect();
-      });
+      };
     }
   });
 
@@ -212,21 +214,23 @@ const Tooltip = (props: TooltipProps) => {
 
     setDelayTimeout(() => {
       setVisible(false);
+      setPosition({ left: 0, top: 0 });
     }, delay);
 
     //event.persist(); // Persist the event since the setVisible call will happen asynchronously
   };
 
+  const resolved = children(() => merged.children);
+
+  onMount(() => {
+    triggerRef = resolved()! as HTMLElement;
+    triggerRef.onpointerenter = onEnterTrigger;
+    triggerRef.onpointerleave = onLeaveTrigger;
+  });
+
   return (
     <>
-      <div
-        ref={triggerRef}
-        onPointerEnter={onEnterTrigger}
-        onPointerLeave={onLeaveTrigger}
-        style={{ display: "inline-block" }}
-      >
-        {merged.children}
-      </div>
+      {resolved()}
 
       <Show when={visible()}>
         <Portal
