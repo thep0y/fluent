@@ -83,10 +83,7 @@ const Button = (props: ButtonProps) => {
       others: {
         [`${merged.class}`]: merged.class,
         [`${baseClassName}-disabled`]: disabled(),
-        [`${baseClassName}-danger`]: merged.danger,
         [`${baseClassName}-${merged.shape}`]: merged.shape,
-        [`${baseClassName}-${merged.danger ? "primary" : merged.appearance}`]:
-          merged.danger ?? merged.appearance,
         [`${baseClassName}-${merged.size}`]: merged.size,
         [`${baseClassName}-icon-only`]: iconOnly(),
       },
