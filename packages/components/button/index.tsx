@@ -12,13 +12,14 @@ type ButtonAppearance =
   | "primary"
   | "outline"
   | "subtle"
-  | "transparent";
+  | "transparent"
+  | "danger";
 type ButtonShape = "rounded" | "circular" | "square";
 type ButtonType = "submit" | "reset" | "button";
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-    BaseSizeComponentProps<HTMLButtonElement> {
+  BaseSizeComponentProps<HTMLButtonElement> {
   /**
    * A button can have its content and borders styled for greater emphasis or to be subtle.
    * - 'secondary' (default): Gives emphasis to the button in such a way that it indicates a secondary action.
@@ -26,6 +27,7 @@ export interface ButtonProps
    * - 'outline': Removes background styling.
    * - 'subtle': Minimizes emphasis to blend into the background until hovered or focused.
    * - 'transparent': Removes background and border styling.
+   * - 'danger': Indicates a dangerous or potentially negative action, typically styled with a warning color.
    *
    * @default 'secondary'
    */
@@ -60,8 +62,6 @@ export interface ButtonProps
    * @default 'rounded'
    */
   shape?: ButtonShape;
-
-  danger?: boolean;
 
   icon?: JSX.Element;
   isLoading?: boolean;

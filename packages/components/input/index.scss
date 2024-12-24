@@ -68,6 +68,14 @@
     border-right-style: none;
     border-top-style: none;
     border-radius: 0px;
+
+    &:focus-within {
+      &::after {
+        right: 0;
+        left: 0;
+        border-radius: 0;
+      }
+    }
   }
 
   &-filled {
