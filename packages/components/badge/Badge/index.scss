@@ -67,6 +67,7 @@
     font-size: var(--fontSizeBase100);
     width: 16px;
     height: 16px;
+    padding: 0 calc(var(--spacingHorizontalXXS) + var(--spacingHorizontalXXS));
   }
 
   &-large {

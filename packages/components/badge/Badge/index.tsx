@@ -63,6 +63,7 @@ const Badge = (props: BadgeProps) => {
         [`${baseClassName}-${merged.size}`]: merged.size,
         [`${baseClassName}-${merged.shape}`]: merged.shape,
         [`${baseClassName}-${merged.color}`]: merged.color,
+        ...merged.classList,
       },
     });
 
