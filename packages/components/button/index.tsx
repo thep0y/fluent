@@ -84,6 +84,7 @@ const Button = (props: ButtonProps) => {
         [`${merged.class}`]: merged.class,
         [`${baseClassName}-disabled`]: disabled(),
         [`${baseClassName}-${merged.shape}`]: merged.shape,
+        [`${baseClassName}-${merged.appearance}`]: merged.appearance,
         [`${baseClassName}-${merged.size}`]: merged.size,
         [`${baseClassName}-icon-only`]: iconOnly(),
       },
