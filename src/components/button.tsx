@@ -158,7 +158,7 @@ const ButtonDemo = () => {
       </div>
 
       <div>
-        <Button icon={<FiCalendar />} danger>
+        <Button icon={<FiCalendar />} appearance="danger">
           Danger
         </Button>
       </div>
