@@ -4,13 +4,14 @@ import { mergeProps, Portal } from "solid-js/web";
 import {
   children,
   createEffect,
+  createMemo,
   createSignal,
   onCleanup,
   Show,
   type JSX,
 } from "solid-js";
 import { addClassList, useTimeout } from "~/utils";
-import { calculatePosition } from "./position";
+import { calculateOffsets, type OffsetNullable } from "./position";
 
 export type PositioningShorthand =
   | "above"
@@ -107,7 +108,10 @@ export interface TooltipProps extends BaseComponentProps<HTMLDivElement> {
   /**
    * The text or JSX content of the tooltip.
    */
-  content: JSX.Element;
+  content:
+  | NonNullable<JSX.Element>
+  | { children: JSX.Element; class: string }
+  | { children: JSX.Element; style: JSX.CSSProperties };
 
   mount?: Node;
 }
@@ -133,34 +137,45 @@ const Tooltip = (props: TooltipProps) => {
     props,
   );
 
-  const [position, setPosition] = createSignal({ top: 0, left: 0 });
+  const [positioning, setPositioning] = createSignal(merged.positioning);
+  const [tooltipOffset, setTooltipOffset] = createSignal({ top: 0, left: 0 });
+  const [arrowOffset, setArrowOffset] = createSignal<OffsetNullable>({});
   const [visible, setVisible] = createSignal(merged.visible);
 
   const [setDelayTimeout, clearDelayTimeout] = useTimeout();
 
-  createEffect(() => {
-    const tooltip = tooltipRef!;
-    const trigger = triggerRef!;
+  const arrowStyle = createMemo(() => {
+    const { left, right, top } = arrowOffset();
+    if (left !== undefined) return { left: `${left}px` };
+    if (right !== undefined) return { right: `${right}px` };
+    if (top !== undefined) return { top: `${top}px` };
+  });
 
-    if (visible() && tooltip && trigger) {
+  createEffect(() => {
+    const tooltipElement = tooltipRef!;
+    const triggerElement = triggerRef!;
+
+    if (visible() && tooltipElement && triggerElement) {
       const resizeObserver = new ResizeObserver((entries) => {
         for (const entry of entries) {
           if (
-            entry.target === tooltip &&
-            tooltip.offsetWidth > 0 &&
-            tooltip.offsetHeight > 0
+            entry.target === tooltipElement &&
+            tooltipElement.offsetWidth > 0 &&
+            tooltipElement.offsetHeight > 0
           ) {
-            const calculatedPosition = calculatePosition(
-              trigger,
-              tooltip,
+            const { tooltip, arrow, finalPositioning } = calculateOffsets(
+              triggerElement,
+              tooltipElement,
               merged.positioning,
             );
-            setPosition(calculatedPosition);
+            setTooltipOffset(tooltip);
+            setArrowOffset(arrow);
+            setPositioning(finalPositioning);
           }
         }
       });
 
-      resizeObserver.observe(tooltip);
+      resizeObserver.observe(tooltipElement);
 
       return () => {
         resizeObserver.disconnect();
@@ -175,7 +190,10 @@ const Tooltip = (props: TooltipProps) => {
   const classList = () =>
     addClassList({
       base: baseClassName,
-      others: {},
+      others: {
+        [`${baseClassName}-with-arrow`]: merged.withArrow,
+        [`${baseClassName}-${merged.positioning}`]: merged.positioning,
+      },
     });
 
   // Listener for onPointerEnter and onFocus on the trigger element
@@ -213,7 +231,7 @@ const Tooltip = (props: TooltipProps) => {
 
     setDelayTimeout(() => {
       setVisible(false);
-      setPosition({ left: 0, top: 0 });
+      setTooltipOffset({ left: 0, top: 0 });
     }, delay);
 
     //event.persist(); // Persist the event since the setVisible call will happen asynchronously
@@ -230,6 +248,12 @@ const Tooltip = (props: TooltipProps) => {
       triggerRef.onpointerleave = onLeaveTrigger;
     }
   });
+
+  const content = children(() =>
+    typeof merged.content === "object" && "children" in merged.content
+      ? merged.content.children
+      : merged.content,
+  );
 
   return (
     <>
@@ -255,12 +279,29 @@ const Tooltip = (props: TooltipProps) => {
             ref={tooltipRef}
             role="tooltip"
             style={{
-              transform: `translate3d(${position().left}px, ${position().top}px, 0)`,
+              transform: `translate3d(${tooltipOffset().left}px, ${tooltipOffset().top}px, 0)`,
+              ...(typeof merged.content === "object" &&
+                "style" in merged.content
+                ? merged.content.style
+                : undefined),
             }}
-            class={`${baseClassName}__content`}
-            data-popper-placement={merged.positioning}
+            classList={{
+              [`${baseClassName}__content`]: true,
+              [(merged.content as { class: string }).class]: !!(
+                typeof merged.content === "object" &&
+                "class" in merged.content &&
+                merged.content.class
+              ),
+            }}
+            data-popper-placement={positioning()}
           >
-            {merged.content}
+            <Show when={merged.withArrow}>
+              <div
+                class={`${baseClassName}__content-arrow`}
+                style={arrowStyle()}
+              />
+            </Show>
+            {content()}
           </div>
         </Portal>
       </Show>
