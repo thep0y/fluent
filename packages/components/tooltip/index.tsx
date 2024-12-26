@@ -137,6 +137,7 @@ const Tooltip = (props: TooltipProps) => {
     props,
   );
 
+  const [positioning, setPositioning] = createSignal(merged.positioning);
   const [tooltipOffset, setTooltipOffset] = createSignal({ top: 0, left: 0 });
   const [arrowOffset, setArrowOffset] = createSignal<OffsetNullable>({});
   const [visible, setVisible] = createSignal(merged.visible);
@@ -162,13 +163,14 @@ const Tooltip = (props: TooltipProps) => {
             tooltipElement.offsetWidth > 0 &&
             tooltipElement.offsetHeight > 0
           ) {
-            const { tooltip, arrow } = calculateOffsets(
+            const { tooltip, arrow, finalPositioning } = calculateOffsets(
               triggerElement,
               tooltipElement,
               merged.positioning,
             );
             setTooltipOffset(tooltip);
             setArrowOffset(arrow);
+            setPositioning(finalPositioning);
           }
         }
       });
@@ -291,7 +293,7 @@ const Tooltip = (props: TooltipProps) => {
                 merged.content.class
               ),
             }}
-            data-popper-placement={merged.positioning}
+            data-popper-placement={positioning()}
           >
             <Show when={merged.withArrow}>
               <div
