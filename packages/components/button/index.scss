@@ -76,12 +76,18 @@
 
   &-danger {
     background-color: var(--colorStatusDangerBackground3);
+    color: var(--colorNeutralForegroundOnBrand);
+    border-color: transparent;
 
     &:hover {
       background-color: var(--colorStatusDangerBackground3Hover);
+      color: var(--colorNeutralForegroundOnBrand);
+      border-color: transparent;
 
       &:active {
         background-color: var(--colorStatusDangerBackground3Pressed);
+        color: var(--colorNeutralForegroundOnBrand);
+        border-color: transparent;
       }
     }
   }
