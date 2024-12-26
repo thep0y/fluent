@@ -217,6 +217,7 @@ export const calculateOffsets = (
         left: CONSTANTS.HIDDEN_POSITION,
       },
       arrow: { top: 0, left: 0 },
+      finalPositioning: positioning,
     };
   }
 
