@@ -29,5 +29,66 @@
     border-radius: var(--borderRadiusMedium);
     border: 1px solid var(--colorTransparentStroke);
     position: absolute;
+
+    &[data-popper-placement^="above"] {
+      --fui-positioning-arrow-offset: -4.242px;
+      --fui-positioning-arrow-angle: -45deg;
+
+      .fluent-tooltip__content-arrow {
+        bottom: var(--fui-positioning-arrow-offset);
+      }
+    }
+
+    &[data-popper-placement^="below"] {
+      --fui-positioning-arrow-offset: -4.242px;
+      --fui-positioning-arrow-angle: 135deg;
+
+      .fluent-tooltip__content-arrow {
+        top: var(--fui-positioning-arrow-offset);
+      }
+    }
+
+    &[data-popper-placement^="before"] {
+      --fui-positioning-arrow-offset: -4.242px;
+      --fui-positioning-arrow-angle: 225deg;
+
+      .fluent-tooltip__content-arrow {
+        right: var(--fui-positioning-arrow-offset);
+      }
+    }
+
+    &[data-popper-placement^="after"] {
+      --fui-positioning-arrow-offset: -4.242px;
+      --fui-positioning-arrow-angle: 45deg;
+
+      .fluent-tooltip__content-arrow {
+        left: var(--fui-positioning-arrow-offset);
+      }
+    }
+
+    &-arrow {
+      --fui-positioning-arrow-height: 8.484px;
+
+      width: var(--fui-positioning-arrow-height);
+      height: var(--fui-positioning-arrow-height);
+      background-clip: content-box;
+      background-color: inherit;
+      z-index: -1;
+      position: absolute;
+      box-sizing: border-box;
+      transform: rotate(var(--fui-positioning-arrow-angle));
+
+      &::before {
+        content: "";
+        clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+        border-bottom-left-radius: var(--borderRadiusSmall);
+        height: 100%;
+        width: 100%;
+        background-color: inherit;
+        display: block;
+        margin: -1px;
+        border: 1px solid var(--colorTransparentStroke);
+      }
+    }
   }
 }
