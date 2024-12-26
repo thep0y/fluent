@@ -1,3 +1,4 @@
+import { BiRegularSlider } from "solid-icons/bi";
 import {
   TbArrowCurveLeft,
   TbArrowCurveRight,
@@ -79,7 +80,23 @@ const TooltipGrid = (props: { withArrow?: boolean }) => {
 const TooltipDemo = () => (
   <div>
     <TooltipGrid />
+
     <TooltipGrid withArrow />
+
+    <Tooltip
+      content={{
+        children: "Example tooltip",
+        style: {
+          "background-color": "var(--colorBrandBackground)",
+          color: "var(--colorNeutralForegroundInverted)",
+        },
+      }}
+      positioning="after"
+      withArrow
+      relationship="label"
+    >
+      <Button icon={<BiRegularSlider />} />
+    </Tooltip>
   </div>
 );
 

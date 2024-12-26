@@ -108,7 +108,10 @@ export interface TooltipProps extends BaseComponentProps<HTMLDivElement> {
   /**
    * The text or JSX content of the tooltip.
    */
-  content: JSX.Element;
+  content:
+  | NonNullable<JSX.Element>
+  | { children: JSX.Element; class: string }
+  | { children: JSX.Element; style: JSX.CSSProperties };
 
   mount?: Node;
 }
@@ -244,6 +247,12 @@ const Tooltip = (props: TooltipProps) => {
     }
   });
 
+  const content = children(() =>
+    typeof merged.content === "object" && "children" in merged.content
+      ? merged.content.children
+      : merged.content,
+  );
+
   return (
     <>
       {resolved()}
@@ -269,8 +278,19 @@ const Tooltip = (props: TooltipProps) => {
             role="tooltip"
             style={{
               transform: `translate3d(${tooltipOffset().left}px, ${tooltipOffset().top}px, 0)`,
+              ...(typeof merged.content === "object" &&
+                "style" in merged.content
+                ? merged.content.style
+                : undefined),
             }}
-            class={`${baseClassName}__content`}
+            classList={{
+              [`${baseClassName}__content`]: true,
+              [(merged.content as { class: string }).class]: !!(
+                typeof merged.content === "object" &&
+                "class" in merged.content &&
+                merged.content.class
+              ),
+            }}
             data-popper-placement={merged.positioning}
           >
             <Show when={merged.withArrow}>
@@ -279,7 +299,7 @@ const Tooltip = (props: TooltipProps) => {
                 style={arrowStyle()}
               />
             </Show>
-            {merged.content}
+            {content()}
           </div>
         </Portal>
       </Show>
