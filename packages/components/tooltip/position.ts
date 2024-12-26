@@ -1,9 +1,10 @@
 import type { PositioningShorthand } from ".";
 
 const CONSTANTS = {
-  ARROW_OFFSET: 4.242, // Offset for the arrow to ensure it points correctly
-  TOOLTIP_OFFSET: 8, // Distance between the tooltip and the trigger element
-  HIDDEN_POSITION: -9999, // Position used to hide elements by moving them off-screen
+  ARROW_OFFSET: 4.242,
+  TOOLTIP_OFFSET: 8,
+  HIDDEN_POSITION: -9999,
+  VIEWPORT_PADDING: 10, // Minimum padding from viewport edges
 } as const;
 
 export interface Offset {
@@ -17,7 +18,22 @@ export interface OffsetNullable {
   right?: number;
 }
 
-// Helper functions to calculate center positions
+// Define opposite positions for flipping
+const POSITION_MIRRORS: Record<PositioningShorthand, PositioningShorthand> = {
+  above: "below",
+  "above-start": "below-start",
+  "above-end": "below-end",
+  below: "above",
+  "below-start": "above-start",
+  "below-end": "above-end",
+  before: "after",
+  "before-top": "after-top",
+  "before-bottom": "after-bottom",
+  after: "before",
+  "after-top": "before-top",
+  "after-bottom": "before-bottom",
+};
+
 const calculateCenter = {
   vertical: (trigger: DOMRect, tooltip: DOMRect): number =>
     trigger.top + (trigger.height - tooltip.height) / 2,
@@ -32,7 +48,6 @@ const calculateCenter = {
     tooltipWidth / 2 - CONSTANTS.ARROW_OFFSET,
 };
 
-// Calculate the position of the arrow based on the tooltip's dimensions and positioning
 const calculateArrowOffset = (
   triggerRect: DOMRect,
   tooltipRect: DOMRect,
@@ -60,7 +75,6 @@ const calculateArrowOffset = (
   return positionMap[positioning];
 };
 
-// Calculate the offset for the tooltip based on the trigger's and tooltip's dimensions and positioning
 const calculateTooltipOffset = (
   triggerRect: DOMRect,
   tooltipRect: DOMRect,
@@ -147,16 +161,55 @@ const calculateTooltipOffset = (
   return positionMap[positioning];
 };
 
-// Check if an element is visible by verifying its width and height
 const isElementVisible = (element: HTMLElement): boolean =>
   element.offsetWidth > 0 && element.offsetHeight > 0;
+
+// Check if the tooltip fits within the viewport with the current positioning
+const doesTooltipFitViewport = (
+  tooltipRect: DOMRect,
+  offset: Offset,
+  positioning: PositioningShorthand,
+): boolean => {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  const tooltipTop = tooltipRect.top + offset.top;
+  const tooltipLeft = tooltipRect.left + offset.left;
+  const tooltipRight = tooltipLeft + tooltipRect.width;
+  const tooltipBottom = tooltipTop + tooltipRect.height;
+
+  // Add padding to viewport edges
+  const minDistance = CONSTANTS.VIEWPORT_PADDING;
+
+  // Check if tooltip exceeds viewport boundaries
+  const fitsVertically =
+    tooltipTop >= minDistance && tooltipBottom <= viewportHeight - minDistance;
+  const fitsHorizontally =
+    tooltipLeft >= minDistance && tooltipRight <= viewportWidth - minDistance;
+
+  // For vertical positions (above/below), primarily check vertical fit
+  if (positioning.startsWith("above") || positioning.startsWith("below")) {
+    return fitsVertically;
+  }
+
+  // For horizontal positions (before/after), primarily check horizontal fit
+  if (positioning.startsWith("before") || positioning.startsWith("after")) {
+    return fitsHorizontally;
+  }
+
+  return fitsVertically && fitsHorizontally;
+};
 
 // Main function to calculate the position of the tooltip and its arrow
 export const calculateOffsets = (
   triggerElement: HTMLElement,
   tooltipElement: HTMLElement,
   positioning: PositioningShorthand,
-): { tooltip: Offset; arrow: OffsetNullable } => {
+): {
+  tooltip: Offset;
+  arrow: OffsetNullable;
+  finalPositioning: PositioningShorthand;
+} => {
   if (!isElementVisible(tooltipElement)) {
     return {
       tooltip: {
@@ -170,8 +223,34 @@ export const calculateOffsets = (
   const triggerRect = triggerElement.getBoundingClientRect();
   const tooltipRect = tooltipElement.getBoundingClientRect();
 
+  // Calculate initial position
+  let finalPositioning = positioning;
+  let tooltipOffset = calculateTooltipOffset(
+    triggerRect,
+    tooltipRect,
+    positioning,
+  );
+
+  // Check if tooltip fits in the current position
+  if (!doesTooltipFitViewport(tooltipRect, tooltipOffset, positioning)) {
+    // Try the mirror position
+    const mirrorPosition = POSITION_MIRRORS[positioning];
+    const mirrorOffset = calculateTooltipOffset(
+      triggerRect,
+      tooltipRect,
+      mirrorPosition,
+    );
+
+    // Use mirror position if it fits better
+    if (doesTooltipFitViewport(tooltipRect, mirrorOffset, mirrorPosition)) {
+      finalPositioning = mirrorPosition;
+      tooltipOffset = mirrorOffset;
+    }
+  }
+
   return {
-    tooltip: calculateTooltipOffset(triggerRect, tooltipRect, positioning),
-    arrow: calculateArrowOffset(triggerRect, tooltipRect, positioning),
+    tooltip: tooltipOffset,
+    arrow: calculateArrowOffset(triggerRect, tooltipRect, finalPositioning),
+    finalPositioning,
   };
 };
