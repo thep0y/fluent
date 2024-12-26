@@ -1,3 +1,4 @@
+import { BiRegularSlider } from "solid-icons/bi";
 import {
   TbArrowCurveLeft,
   TbArrowCurveRight,
@@ -7,8 +8,8 @@ import { For } from "solid-js";
 import Tooltip from "~/components/tooltip";
 import { Button } from "~/index";
 
-const TooltipDemo = () => {
-  const positions = [
+const positions = () =>
+  [
     ["above-start", <TbArrowCurveLeft />],
     ["above", <TbArrowNarrowUp />],
     ["above-end", <TbArrowCurveRight />],
@@ -26,6 +27,7 @@ const TooltipDemo = () => {
     ["below-end", <TbArrowCurveLeft style={{ rotate: "180deg" }} />],
   ] as const;
 
+const TooltipGrid = (props: { withArrow?: boolean }) => {
   return (
     <div
       style={{
@@ -50,14 +52,23 @@ const TooltipDemo = () => {
             '".             below-start   below         below-end     .            "',
         }}
       >
-        <For each={positions}>
+        <For each={positions()}>
           {([position, icon]) => (
             <Tooltip
               positioning={position}
               relationship="label"
               content={`This is ${position} tooltip`}
+              withArrow={props.withArrow}
             >
-              <Button style={{ "grid-area": position }} icon={icon} />
+              <Button
+                style={{
+                  "grid-area": position,
+                  width: "64px",
+                  height: "64px",
+                  "max-width": "64px",
+                }}
+                icon={icon}
+              />
             </Tooltip>
           )}
         </For>
@@ -65,5 +76,28 @@ const TooltipDemo = () => {
     </div>
   );
 };
+
+const TooltipDemo = () => (
+  <div>
+    <TooltipGrid />
+
+    <TooltipGrid withArrow />
+
+    <Tooltip
+      content={{
+        children: "Example tooltip",
+        style: {
+          "background-color": "var(--colorBrandBackground)",
+          color: "var(--colorNeutralForegroundInverted)",
+        },
+      }}
+      positioning="after"
+      withArrow
+      relationship="label"
+    >
+      <Button icon={<BiRegularSlider />} />
+    </Tooltip>
+  </div>
+);
 
 export default TooltipDemo;
