@@ -1,11 +1,11 @@
 import type { JSX } from "solid-js";
+import { mergeProps, splitProps } from "solid-js";
 
 import { addClassList } from "~/utils";
 
 import type { CardProps } from "./types";
 
 import "./index.scss";
-import { mergeProps } from "solid-js";
 
 const baseClassName = "fluent-card";
 
@@ -38,9 +38,24 @@ export const Card = (
         [`${baseClassName}-${merged.size}`]: merged.size,
       },
     });
+
+  const [local, others] = splitProps(merged, [
+    "class",
+    "children",
+    "appearance",
+    "focusMode",
+    "orientation",
+    "size",
+    "selected",
+    "defaultSelected",
+    "onSelectionChange",
+    "floatingAction",
+    "checkbox",
+  ]);
+
   return (
-    <div {...merged} classList={classList()}>
-      {props.children}
+    <div {...others} classList={classList()}>
+      {local.children}
     </div>
   );
 };
