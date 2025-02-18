@@ -1,4 +1,6 @@
-import { children } from "solid-js";
+import { children, splitProps, type JSX } from "solid-js";
+
+import { addClassList } from "~/utils";
 
 import type { CardHeaderProps } from "./types";
 
@@ -6,18 +8,36 @@ import "./index.scss";
 
 const baseClassName = "fluent-card-header";
 
-export const CardHeader = (props: CardHeaderProps) => {
+export const CardHeader = (
+  props: CardHeaderProps & JSX.HTMLSlotElementAttributes<HTMLDivElement>,
+) => {
+  const [local, others] = splitProps(props, [
+    "class",
+    "action",
+    "image",
+    "header",
+    "description",
+  ]);
+
+  const classList = () =>
+    addClassList({
+      base: baseClassName,
+      others: {
+        [`${local.class}`]: local.class,
+      },
+    });
+
   const action = children(
     () =>
-      props.action && (
-        <div class={`${baseClassName}__action`}>{props.action}</div>
+      local.action && (
+        <div class={`${baseClassName}__action`}>{local.action}</div>
       ),
   );
   return (
-    <div class={baseClassName}>
-      <div class={`${baseClassName}__image`}>{props.image}</div>
-      <div class={`${baseClassName}__header`}>{props.header}</div>
-      <div class={`${baseClassName}__description`}>{props.description}</div>
+    <div {...others} classList={classList()}>
+      <div class={`${baseClassName}__image`}>{local.image}</div>
+      <div class={`${baseClassName}__header`}>{local.header}</div>
+      <div class={`${baseClassName}__description`}>{local.description}</div>
       {action()}
     </div>
   );
