@@ -1,0 +1,28 @@
+.fluent-card {
+  --fui-Card--border-radius: var(--borderRadiusMedium);
+  --fui-Card--size: 12px;
+
+  flex-direction: column;
+  max-width: 100%;
+  box-shadow: var(--shadow4);
+  background-color: var(--colorNeutralBackground1);
+  margin: auto;
+  overflow: hidden;
+  border-radius: var(--fui-Card--border-radius);
+  padding: var(--fui-Card--size);
+  gap: var(--fui-Card--size);
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  color: var(--colorNeutralForeground1);
+
+  &-small {
+    --fui-Card--border-radius: var(--borderRadiusSmall);
+    --fui-Card--size: 8px;
+  }
+
+  &-large {
+    --fui-Card--border-radius: var(--borderRadiusLarge);
+    --fui-Card--size: 16px;
+  }
+}

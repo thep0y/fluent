@@ -1,0 +1,13 @@
+.fluent-card-preview {
+  margin-right: calc(var(--fui-Card--size) * -1);
+  margin-left: calc(var(--fui-Card--size) * -1);
+  position: relative;
+
+  &__logo {
+    height: 32px;
+    width: 32px;
+    left: 12px;
+    bottom: 12px;
+    position: absolute;
+  }
+}

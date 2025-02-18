@@ -10,6 +10,7 @@ const examples = [
   lazy(() => import("./components/slider")),
   lazy(() => import("./components/badge")),
   lazy(() => import("./components/tooltip")),
+  lazy(() => import("./components/card")),
 ];
 
 //const menus = ["Button"];
