@@ -30,4 +30,8 @@ export type { BadgeProps } from "./components/badge";
 export { default as Tooltip } from "./components/tooltip";
 export type { TooltipProps } from "./components/tooltip";
 
+export { Card, CardHeader, CardFooter, CardPreview } from "./components/card";
+
+export { Body1, Caption1 } from "./components/text";
+
 export * from "./utils";
