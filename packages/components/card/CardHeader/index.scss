@@ -1,0 +1,33 @@
+.fluent-card-header {
+  --fui-CardHeader--gap: 12px;
+
+  flex-shrink: 0;
+  grid-auto-columns: min-content 1fr min-content;
+  align-items: center;
+  display: grid;
+
+  &__image {
+    grid-row-start: span 2;
+    grid-column-start: 1;
+    margin-right: var(--fui-CardHeader--gap);
+    display: inline-flex;
+  }
+
+  &__header {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    display: flex;
+  }
+
+  &__description {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    display: flex;
+  }
+
+  &__action {
+    grid-column-start: 3;
+    grid-row-start: span 2;
+    margin-left: var(--fui-CardHeader--gap);
+  }
+}
