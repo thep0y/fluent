@@ -1,5 +1,4 @@
 import type { JSX } from "solid-js";
-import type { FluentMouseEvent } from "./types";
 
 export type HTMLInputElementProps = JSX.HTMLElementTags["input"];
 export type HTMLDivElementProps = JSX.HTMLElementTags["div"];
@@ -10,18 +9,11 @@ export type Placement =
   | ("top-left" | "top-right" | "bottom-left" | "bottom-right")
   | Direction;
 
-export interface BaseComponentProps<T extends HTMLElement> {
-  ref?: T | ((e: T) => void);
-  id?: string;
-  class?: string;
-  classList?: Record<string, boolean | undefined>;
-  style?: JSX.CSSProperties;
+export interface BaseComponentProps<T extends HTMLElement>
+  extends Omit<JSX.HTMLAttributes<T>, "class" | "classList"> {
   children?: JSX.Element;
-}
-
-export interface BaseOnClickComponentProps<T extends HTMLElement>
-  extends BaseComponentProps<T> {
-  onClick?: (event: FluentMouseEvent<T>) => void;
+  class?: string;
+  classList?: { [key: string]: boolean | undefined };
 }
 
 export type BaseNoChildrenComponentProps<T extends HTMLElement> = Omit<

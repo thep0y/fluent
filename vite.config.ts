@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import path from "node:path";
 import solid from "vite-plugin-solid";
 import typescript from "@rollup/plugin-typescript";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import { exec } from "node:child_process";
 
 function resolve(str: string) {
@@ -34,6 +35,7 @@ export default defineConfig({
 
   plugins: [
     solid(),
+    vanillaExtractPlugin(),
     typescript({
       target: "es2020",
       rootDir: resolve("packages/"),
