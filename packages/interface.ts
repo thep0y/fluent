@@ -10,8 +10,9 @@ export type Placement =
   | Direction;
 
 export interface BaseComponentProps<T extends HTMLElement>
-  extends Omit<JSX.HTMLAttributes<T>, "class" | "classList"> {
+  extends Omit<JSX.InputHTMLAttributes<T>, "class" | "classList"> {
   children?: JSX.Element;
+  style?: JSX.CSSProperties;
   class?: string;
   classList?: { [key: string]: boolean | undefined };
 }

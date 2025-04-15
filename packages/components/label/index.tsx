@@ -3,7 +3,8 @@ import "./index.scss";
 import { addClassList } from "~/utils/class";
 import { children, type JSX } from "solid-js";
 
-export interface LabelProps extends BaseComponentProps<HTMLLabelElement> {
+export interface LabelProps
+  extends Omit<BaseComponentProps<HTMLLabelElement>, "required"> {
   /**
    * Renders the label as disabled
    * @default false
@@ -54,6 +55,7 @@ const Label = (props: LabelProps) => {
   );
 
   return (
+    // biome-ignore lint/a11y/noLabelWithoutControl: <explanation>
     <label classList={classes()} style={props.style}>
       {props.children}
       {required()}

@@ -1,13 +1,16 @@
 import { children, createSignal, type JSX } from "solid-js";
 import "./index.scss";
 import { addClassList } from "~/utils";
-import type { BaseNoChildrenComponentProps } from "~/interface";
-
-type HTMLInputElementProps = JSX.HTMLElementTags["input"];
+import type {
+  BaseNoChildrenComponentProps,
+  HTMLInputElementProps,
+} from "~/interface";
 
 export interface InputProps
-  extends BaseNoChildrenComponentProps<HTMLInputElement>,
-    Omit<HTMLInputElementProps, "style" | "onChange" | "onInput"> {
+  extends Omit<
+    BaseNoChildrenComponentProps<HTMLInputElement>,
+    "onChange" | "onInput"
+  > {
   /** Input can't have children. */
   children?: never;
 

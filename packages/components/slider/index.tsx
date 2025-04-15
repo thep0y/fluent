@@ -10,7 +10,7 @@ import "./index.scss";
 import { addClassList, clamp } from "~/utils";
 
 export interface SliderProps
-  extends BaseNoChildrenComponentProps<HTMLDivElement> {
+  extends Omit<BaseNoChildrenComponentProps<HTMLDivElement>, "onChange"> {
   /**
    * The starting value for an uncontrolled Slider.
    * Mutually exclusive with `value` prop.
