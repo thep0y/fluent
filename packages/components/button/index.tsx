@@ -1,8 +1,5 @@
 import { children, createMemo, mergeProps } from "solid-js";
-import type {
-  BaseOnClickComponentProps,
-  BaseSizeComponentProps,
-} from "~/interface";
+import type { BaseComponentProps, BaseSizeComponentProps } from "~/interface";
 import { addClassList } from "~/utils/class";
 import "./index.scss";
 import type { JSX } from "solid-js";
@@ -18,8 +15,8 @@ type ButtonShape = "rounded" | "circular" | "square";
 type ButtonType = "submit" | "reset" | "button";
 
 export interface ButtonProps
-  extends BaseOnClickComponentProps<HTMLButtonElement>,
-  BaseSizeComponentProps<HTMLButtonElement> {
+  extends BaseComponentProps<HTMLButtonElement>,
+    BaseSizeComponentProps<HTMLButtonElement> {
   /**
    * A button can have its content and borders styled for greater emphasis or to be subtle.
    * - 'secondary' (default): Gives emphasis to the button in such a way that it indicates a secondary action.
