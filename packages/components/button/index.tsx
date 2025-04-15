@@ -15,7 +15,7 @@ type ButtonShape = "rounded" | "circular" | "square";
 type ButtonType = "submit" | "reset" | "button";
 
 export interface ButtonProps
-  extends BaseComponentProps<HTMLButtonElement>,
+  extends Omit<BaseComponentProps<HTMLButtonElement>, "size">,
     BaseSizeComponentProps<HTMLButtonElement> {
   /**
    * A button can have its content and borders styled for greater emphasis or to be subtle.
