@@ -1,4 +1,4 @@
-import { BiRegularSlider } from "solid-icons/bi";
+import { CgInfo } from "solid-icons/cg";
 import {
   TbArrowCurveLeft,
   TbArrowCurveRight,
@@ -33,6 +33,7 @@ const TooltipGrid = (props: { withArrow?: boolean }) => {
       style={{
         display: "flex",
         "align-items": "flex-start",
+        "justify-content": "center",
         gap: "4px",
         "flex-direction": "row",
         margin: "16px  0",
@@ -83,20 +84,53 @@ const TooltipDemo = () => (
 
     <TooltipGrid withArrow />
 
-    <Tooltip
-      content={{
-        children: "Example tooltip",
-        style: {
-          "background-color": "var(--colorBrandBackground)",
-          color: "var(--colorNeutralForegroundInverted)",
-        },
-      }}
-      positioning="after"
-      withArrow
-      relationship="label"
-    >
-      <Button icon={<BiRegularSlider />} />
-    </Tooltip>
+    <div style={{ display: "flex", gap: "24px", "justify-content": "center" }}>
+      <Tooltip
+        content={{
+          children: "Example tooltip",
+          style: {
+            "background-color": "var(--colorBrandBackground)",
+            color: "var(--colorNeutralForegroundInverted)",
+          },
+        }}
+        positioning="after"
+        withArrow
+        relationship="label"
+      >
+        <Button icon={<CgInfo />} />
+      </Tooltip>
+
+      <Tooltip
+        content={{
+          children: "Example tooltip",
+          style: {
+            "background-color": "var(--colorBrandBackground)",
+            color: "var(--colorNeutralForegroundInverted)",
+          },
+        }}
+        positioning="above"
+        withArrow
+        relationship="label"
+      >
+        <Button icon={<CgInfo />} size="large" shape="circular" />
+      </Tooltip>
+
+      <Tooltip
+        content={{
+          children: "Example tooltip",
+          style: {
+            "background-color": "var(--colorBrandBackground)",
+            color: "var(--colorNeutralForegroundInverted)",
+          },
+        }}
+        positioning="above"
+        withArrow
+        relationship="label"
+        // visible
+      >
+        <Button icon={<CgInfo />} size="large" />
+      </Tooltip>
+    </div>
   </div>
 );
 

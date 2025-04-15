@@ -42,10 +42,14 @@ const calculateCenter = {
     trigger.left + (trigger.width - tooltip.width) / 2,
 
   arrowVertical: (tooltipHeight: number): number =>
-    tooltipHeight / 2 - CONSTANTS.ARROW_OFFSET,
+    // Absolute positioning relative to the content area of the parent element.
+    // The tooltip has a 1px border, so 1 should be subtracted when calculating the arrow position.
+    tooltipHeight / 2 - 1 - CONSTANTS.ARROW_OFFSET,
 
   arrowHorizontal: (tooltipWidth: number): number =>
-    tooltipWidth / 2 - CONSTANTS.ARROW_OFFSET,
+    // Absolute positioning relative to the content area of the parent element.
+    // The tooltip has a 1px border, so 1 should be subtracted when calculating the arrow position.
+    tooltipWidth / 2 - 1 - CONSTANTS.ARROW_OFFSET,
 };
 
 const calculateArrowOffset = (
@@ -249,9 +253,15 @@ export const calculateOffsets = (
     }
   }
 
+  const arrow = calculateArrowOffset(
+    triggerRect,
+    tooltipRect,
+    finalPositioning,
+  );
+
   return {
     tooltip: tooltipOffset,
-    arrow: calculateArrowOffset(triggerRect, tooltipRect, finalPositioning),
+    arrow,
     finalPositioning,
   };
 };
