@@ -68,4 +68,6 @@ export interface ButtonProps
   children?: JSX.Element;
 
   icon?: JSX.Element;
+
+  isLoading?: boolean;
 }

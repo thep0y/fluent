@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "lib"
+    "outDir": "example/src/lib"
   },
   "files": [],
   "references": [

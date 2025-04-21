@@ -1,3 +1,2 @@
-export * from "./theme.css";
-export * from "./var.css";
-export * from "./useTheme";
+export { themeContract, lightThemeVars, darkThemeVars } from "./theme.css";
+export { vars } from "./var.css";

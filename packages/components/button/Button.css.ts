@@ -1,370 +1,316 @@
 import {
-	createVar,
-	globalStyle,
-	style,
-	styleVariants,
+  style,
+  styleVariants,
+  createVar,
+  globalStyle,
 } from "@vanilla-extract/css";
-import { recipe, type RecipeVariants } from "@vanilla-extract/recipes";
-import { vars } from "~/themes/var.css";
 import { themeContract } from "~/themes/theme.css";
+import { vars } from "~/themes/var.css";
 
-const iconSpacing = createVar();
+// 创建图标间距变量
+export const iconSpacing = createVar();
 
-const disableStyle = {
-	cursor: "not-allowed",
-	color: themeContract.color.neutralForeground.disabled,
-	borderColor: themeContract.color.neutralStroke.disabled,
-	backgroundColor: themeContract.color.neutralBackground.disabled,
-	opacity: 0.6,
-} as const;
-
-const base = style({
-	alignItems: "center",
-	boxSizing: "border-box",
-	display: "inline-flex",
-	justifyContent: "center",
-	textDecorationLine: "none",
-	verticalAlign: "middle",
-	margin: 0,
-	overflow: "hidden",
-	backgroundColor: themeContract.color.neutralBackground[1],
-	color: themeContract.color.neutralForeground[1],
-	border: `${vars.strokeWidth.thin} solid ${themeContract.color.neutralStroke[1]}`,
-	fontFamily: vars.font.fontFamily.base,
-	outlineStyle: "none",
-	padding: `5px ${vars.spacing.horizontal.m}`,
-	minWidth: "96px",
-	borderRadius: vars.borderRadius.medium,
-	fontSize: vars.font.fontSize.base300,
-	fontWeight: vars.font.fontWeight.semibold,
-	lineHeight: vars.font.lineHeight.base300,
-	transitionDuration: vars.duration.faster,
-	transitionProperty: "background, border, color",
-	transitionTimingFunction: vars.curve.easyEase,
-
-	":hover": {
-		backgroundColor: themeContract.color.neutralBackground["1Hover"],
-		borderColor: themeContract.color.neutralStroke["1Hover"],
-		color: themeContract.color.neutralForeground["1Hover"],
-		cursor: "pointer",
-	},
-
-	":disabled": {
-		...disableStyle,
-	},
-
-	selectors: {
-		"&:hover:active": {
-			backgroundColor: themeContract.color.neutralBackground["1Pressed"],
-			borderColor: themeContract.color.neutralStroke["1Pressed"],
-			color: themeContract.color.neutralForeground["1Pressed"],
-			outlineStyle: "none",
-		},
-
-		"&:disabled:hover": {
-			...disableStyle,
-		},
-
-		"&:disabled:hover:active": {
-			...disableStyle,
-		},
-	},
+// 图标样式
+const iconStyle = style({
+  vars: {
+    [iconSpacing]: vars.spacingHorizontalSNudge,
+  },
+  alignItems: "center",
+  display: "inline-flex",
+  justifyContent: "center",
+  fontSize: "20px",
+  height: "20px",
+  width: "20px",
 });
 
+const iconBeforeStyle = style({
+  marginRight: iconSpacing,
+});
+
+const iconAfterStyle = style({
+  marginLeft: iconSpacing,
+});
+
+// 仅图标按钮样式
+const iconOnlyStyle = style({
+  minWidth: "32px",
+  maxWidth: "32px",
+  padding: "5px",
+});
+
+globalStyle(`${iconOnlyStyle} ${iconStyle}`, {
+  margin: 0,
+});
+
+// 小尺寸图标按钮
+const smallIconOnlyStyle = style({
+  minWidth: "24px",
+  maxWidth: "24px",
+});
+
+// 大尺寸图标按钮
+const largeIconOnlyStyle = style({
+  minWidth: "40px",
+  maxWidth: "40px",
+});
+
+// 小尺寸图标间距
+const smallIconSpacingStyle = style({
+  vars: {
+    [iconSpacing]: vars.spacingHorizontalXS,
+  },
+});
+
+// 大尺寸图标间距
+const largeIconSpacingStyle = style({
+  vars: {
+    [iconSpacing]: vars.spacingHorizontalSNudge,
+  },
+});
+
+// 基础按钮样式
+const baseButton = style({
+  alignItems: "center",
+  boxSizing: "border-box",
+  display: "inline-flex",
+  justifyContent: "center",
+  textDecorationLine: "none",
+  verticalAlign: "middle",
+  margin: "0px",
+  overflow: "hidden",
+  backgroundColor: themeContract.colorNeutralBackground1,
+  color: themeContract.colorNeutralForeground1,
+  border: `${vars.strokeWidthThin} solid ${themeContract.colorNeutralStroke1}`,
+  fontFamily: vars.fontFamilyBase,
+  outlineStyle: "none",
+  padding: `5px ${vars.spacingHorizontalM}`,
+  borderRadius: vars.borderRadiusMedium,
+  fontSize: vars.fontSizeBase300,
+  fontWeight: vars.fontWeightSemibold,
+  lineHeight: vars.lineHeightBase300,
+  transitionDuration: vars.durationFaster,
+  transitionProperty: "background, border, color",
+  transitionTimingFunction: vars.curveEasyEase,
+
+  selectors: {
+    [`&:not(${iconOnlyStyle})`]: {
+      minWidth: "96px",
+    },
+    "&:hover": {
+      backgroundColor: themeContract.colorNeutralBackground1Hover,
+      borderColor: themeContract.colorNeutralStroke1Hover,
+      color: themeContract.colorNeutralForeground1Hover,
+      cursor: "pointer",
+    },
+    "&:hover:active": {
+      backgroundColor: themeContract.colorNeutralBackground1Pressed,
+      borderColor: themeContract.colorNeutralStroke1Pressed,
+      color: themeContract.colorNeutralForeground1Pressed,
+      outlineStyle: "none",
+    },
+  },
+});
+
+// 禁用状态样式
+const disabledStyle = style({
+  cursor: "not-allowed",
+  color: themeContract.colorNeutralForegroundDisabled,
+  borderColor: themeContract.colorNeutralStrokeDisabled,
+  backgroundColor: themeContract.colorNeutralBackgroundDisabled,
+
+  selectors: {
+    "&:hover": {
+      cursor: "not-allowed",
+      color: themeContract.colorNeutralForegroundDisabled,
+      borderColor: themeContract.colorNeutralStrokeDisabled,
+      backgroundColor: themeContract.colorNeutralBackgroundDisabled,
+    },
+    "&:hover:active": {
+      cursor: "not-allowed",
+      color: themeContract.colorNeutralForegroundDisabled,
+      borderColor: themeContract.colorNeutralStrokeDisabled,
+      backgroundColor: themeContract.colorNeutralBackgroundDisabled,
+    },
+  },
+});
+
+// 按钮外观变体
 const appearanceVariants = styleVariants({
-	primary: {
-		color: themeContract.color.neutralForeground.onBrand,
-		backgroundColor: themeContract.color.brandBackground.default,
-		borderColor: "transparent",
+  secondary: {}, // 默认样式，已在baseButton中定义
+  primary: {
+    selectors: {
+      "&:not(:disabled)": {
+        color: themeContract.colorNeutralForegroundOnBrand,
+        backgroundColor: themeContract.colorBrandBackground,
+        borderColor: "transparent",
+      },
+      "&:not(:disabled):hover": {
+        color: themeContract.colorNeutralForegroundOnBrand,
+        backgroundColor: themeContract.colorBrandBackgroundHover,
+        borderColor: "transparent",
+      },
+      "&:not(:disabled):hover:active": {
+        color: themeContract.colorNeutralForegroundOnBrand,
+        backgroundColor: themeContract.colorBrandBackgroundPressed,
+        borderColor: "transparent",
+      },
+      [`&${disabledStyle}`]: {
+        borderColor: "transparent",
+      },
+      [`&${disabledStyle}:hover`]: {
+        borderColor: "transparent",
+      },
+      [`&${disabledStyle}:hover:active`]: {
+        borderColor: "transparent",
+      },
+    },
+  },
+  outline: {
+    backgroundColor: themeContract.colorTransparentBackground,
 
-		":hover": {
-			color: themeContract.color.neutralForeground.onBrand,
-			backgroundColor: themeContract.color.brandBackground.hover,
-			borderColor: "transparent",
-		},
+    selectors: {
+      "&:hover": {
+        backgroundColor: themeContract.colorTransparentBackground,
+      },
+      "&:hover:active": {
+        backgroundColor: themeContract.colorTransparentBackground,
+      },
+    },
+  },
+  subtle: {
+    color: themeContract.colorNeutralForeground2,
+    backgroundColor: themeContract.colorSubtleBackground,
+    borderColor: "transparent",
 
-		":disabled": {
-			borderColor: "transparent",
-		},
+    selectors: {
+      "&:hover": {
+        color: themeContract.colorNeutralForeground2Hover,
+        backgroundColor: themeContract.colorSubtleBackgroundHover,
+        borderColor: "transparent",
+      },
+      "&:hover:active": {
+        backgroundColor: themeContract.colorSubtleBackgroundPressed,
+        borderColor: "transparent",
+      },
+      "&:disabled": {
+        borderColor: "transparent",
+      },
+      "&:disabled:hover": {
+        borderColor: "transparent",
+      },
+      "&:disabled:hover:active": {
+        borderColor: "transparent",
+      },
+    },
+  },
+  transparent: {
+    color: themeContract.colorNeutralForeground2,
+    backgroundColor: themeContract.colorTransparentBackground,
+    borderColor: "transparent",
 
-		selectors: {
-			"&:hover:active": {
-				color: themeContract.color.neutralForeground.onBrand,
-				backgroundColor: themeContract.color.brandBackground.pressed,
-				borderColor: "transparent",
-			},
-		},
-	},
-
-	secondary: {}, // default style defined in base
-
-	outline: {
-		backgroundColor: themeContract.color.transparentBackground.default,
-
-		":hover": {
-			backgroundColor: themeContract.color.transparentBackground.hover,
-		},
-
-		selectors: {
-			"&:hover:active": {
-				backgroundColor: themeContract.color.transparentBackground.pressed,
-			},
-		},
-	},
-
-	danger: {
-		backgroundColor: themeContract.color.status.danger.background3,
-		color: themeContract.color.neutralForeground.onBrand,
-		borderColor: "transparent",
-
-		":hover": {
-			backgroundColor: themeContract.color.status.danger.background3Hover,
-		},
-
-		selectors: {
-			"&:hover:active": {
-				backgroundColor: themeContract.color.status.danger.background3Pressed,
-			},
-		},
-	},
-
-	subtle: {
-		color: themeContract.color.neutralForeground[2],
-		backgroundColor: themeContract.color.subtleBackground.default,
-		borderColor: "transparent",
-
-		":hover": {
-			color: themeContract.color.neutralForeground["2Hover"],
-			backgroundColor: themeContract.color.subtleBackground.hover,
-			borderColor: "transparent",
-		},
-
-		":disabled": {
-			borderColor: "transparent",
-		},
-
-		selectors: {
-			"&:hover:active": {
-				backgroundColor: themeContract.color.subtleBackground.pressed,
-				borderColor: "transparent",
-			},
-		},
-	},
-
-	transparent: {
-		color: themeContract.color.neutralForeground[2],
-		backgroundColor: themeContract.color.transparentBackground.default,
-		borderColor: "transparent",
-
-		":hover": {
-			color: themeContract.color.neutralForeground["2BrandHover"],
-			backgroundColor: themeContract.color.transparentBackground.hover,
-			borderColor: "transparent",
-		},
-
-		selectors: {
-			"&:hover:active": {
-				color: themeContract.color.neutralForeground["2BrandPressed"],
-				backgroundColor: themeContract.color.transparentBackground.pressed,
-				borderColor: "transparent",
-			},
-		},
-
-		":disabled": {
-			borderColor: "transparent",
-		},
-	},
+    selectors: {
+      "&:hover": {
+        color: themeContract.colorNeutralForeground2BrandHover,
+        backgroundColor: themeContract.colorTransparentBackgroundHover,
+        borderColor: "transparent",
+      },
+      "&:hover:active": {
+        color: themeContract.colorNeutralForeground2BrandPressed,
+        backgroundColor: themeContract.colorTransparentBackgroundPressed,
+        borderColor: "transparent",
+      },
+      "&.fluent-button-disabled": {
+        borderColor: "transparent",
+      },
+      "&.fluent-button-disabled:hover": {
+        borderColor: "transparent",
+      },
+      "&.fluent-button-disabled:hover:active": {
+        borderColor: "transparent",
+      },
+    },
+  },
 });
 
-// 形状变体
-const shapeVariants = styleVariants({
-	rounded: {}, // default style defined in base
-	circular: {
-		borderRadius: vars.borderRadius.circular,
-	},
-	square: {
-		borderRadius: vars.borderRadius.none,
-	},
+globalStyle(`${appearanceVariants.subtle}:hover ${iconStyle}`, {
+  color: themeContract.colorNeutralForeground2BrandHover,
 });
 
-// 尺寸变体
+globalStyle(`${appearanceVariants.subtle}:hover:active ${iconStyle}`, {
+  color: themeContract.colorNeutralForeground2BrandPressed,
+});
+
+// 按钮尺寸变体
 const sizeVariants = styleVariants({
-	small: {
-		vars: {
-			[iconSpacing]: vars.spacing.horizontal.xs,
-		},
-		minWidth: "64px",
-		lineHeight: vars.font.lineHeight.base200,
-		fontSize: vars.font.fontSize.base200,
-		fontWeight: vars.font.fontWeight.regular,
-		padding: `3px ${vars.spacing.horizontal.s}`,
+  medium: {}, // 默认尺寸，已在baseButton中定义
+  small: {
+    lineHeight: vars.lineHeightBase200,
+    fontSize: vars.fontSizeBase200,
+    fontWeight: vars.fontWeightRegular,
+    borderRadius: vars.borderRadiusMedium,
+    padding: `3px ${vars.spacingHorizontalS}`,
 
-		// selectors: {
-		//   [`&:has(${icon})`]: {},
-		// },
-	},
+    selectors: {
+      [`&:not(${iconOnlyStyle})`]: {
+        minWidth: "64px",
+      },
+      [`&:has(${iconStyle})`]: {
+        paddingTop: "1px",
+        paddingBottom: "1px",
+      },
+    },
+  },
+  large: {
+    lineHeight: vars.lineHeightBase400,
+    fontSize: vars.fontSizeBase400,
+    fontWeight: vars.fontWeightSemibold,
+    borderRadius: vars.borderRadiusMedium,
+    padding: `8px ${vars.spacingHorizontalL}`,
 
-	medium: {
-		vars: {
-			[iconSpacing]: vars.spacing.horizontal.sNudge,
-		},
-	}, // default style defined in base
-
-	large: {
-		vars: {
-			[iconSpacing]: vars.spacing.horizontal.sNudge,
-		},
-		minWidth: "96px",
-		lineHeight: vars.font.lineHeight.base400,
-		fontSize: vars.font.fontSize.base400,
-		fontWeight: vars.font.fontWeight.semibold,
-		padding: `8px ${vars.spacing.horizontal.l}`,
-	},
+    selectors: {
+      [`&:not(${iconOnlyStyle})`]: {
+        minWidth: "96px",
+      },
+      [`&:has(${iconStyle})`]: {
+        paddingTop: "7px",
+        paddingBottom: "7px",
+      },
+    },
+  },
 });
 
-// icon styles
-const icon = style({
-	alignItems: "center",
-	display: "inline-flex",
-	justifyContent: "center",
-	fontSize: "20px",
-	height: "20px",
-	width: "20px",
+globalStyle(`${sizeVariants.large} ${iconStyle}`, {
+  width: "24px",
+  height: "24px",
 });
 
-globalStyle(`${appearanceVariants.subtle}:hover ${icon}`, {
-	color: themeContract.color.neutralForeground["2BrandHover"],
+// 按钮形状变体
+const shapeVariants = styleVariants({
+  rounded: {}, // 默认形状，已在baseButton中定义
+  circular: {
+    borderRadius: vars.borderRadiusCircular,
+  },
+  square: {
+    borderRadius: vars.borderRadiusNone,
+  },
 });
 
-globalStyle(`${appearanceVariants.subtle}:hover:active ${icon}`, {
-	color: themeContract.color.neutralForeground["2BrandPressed"],
-});
-
-const iconBefore = style({
-	marginRight: iconSpacing,
-});
-
-const iconAfter = style({
-	marginLeft: iconSpacing,
-});
-
-// icon only styles
-const iconOnly = style({
-	minWidth: "32px",
-	maxWidth: "32px",
-	padding: "5px",
-});
-
-globalStyle(`${iconOnly} ${icon}`, {
-	margin: 0,
-});
-
-const iconOnlySmall = style({
-	minWidth: "24px",
-	maxWidth: "24px",
-	padding: "1px",
-});
-
-const iconOnlyLarge = style({
-	minWidth: "40px",
-	maxWidth: "40px",
-	padding: "7px",
-});
-
-const largeIcon = style({
-	width: "24px",
-	height: "24px",
-	fontSize: "24px",
-});
-
-const disabledFocusable = style({
-	...disableStyle,
-
-	// keep focus outline
-	// ":focus-visible": {
-	//   // 可以根据需要自定义专门的 focus 样式
-	//   outlineStyle: "solid",
-	//   outlineWidth: "2px",
-	//   outlineColor: themeContract.color.strokeFocus.outer,
-	//   outlineOffset: "2px",
-	// },
-
-	// disabled hover styles
-	":hover": {
-		...disableStyle,
-		cursor: "not-allowed",
-	},
-
-	// disabled hover:active styles
-	selectors: {
-		"&:hover:active": {
-			...disableStyle,
-			cursor: "not-allowed",
-		},
-	},
-});
-
-// create button recipe
-export const buttonRecipe = recipe({
-	base,
-	variants: {
-		appearance: appearanceVariants,
-		shape: shapeVariants,
-		size: sizeVariants,
-		iconOnly: {
-			true: iconOnly,
-		},
-		disabled: {
-			true: {},
-		},
-		disabledFocusable: {
-			true: disabledFocusable,
-		},
-	},
-	compoundVariants: [
-		{
-			variants: {
-				size: "small",
-				iconOnly: true,
-			},
-			style: iconOnlySmall,
-		},
-		{
-			variants: {
-				size: "large",
-				iconOnly: true,
-			},
-			style: iconOnlyLarge,
-		},
-		{
-			variants: {
-				size: "large",
-			},
-			style: {},
-		},
-
-		{
-			variants: {
-				appearance: "transparent",
-				disabledFocusable: true,
-			},
-			style: {
-				borderColor: "transparent",
-			},
-		},
-	],
-	defaultVariants: {
-		appearance: "secondary",
-		shape: "rounded",
-		size: "medium",
-	},
-});
-
-export type ButtonVariants = RecipeVariants<typeof buttonRecipe>;
-
-export const buttonStyles = {
-	icon,
-	iconBefore,
-	iconAfter,
-	largeIcon,
+export const button = {
+  base: baseButton,
+  appearance: appearanceVariants,
+  size: sizeVariants,
+  shape: shapeVariants,
+  disabled: disabledStyle,
+  icon: {
+    base: iconStyle,
+    before: iconBeforeStyle,
+    after: iconAfterStyle,
+    small: smallIconSpacingStyle,
+    large: largeIconSpacingStyle,
+  },
+  iconOnly: {
+    base: iconOnlyStyle,
+    small: smallIconOnlyStyle,
+    large: largeIconOnlyStyle,
+  },
 };

@@ -4,23 +4,19 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "outDir": "lib",
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "isolatedModules": true,
     "moduleDetection": "force",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "noEmit": false,
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -28,15 +24,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "~/*": [
-        "./packages/*"
-      ]
+      "~/*": ["./packages/*"]
     }
   },
-  "include": [
-    "packages",
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["packages"],
+  "exclude": ["node_modules"]
 }
