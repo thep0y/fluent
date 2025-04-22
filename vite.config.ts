@@ -85,7 +85,7 @@ export default defineConfig({
     outDir: "lib",
     lib: {
       entry: resolve("packages/index.ts"),
-      name: "@fluentui/solid",
+      name: "fluent-solid",
     },
 
     rollupOptions: {
