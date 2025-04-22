@@ -55,7 +55,7 @@ jobs:
         with:
           configuration: ".github/changelog-configuration.json"
           toTag: "refs/heads/main"
-          failOnError: true
+          failOnError: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
