@@ -9,7 +9,7 @@ import {
 import { Portal } from "solid-js/web";
 import type { TooltipProps } from "./Tooltip.types";
 import { tooltip } from "./Tooltip.css";
-import { useTimeout } from "~/hooks/timeout";
+import { useTimeout } from "~/hooks/useTimeout";
 import { calculateOffsets, type OffsetNullable } from "./position";
 import { createSignal } from "solid-js";
 
