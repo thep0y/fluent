@@ -100,4 +100,5 @@ export const vars = createGlobalTheme(":root", {
   zIndexModal: "300",
   zIndexPopover: "400",
   zIndexTooltip: "500",
+  zIndexToast: "600",
 });

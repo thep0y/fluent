@@ -57,7 +57,10 @@ export default defineConfig({
           const dir = path.dirname(fileName);
           const componentDir = path.basename(dir);
           const componentFileName = `${componentDir.charAt(0).toUpperCase() + componentDir.slice(1)}`;
-          if (fileName.endsWith(`${componentFileName}.js`)) {
+          if (
+            !fileName.toLocaleLowerCase().includes("context") &&
+            fileName.endsWith(`${componentFileName}.js`)
+          ) {
             const importCode = `import "./${componentFileName}.css.ts.vanilla.css"`;
 
             const addedCssCode = `${importCode}\n${code}`;
