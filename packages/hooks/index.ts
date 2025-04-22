@@ -1,2 +1,3 @@
-export { useInterval } from "./interval";
-export { useTimeout } from "./timeout";
+export { useInterval } from "./useInterval";
+export { useTimeout } from "./useTimeout";
+export { usePausableTimeout } from "./usePausableTimeout";
