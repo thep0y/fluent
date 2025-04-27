@@ -25,7 +25,11 @@ const ToastDemo = () => {
   const toast = useToast();
 
   const showToast = (position: ToastPosition, type: ToastType) => {
-    toast.addToast({ position, message: `This is a ${type} message`, type });
+    toast.addToast({
+      position,
+      message: `This is a ${type} message`,
+      type,
+    });
   };
 
   return (
@@ -37,11 +41,12 @@ const ToastDemo = () => {
           padding: "24px 0",
           gap: "24px",
           "grid-template-areas":
-            '".             top-left   top         top-right     .            "' +
-            '".    .             .             .             .    "' +
-            '".        .             .             .             .        "' +
-            '".  .             .             .             ."' +
-            '".             bottom-left   bottom         bottom-right     .            "',
+            '"top-left   top         top-right"' +
+            '".    .             ."' +
+            '".        .             ."' +
+            '".  .             ."' +
+            '"bottom-left   bottom         bottom-right"',
+          "justify-content": "space-evenly",
         }}
       >
         <For each={positions()}>
