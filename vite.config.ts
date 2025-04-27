@@ -61,7 +61,7 @@ export default defineConfig({
             !fileName.toLocaleLowerCase().includes("context") &&
             fileName.endsWith(`${componentFileName}.js`)
           ) {
-            const importCode = `import "./${componentFileName}.css.ts.vanilla.css"`;
+            const importCode = `import "./styles/${componentFileName}.css"`;
 
             const addedCssCode = `${importCode}\n${code}`;
 
@@ -69,7 +69,7 @@ export default defineConfig({
           }
         }
         if (fileName === "index.js") {
-          const importCode = `import "./themes/var.css.ts.vanilla.css"\nimport "./themes/theme.css.ts.vanilla.css"`;
+          const importCode = `import "./themes/styles/var.css"\nimport "./themes/styles/theme.css"`;
 
           const addedCssCode = `${importCode}\n${code}`;
 
@@ -107,6 +107,13 @@ export default defineConfig({
           entryFileNames: "[name].js",
           dir: "lib",
           preserveModulesRoot: "packages",
+          assetFileNames: ({ names }) => {
+            const filename = path
+              .basename(names[0])
+              .replace(".ts.vanilla.css", "");
+            const dir = path.parse(names[0]).dir;
+            return `${dir}/styles/${filename}`;
+          },
         },
       ],
     },
