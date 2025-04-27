@@ -2,7 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 基础标签样式
+// Base label style
 const baseLabel = style({
   lineHeight: vars.lineHeightBase300,
   fontSize: vars.fontSizeBase300,
@@ -10,7 +10,7 @@ const baseLabel = style({
   color: themeContract.colorNeutralForeground1,
 });
 
-// 尺寸变体
+// Size variants
 const sizeVariants = styleVariants({
   small: {
     fontSize: vars.fontSizeBase200,
@@ -24,7 +24,7 @@ const sizeVariants = styleVariants({
   },
 });
 
-// 字重变体
+// Weight variants
 const weightVariants = styleVariants({
   regular: {},
   semibold: {
@@ -32,18 +32,18 @@ const weightVariants = styleVariants({
   },
 });
 
-// 禁用状态样式
+// Disabled state style
 const disabledStyle = style({
   color: themeContract.colorNeutralForegroundDisabled,
 });
 
-// 必填标记样式
+// Required mark style
 const requiredStyle = style({
   paddingLeft: vars.spacingHorizontalXS,
   color: themeContract.colorPaletteRedForeground3,
 });
 
-// 导出样式对象
+// Export style object
 export const label = {
   base: baseLabel,
   size: sizeVariants,

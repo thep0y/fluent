@@ -7,11 +7,11 @@ import {
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 创建箭头偏移变量
+// Create arrow offset variables
 export const arrowOffset = createVar();
 export const arrowAngle = createVar();
 
-// 基础tooltip样式
+// Base tooltip style
 const baseTooltip = style({
   zIndex: 1000000,
   position: "absolute",
@@ -28,7 +28,7 @@ const baseTooltip = style({
   color: themeContract.colorNeutralForeground1,
 });
 
-// 内容样式
+// Content style
 const contentStyle = style({
   filter: `drop-shadow(0 0 2px ${themeContract.colorNeutralShadowAmbient}) drop-shadow(0 4px 8px ${themeContract.colorNeutralShadowKey})`,
   overflowWrap: "break-word",
@@ -46,7 +46,7 @@ const contentStyle = style({
   position: "absolute",
 });
 
-// 定位变体
+// Position variants
 const positioningVariants = {
   above: style({
     vars: {
@@ -74,7 +74,7 @@ const positioningVariants = {
   }),
 };
 
-// 箭头样式
+// Arrow style
 const arrowStyle = style({
   width: "8.484px",
   height: "8.484px",
@@ -93,7 +93,7 @@ const arrowStyle = style({
   },
 });
 
-// 箭头伪元素样式
+// Arrow pseudo-element style
 globalStyle(`${arrowStyle}::before`, {
   content: '""',
   clipPath: "polygon(0% 0%, 100% 100%, 0% 100%)",
@@ -106,7 +106,7 @@ globalStyle(`${arrowStyle}::before`, {
   border: `1px solid ${themeContract.colorTransparentStroke}`,
 });
 
-// 外观变体
+// Appearance variants
 const appearanceVariants = styleVariants({
   normal: {
     backgroundColor: themeContract.colorNeutralBackground1,

@@ -2,7 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 基础徽章样式
+// Base badge style
 export const badge = style({
   display: "inline-flex",
   boxSizing: "border-box",
@@ -33,7 +33,7 @@ export const badge = style({
   },
 });
 
-// 尺寸变体
+// Size variants
 export const size = styleVariants({
   tiny: {
     minWidth: "unset",
@@ -70,7 +70,7 @@ export const size = styleVariants({
   },
 });
 
-// 外观变体
+// Appearance variants
 export const appearance = styleVariants({
   filled: {
     backgroundColor: themeContract.colorBrandBackground,
@@ -89,7 +89,7 @@ export const appearance = styleVariants({
   },
 });
 
-// 颜色变体
+// Color variants
 export const color = styleVariants({
   brand: {
     backgroundColor: themeContract.colorBrandBackground,
@@ -121,7 +121,7 @@ export const color = styleVariants({
   },
 });
 
-// 形状变体
+// Shape variants
 export const shape = styleVariants({
   circular: {
     borderRadius: vars.borderRadiusCircular,

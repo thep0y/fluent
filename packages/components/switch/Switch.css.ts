@@ -7,11 +7,11 @@ import {
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 创建过渡动画变量
+// Create transition animation variables
 export const transitionDuration = createVar();
 export const transitionTiming = createVar();
 
-// 基础开关样式
+// Base switch style
 const baseSwitch = style({
   alignItems: "flex-start",
   boxSizing: "border-box",
@@ -19,10 +19,10 @@ const baseSwitch = style({
   position: "relative",
 });
 
-// 禁用状态样式
+// Disabled state style
 const disabledStyle = style({});
 
-// 指示器基础样式
+// Base indicator style
 const indicatorStyle = style({
   color: themeContract.colorNeutralStrokeAccessible,
   borderColor: themeContract.colorNeutralStrokeAccessible,
@@ -42,7 +42,7 @@ const indicatorStyle = style({
   width: "40px",
 });
 
-// 默认指示器样式
+// Default indicator style
 const defaultIndicatorStyle = style({
   display: "inline-block",
   width: "1em",
@@ -55,7 +55,7 @@ const defaultIndicatorStyle = style({
   transitionTimingFunction: vars.curveEasyEase,
 });
 
-// 输入框样式
+// Input style
 const inputStyle = style({
   top: "0",
   left: "0",
@@ -68,7 +68,7 @@ const inputStyle = style({
   width: `calc(40px + 2 * ${vars.spacingHorizontalS})`,
 });
 
-// 标签样式
+// Label style
 const labelStyle = style({
   marginTop: `calc((20px - ${vars.lineHeightBase300}) / 2)`,
   marginBottom: `calc((20px - ${vars.lineHeightBase300}) / 2)`,
@@ -76,29 +76,29 @@ const labelStyle = style({
   padding: `${vars.spacingVerticalS} ${vars.spacingHorizontalS}`,
 });
 
-// 标签位置变体
+// Label position variants
 const labelPositionVariants = styleVariants({
   after: {},
   before: {},
   above: {},
 });
 
-// 活跃样式
+// Lively style
 const livelyStyle = style({});
 
-// 全局样式定义
-// 标签位置 - 上方
+// Global styles
+// Label position - above
 globalStyle(`${labelPositionVariants.above}`, {
   flexDirection: "column",
 });
 
-// 标签位置 - 前方
+// Label position - before
 globalStyle(`${labelPositionVariants.before} ${inputStyle}`, {
   right: "0",
   left: "unset",
 });
 
-// 活跃状态样式
+// Lively state styles
 globalStyle(`${livelyStyle} ${indicatorStyle}`, {
   fontSize: "12px",
   padding: "3px",
@@ -129,7 +129,7 @@ globalStyle(
   },
 );
 
-// 启用且选中状态
+// Enabled and checked state
 globalStyle(`${inputStyle}:enabled:checked ~ ${indicatorStyle}`, {
   backgroundColor: themeContract.colorCompoundBrandBackground,
   borderColor: themeContract.colorTransparentStroke,
@@ -158,7 +158,7 @@ globalStyle(`${inputStyle}:enabled:checked:hover:active ~ ${indicatorStyle}`, {
   borderColor: themeContract.colorTransparentStrokeInteractive,
 });
 
-// 启用且未选中状态
+// Enabled and unchecked state
 globalStyle(`${inputStyle}:enabled:not(:checked) ~ ${indicatorStyle}`, {
   color: themeContract.colorNeutralStrokeAccessible,
   borderColor: themeContract.colorNeutralStrokeAccessible,
@@ -177,7 +177,7 @@ globalStyle(
   },
 );
 
-// 禁用状态
+// Disabled state
 globalStyle(`${inputStyle}:disabled`, {
   cursor: "default",
 });
@@ -200,6 +200,7 @@ globalStyle(`${inputStyle}:disabled ~ ${labelStyle}`, {
   color: themeContract.colorNeutralForegroundDisabled,
 });
 
+// Export styles
 export const switchStyles = {
   base: baseSwitch,
   disabled: disabledStyle,

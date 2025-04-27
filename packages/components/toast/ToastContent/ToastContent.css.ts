@@ -2,11 +2,11 @@ import { keyframes, style, createVar } from "@vanilla-extract/css";
 import { themeContract } from "~/themes";
 import { vars } from "~/themes/var.css";
 
-// 创建变量
+// Create variables
 export const toastMaxWidth = createVar();
 export const toastMinWidth = createVar();
 
-// 定义动画
+// Define animations
 const toastSlideDown = keyframes({
   from: {
     opacity: 0,
@@ -95,7 +95,7 @@ const toastSlideRightExit = keyframes({
   },
 });
 
-// 基础Toast样式
+// Base toast style
 export const toast = style({
   vars: {
     [toastMaxWidth]: "350px",
@@ -112,7 +112,7 @@ export const toast = style({
   fontFamily: vars.fontFamilyBase,
 });
 
-// 位置相关样式
+// Position-related styles
 export const toastTop = style({
   animationName: toastSlideDown,
 });
@@ -137,7 +137,7 @@ export const toastBottomRight = style({
   animationName: toastSlideLeft,
 });
 
-// 退出动画样式
+// Exit animation styles
 export const toastExiting = style({
   animationDuration: vars.durationSlow,
   animationFillMode: "both",
@@ -167,7 +167,7 @@ export const toastBottomRightExiting = style({
   animationName: toastSlideRightExit,
 });
 
-// Toast内容样式
+// Toast content style
 export const toastContent = style({
   display: "flex",
   alignItems: "center",
@@ -176,7 +176,6 @@ export const toastContent = style({
   color: themeContract.colorNeutralForeground1,
   backgroundColor: themeContract.colorNeutralBackground1,
   borderRadius: vars.borderRadiusMedium,
-  // boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
   boxShadow: themeContract.shadow8,
   borderLeft: `${vars.borderRadiusMedium} solid ${themeContract.colorTransparentStroke}`,
   "@media": {
@@ -186,7 +185,7 @@ export const toastContent = style({
   },
 });
 
-// Toast类型样式
+// Toast type styles
 export const toastInfo = style({
   borderLeftColor: themeContract.colorBrandBackground,
 });
@@ -203,28 +202,28 @@ export const toastError = style({
   borderLeftColor: themeContract.colorStatusDangerBackground3,
 });
 
-// 图标和消息容器
+// Icon and message container
 export const toastIconMessage = style({
   display: "flex",
   alignItems: "center",
   gap: vars.spacingVerticalS,
 });
 
-// 图标样式
+// Icon style
 export const toastIcon = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
 });
 
-// 消息样式
+// Message style
 export const toastMessage = style({
   fontSize: vars.fontSizeBase300,
   lineHeight: 1.5,
   wordBreak: "break-word",
 });
 
-// 操作按钮容器
+// Action buttons container
 export const toastActions = style({
   display: "flex",
   alignItems: "center",

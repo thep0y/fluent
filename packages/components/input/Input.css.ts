@@ -2,10 +2,10 @@ import { style, styleVariants, createVar } from "@vanilla-extract/css";
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 创建内容间距变量
+// Create content spacing variable
 export const contentSpacing = createVar();
 
-// 内容样式
+// Content style
 const contentStyle = style({
   vars: {
     [contentSpacing]: vars.spacingHorizontalSNudge,
@@ -27,7 +27,7 @@ const contentAfterStyle = style({
   paddingRight: vars.spacingHorizontalMNudge,
 });
 
-// 基础输入框样式
+// Base input style
 const baseInput = style({
   display: "inline-flex",
   alignItems: "center",
@@ -80,9 +80,9 @@ const baseInput = style({
   },
 });
 
-// 输入框外观变体
+// Input appearance variants
 const appearanceVariants = styleVariants({
-  outline: {}, // 默认样式，已在baseInput中定义
+  outline: {}, // Default style, defined in baseInput
   underline: {
     backgroundColor: themeContract.colorTransparentBackground,
     borderLeftStyle: "none",
@@ -117,9 +117,9 @@ const appearanceVariants = styleVariants({
   },
 });
 
-// 输入框尺寸变体
+// Input size variants
 const sizeVariants = styleVariants({
-  medium: {}, // 默认尺寸，已在baseInput中定义
+  medium: {}, // Default size, defined in baseInput
   small: {
     minHeight: "24px",
     fontSize: vars.fontSizeBase200,
@@ -132,16 +132,14 @@ const sizeVariants = styleVariants({
   },
 });
 
-// NOTE: 禁用样式应该定义在appearanceVariants之后，否则在禁用状态下，其优先级会低于appearanceVariants的样式，导致禁用状态下的样式无法生效。
-
-// 禁用状态样式
+// Disabled state style
 const disabledStyle = style({
   cursor: "not-allowed",
   borderColor: themeContract.colorNeutralStrokeDisabled,
   backgroundColor: themeContract.colorTransparentBackground,
 });
 
-// 输入元素样式
+// Input element style
 const inputElementStyle = style({
   alignSelf: "stretch",
   boxSizing: "border-box",

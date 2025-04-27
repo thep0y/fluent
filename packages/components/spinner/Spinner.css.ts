@@ -8,7 +8,7 @@ import {
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 创建动画
+// Create animations
 const spinnerAnimation = keyframes({
   "0%": { transform: "rotate(0deg)" },
   "100%": { transform: "rotate(360deg)" },
@@ -32,10 +32,10 @@ const spinnerTailAfterAnimation = keyframes({
   "100%": { transform: "rotate(0deg)" },
 });
 
-// 创建自定义变量
+// Create custom variables
 const strokeWidth = createVar();
 
-// 基础样式
+// Base styles
 const baseSpinner = style({
   display: "flex",
   alignItems: "center",
@@ -45,7 +45,7 @@ const baseSpinner = style({
   overflow: "hidden",
 });
 
-// 旋转器样式
+// Spinner styles
 const spinnerElement = style({
   vars: {
     [strokeWidth]: vars.strokeWidthThicker,
@@ -68,7 +68,7 @@ const spinnerElement = style({
   animationName: spinnerAnimation,
 });
 
-// 旋转器尾部样式
+// Spinner tail styles
 const spinnerTail = style({
   position: "absolute",
   display: "block",
@@ -100,10 +100,10 @@ const spinnerTail = style({
   },
 });
 
-// 外观变体
+// Appearance variants
 const appearanceVariants = styleVariants({
-  primary: {}, // 默认样式，已在baseSpinner中定义
-  inverted: {}, // 用 global style 定义
+  primary: {}, // Default style, defined in baseSpinner
+  inverted: {}, // Defined using global style
 });
 
 globalStyle(`${appearanceVariants.inverted} .${spinnerElement}`, {
@@ -111,19 +111,19 @@ globalStyle(`${appearanceVariants.inverted} .${spinnerElement}`, {
   backgroundColor: themeContract.colorNeutralStrokeAlpha2,
 });
 
-// 尺寸变体
+// Size variants
 const sizeVariants = styleVariants({
   "extra-tiny": {},
   tiny: {},
   "extra-small": {},
   small: {},
-  medium: {}, // 默认样式，已在spinnerElement中定义
+  medium: {}, // Default style, defined in spinnerElement
   large: {},
   "extra-large": {},
   huge: {},
 });
 
-// 为每个尺寸变体添加全局样式
+// Add global styles for each size variant
 globalStyle(`${sizeVariants["extra-tiny"]} .${spinnerElement}`, {
   vars: {
     [strokeWidth]: vars.strokeWidthThick,
@@ -174,7 +174,7 @@ globalStyle(`${sizeVariants.huge} .${spinnerElement}`, {
   height: "44px",
 });
 
-// 导出样式对象
+// Export style object
 export const spinner = {
   base: baseSpinner,
   spinnerElement,
