@@ -17,12 +17,12 @@ const Spinner = (props: SpinnerProps) => {
       [merged.class || ""]: !!merged.class,
     };
 
-    // 添加外观样式
+    // Add appearance style
     if (merged.appearance && spinner.appearance[merged.appearance]) {
       classes[spinner.appearance[merged.appearance]] = true;
     }
 
-    // 添加尺寸样式
+    // Add size style
     if (merged.size && spinner.size[merged.size]) {
       classes[spinner.size[merged.size]] = true;
     }

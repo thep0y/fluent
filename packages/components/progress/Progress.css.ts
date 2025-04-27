@@ -2,7 +2,7 @@ import { style, styleVariants, keyframes } from "@vanilla-extract/css";
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 基础进度条样式
+// Base progress bar style
 const baseProgressBar = style({
   height: "2px",
   backgroundColor: themeContract.colorNeutralBackground6,
@@ -12,7 +12,7 @@ const baseProgressBar = style({
   overflow: "hidden",
 });
 
-// 进度条内部条样式
+// Progress bar inner bar style
 const baseBar = style({
   transitionTimingFunction: "ease",
   transitionDuration: "0.3s",
@@ -21,7 +21,7 @@ const baseBar = style({
   borderRadius: "inherit",
 });
 
-// 不同颜色变体
+// Color variants
 const colorVariants = styleVariants({
   brand: {
     backgroundColor: themeContract.colorCompoundBrandBackground,
@@ -37,13 +37,13 @@ const colorVariants = styleVariants({
   },
 });
 
-// 不确定状态动画
+// Indeterminate animation
 const indeterminateAnimation = keyframes({
   "0%": { left: "-33%" },
   "100%": { left: "100%" },
 });
 
-// 不确定状态样式
+// Indeterminate state style
 const indeterminateBar = style({
   animationIterationCount: "infinite",
   animationTimingFunction: "linear",
@@ -59,7 +59,7 @@ const indeterminateBar = style({
   position: "relative",
 });
 
-// 尺寸变体
+// Size variants
 const sizeVariants = styleVariants({
   medium: {
     height: "2px",
@@ -70,7 +70,7 @@ const sizeVariants = styleVariants({
   },
 });
 
-// 形状变体
+// Shape variants
 const shapeVariants = styleVariants({
   rounded: {
     borderRadius: vars.borderRadiusMedium,
@@ -80,7 +80,7 @@ const shapeVariants = styleVariants({
   },
 });
 
-// 导出样式对象
+// Export style object
 export const progress = {
   base: baseProgressBar,
   bar: {

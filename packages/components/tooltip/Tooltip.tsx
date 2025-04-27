@@ -85,19 +85,19 @@ const Tooltip = (props: TooltipProps) => {
     clearDelayTimeout();
   });
 
-  // 构建类名列表
+  // Build class list
   const classList = createMemo(() => {
     const classes = {
       [tooltip.base]: true,
       [merged.class || ""]: !!merged.class,
     };
 
-    // 添加外观样式
+    // Add appearance style
     if (merged.appearance && tooltip.appearance[merged.appearance]) {
       classes[tooltip.appearance[merged.appearance]] = true;
     }
 
-    // 添加定位样式
+    // Add positioning style
     if (merged.positioning) {
       const positionBase = merged.positioning.split(
         "-",

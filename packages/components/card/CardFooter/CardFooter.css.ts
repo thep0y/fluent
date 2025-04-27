@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-// 基础页脚样式
+// Base footer style
 export const cardFooter = style({
   flexShrink: 0,
   display: "flex",

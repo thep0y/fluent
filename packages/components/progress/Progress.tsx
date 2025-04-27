@@ -30,19 +30,19 @@ const ProgressBar = (props: ProgressBarProps) => {
     () => (percent() === "100%" && "success") || merged.color || undefined,
   );
 
-  // 构建类名列表
+  // Build class list
   const classList = () => {
     const classes = {
       [progress.base]: true,
       [merged.class || ""]: !!merged.class,
     };
 
-    // 添加形状样式
+    // Add shape style
     if (merged.shape && progress.shape[merged.shape]) {
       classes[progress.shape[merged.shape]] = true;
     }
 
-    // 添加尺寸样式
+    // Add size style
     if (merged.thickness && progress.size[merged.thickness]) {
       classes[progress.size[merged.thickness]] = true;
     }

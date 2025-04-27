@@ -1,14 +1,14 @@
 import { style } from "@vanilla-extract/css";
 import { cardSize } from "../Card/Card.css";
 
-// 基础卡片预览样式
+// Base card preview style
 export const cardPreview = style({
   marginRight: `calc(${cardSize} * -1)`,
   marginLeft: `calc(${cardSize} * -1)`,
   position: "relative",
 });
 
-// Logo样式
+// Logo style
 export const logo = style({
   position: "absolute",
   left: "12px",
