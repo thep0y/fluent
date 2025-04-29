@@ -20,11 +20,11 @@ import { ToastContainer } from "../ToastContainer";
 const ToastContext = createContext<Context>();
 
 export const ToastProvider = (props: {
-  children: JSX.Element;
+  children?: JSX.Element;
   maxToasts?: number;
 }) => {
   console.warn(
-    "Note: This Toast component is not ported from the react fluent component library. The APIs are different. If you need the official APIs, please implement the Toast component yourself.",
+    "Warning: This Toast component is not ported from the react fluent component library. The APIs are different. If you need the official APIs, please implement the Toast component yourself.",
   );
 
   const MAX_TOASTS_PER_POSITION = props.maxToasts ?? 5;
