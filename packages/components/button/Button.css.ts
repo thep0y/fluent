@@ -7,10 +7,10 @@ import {
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 创建图标间距变量
+// Create icon spacing variable
 export const iconSpacing = createVar();
 
-// 图标样式
+// Icon style
 const iconStyle = style({
   vars: {
     [iconSpacing]: vars.spacingHorizontalSNudge,
@@ -31,7 +31,7 @@ const iconAfterStyle = style({
   marginLeft: iconSpacing,
 });
 
-// 仅图标按钮样式
+// Icon-only button style
 const iconOnlyStyle = style({
   minWidth: "32px",
   maxWidth: "32px",
@@ -42,33 +42,33 @@ globalStyle(`${iconOnlyStyle} ${iconStyle}`, {
   margin: 0,
 });
 
-// 小尺寸图标按钮
+// Small icon-only button
 const smallIconOnlyStyle = style({
   minWidth: "24px",
   maxWidth: "24px",
 });
 
-// 大尺寸图标按钮
+// Large icon-only button
 const largeIconOnlyStyle = style({
   minWidth: "40px",
   maxWidth: "40px",
 });
 
-// 小尺寸图标间距
+// Small icon spacing
 const smallIconSpacingStyle = style({
   vars: {
     [iconSpacing]: vars.spacingHorizontalXS,
   },
 });
 
-// 大尺寸图标间距
+// Large icon spacing
 const largeIconSpacingStyle = style({
   vars: {
     [iconSpacing]: vars.spacingHorizontalSNudge,
   },
 });
 
-// 基础按钮样式
+// Base button style
 const baseButton = style({
   alignItems: "center",
   boxSizing: "border-box",
@@ -111,7 +111,7 @@ const baseButton = style({
   },
 });
 
-// 禁用状态样式
+// Disabled state style
 const disabledStyle = style({
   cursor: "not-allowed",
   color: themeContract.colorNeutralForegroundDisabled,
@@ -134,9 +134,9 @@ const disabledStyle = style({
   },
 });
 
-// 按钮外观变体
+// Button variants by appearance
 const appearanceVariants = styleVariants({
-  secondary: {}, // 默认样式，已在baseButton中定义
+  secondary: {}, // Default style, defined in baseButton
   primary: {
     selectors: {
       "&:not(:disabled)": {
@@ -240,9 +240,9 @@ globalStyle(`${appearanceVariants.subtle}:hover:active ${iconStyle}`, {
   color: themeContract.colorNeutralForeground2BrandPressed,
 });
 
-// 按钮尺寸变体
+// Button variants by size
 const sizeVariants = styleVariants({
-  medium: {}, // 默认尺寸，已在baseButton中定义
+  medium: {}, // Default size, defined in baseButton
   small: {
     lineHeight: vars.lineHeightBase200,
     fontSize: vars.fontSizeBase200,
@@ -284,9 +284,9 @@ globalStyle(`${sizeVariants.large} ${iconStyle}`, {
   height: "24px",
 });
 
-// 按钮形状变体
+// Button variants by shape
 const shapeVariants = styleVariants({
-  rounded: {}, // 默认形状，已在baseButton中定义
+  rounded: {}, // Default shape, defined in baseButton
   circular: {
     borderRadius: vars.borderRadiusCircular,
   },

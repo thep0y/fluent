@@ -2,11 +2,11 @@ import { createVar, style, styleVariants } from "@vanilla-extract/css";
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 创建CSS变量
+// Create CSS variables
 export const cardBorderRadius = createVar("--fui-Card--border-radius");
 export const cardSize = createVar("--fui-Card--size");
 
-// 基础卡片样式
+// Base card style
 export const card = style({
   display: "flex",
   flexDirection: "column",
@@ -19,19 +19,19 @@ export const card = style({
   position: "relative",
   color: themeContract.colorNeutralForeground1,
 
-  // 使用CSS变量
+  // Use CSS variables
   borderRadius: cardBorderRadius,
   padding: cardSize,
   gap: cardSize,
 
-  // 设置默认值
+  // Set default values
   vars: {
     [cardBorderRadius]: vars.borderRadiusMedium,
     [cardSize]: vars.spacingHorizontalM,
   },
 });
 
-// 尺寸变体
+// Size variants
 export const size = styleVariants({
   small: {
     vars: {
@@ -53,7 +53,7 @@ export const size = styleVariants({
   },
 });
 
-// 外观变体
+// Appearance variants
 export const appearance = styleVariants({
   filled: {
     boxShadow: themeContract.shadow4,
@@ -74,7 +74,7 @@ export const appearance = styleVariants({
   },
 });
 
-// 方向变体
+// Orientation variants
 export const orientation = styleVariants({
   horizontal: {
     flexDirection: "row",
@@ -84,15 +84,14 @@ export const orientation = styleVariants({
   },
 });
 
-// 选中状态
+// Selected state
 export const selected = style({
   outline: `${vars.strokeWidthThick} solid ${themeContract.colorCompoundBrandStroke}`,
   outlineOffset: "-1px",
 });
 
-// 焦点模式
+// Focus mode
 export const focusMode = style({
-  // 基础样式，可以根据需要扩展
   outline: `${vars.strokeWidthThin} solid ${themeContract.colorCompoundBrandStroke}`,
   outlineOffset: "-1px",
 });

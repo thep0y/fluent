@@ -2,7 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// 基础分割线样式
+// Base divider style
 const baseDivider = style({
   textAlign: "center",
   flexDirection: "row",
@@ -19,7 +19,7 @@ const baseDivider = style({
   fontFamily: vars.fontFamilyBase,
 });
 
-// 水平分割线伪元素样式
+// Horizontal divider pseudo-elements style
 const horizontalPseudoElements = style({
   selectors: {
     "&::before, &::after": {
@@ -37,7 +37,7 @@ const horizontalPseudoElements = style({
   },
 });
 
-// 垂直分割线样式
+// Vertical divider style
 const verticalStyle = style({
   minHeight: "20px",
   flexDirection: "column",
@@ -58,7 +58,7 @@ const verticalStyle = style({
   },
 });
 
-// 对齐样式
+// Alignment base style
 const alignmentBase = style({
   selectors: {
     [`&:not(${verticalStyle})::before`]: {
@@ -76,7 +76,7 @@ const alignmentBase = style({
   },
 });
 
-// 对齐变体
+// Alignment variants
 const alignmentVariants = styleVariants({
   start: {
     selectors: {
@@ -101,7 +101,7 @@ const alignmentVariants = styleVariants({
   },
 });
 
-// 外观变体
+// Appearance variants
 const appearanceVariants = styleVariants({
   default: {},
   subtle: {
@@ -130,7 +130,7 @@ const appearanceVariants = styleVariants({
   },
 });
 
-// 内嵌样式
+// Inset style
 const insetStyle = style({
   selectors: {
     [`&:not(${verticalStyle})`]: {
@@ -144,12 +144,12 @@ const insetStyle = style({
   },
 });
 
-// 内容包装器样式
+// Content wrapper style
 const wrapperStyle = style({
   padding: "0 8px",
 });
 
-// 导出样式对象
+// Export style object
 export const divider = {
   base: baseDivider,
   horizontal: horizontalPseudoElements,

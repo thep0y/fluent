@@ -3,31 +3,31 @@ import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
 /**
- * CSS变量定义
+ * CSS Variable Definitions
  */
-// 进度相关变量
+// Progress-related variables
 export const progressDirection = createVar("--fui-Slider--direction");
 export const progressPercent = createVar("--fui-Slider--progress");
 export const stepsPercent = createVar("--fui-Slider--steps-percent");
 
-// 颜色相关变量
+// Color-related variables
 export const thumbColor = createVar("--fui-Slider--thumb-color");
 export const progressColor = createVar("--fui-Slider--progress-color");
 export const railColor = createVar("--fui-Slider--rail-color");
 
-// 尺寸相关变量
+// Size-related variables
 const railSize = createVar("--fui-Slider--rail-size");
 const innerThumbRadius = createVar("--fui-Slider--inner-thumb-radius");
 const thumbSize = createVar("--fui-Slider--thumb-size");
 const thumbPosition = createVar("--fui-Slider--thumb-position");
 
 /**
- * 基础样式定义
+ * Base Style Definitions
  */
-// 垂直方向样式标记
+// Vertical direction style marker
 const vertical = style({});
 
-// 基础滑块容器样式
+// Base slider container style
 const baseSlider = style({
   display: "grid",
   position: "relative",
@@ -38,7 +38,7 @@ const baseSlider = style({
   gridTemplateRows: `1fr ${thumbSize} 1fr`,
   minHeight: "32px",
 
-  // 默认颜色变量
+  // Default color variables
   vars: {
     [thumbColor]: themeContract.colorCompoundBrandBackground,
     [progressColor]: themeContract.colorCompoundBrandBackground,
@@ -46,7 +46,7 @@ const baseSlider = style({
   },
 
   selectors: {
-    // 悬停状态
+    // Hover state
     "&:hover": {
       vars: {
         [thumbColor]: themeContract.colorCompoundBrandBackgroundHover,
@@ -54,7 +54,7 @@ const baseSlider = style({
       },
     },
 
-    // 激活状态
+    // Active state
     "&:active": {
       vars: {
         [thumbColor]: themeContract.colorCompoundBrandBackgroundPressed,
@@ -62,12 +62,12 @@ const baseSlider = style({
       },
     },
 
-    // 水平方向特有样式
+    // Horizontal direction specific styles
     [`&:not(${vertical})`]: {
       minWidth: "120px",
     },
 
-    // 垂直方向特有样式
+    // Vertical direction specific styles
     [`&${vertical}`]: {
       display: "inline-grid",
       minHeight: "120px",
@@ -78,11 +78,11 @@ const baseSlider = style({
 });
 
 /**
- * 变体样式定义
+ * Variant Style Definitions
  */
-// 尺寸变体
+// Size variants
 const sizeVariants = styleVariants({
-  // 小尺寸
+  // Small size
   small: {
     vars: {
       [railSize]: "2px",
@@ -90,7 +90,7 @@ const sizeVariants = styleVariants({
       [innerThumbRadius]: "5px",
     },
   },
-  // 中尺寸（默认）
+  // Medium size (default)
   medium: {
     vars: {
       [railSize]: "4px",
@@ -100,7 +100,7 @@ const sizeVariants = styleVariants({
   },
 });
 
-// 禁用状态
+// Disabled state
 const disabled = style({
   opacity: 0.5,
   pointerEvents: "none",
@@ -113,9 +113,9 @@ const disabled = style({
 });
 
 /**
- * 组件部件样式
+ * Component Part Styles
  */
-// 滑块轨道样式
+// Slider rail style
 const rail = style({
   height: railSize,
   outlineColor: themeContract.colorTransparentStroke,
@@ -138,7 +138,7 @@ const rail = style({
   borderRadius: vars.borderRadiusXLarge,
 
   selectors: {
-    // 步进标记
+    // Step marks
     "&::before": {
       backgroundImage: `repeating-linear-gradient(
         ${progressDirection},
@@ -151,34 +151,34 @@ const rail = style({
       content: '""',
     },
 
-    // 垂直方向轨道
+    // Vertical direction rail
     [`${vertical} &`]: {
       width: railSize,
       height: "100%",
     },
 
-    // 水平方向步进标记
+    // Horizontal direction step marks
     [`${baseSlider}:not(${vertical}) &::before`]: {
       height: railSize,
       right: "-1px",
       left: "-1px",
     },
 
-    // 垂直方向步进标记
+    // Vertical direction step marks
     [`${vertical} &::before`]: {
       width: railSize,
       top: "-1px",
       bottom: "-1px",
     },
 
-    // 小尺寸轨道高度
+    // Small size rail height
     [`${sizeVariants.small} &`]: {
       height: "2px",
     },
   },
 });
 
-// 滑块拇指样式
+// Slider thumb style
 const thumb = style({
   backgroundColor: thumbColor,
   borderRadius: vars.borderRadiusCircular,
@@ -194,13 +194,13 @@ const thumb = style({
   gridRowStart: "2",
   gridRowEnd: "2",
 
-  // 拇指位置计算
+  // Calculate thumb position
   vars: {
     [thumbPosition]: `clamp(${innerThumbRadius}, ${progressPercent}, calc(100% - ${innerThumbRadius}))`,
   },
 
   selectors: {
-    // 拇指边框
+    // Thumb border
     "&::before": {
       content: '""',
       boxSizing: "border-box",
@@ -213,13 +213,13 @@ const thumb = style({
       border: `calc(20px * 0.05) solid ${themeContract.colorNeutralStroke1}`,
     },
 
-    // 水平方向拇指位置
+    // Horizontal direction thumb position
     [`${baseSlider}:not(${vertical}) &`]: {
       left: thumbPosition,
       transform: "translateX(-50%)",
     },
 
-    // 垂直方向拇指位置
+    // Vertical direction thumb position
     [`${vertical} &`]: {
       bottom: thumbPosition,
       transform: "translateY(50%)",
@@ -227,7 +227,7 @@ const thumb = style({
   },
 });
 
-// 输入控件样式
+// Input control style
 const input = style({
   gridColumnStart: "1",
   gridColumnEnd: "-1",
@@ -241,7 +241,7 @@ const input = style({
   height: thumbSize,
 
   selectors: {
-    // 垂直方向输入控件
+    // Vertical direction input control
     [`${vertical} &`]: {
       width: thumbSize,
       height: "100%",
@@ -252,7 +252,7 @@ const input = style({
 });
 
 /**
- * 导出样式对象
+ * Export style object
  */
 export const slider = {
   base: baseSlider,

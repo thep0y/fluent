@@ -37,7 +37,7 @@ const Switch = (props: SwitchProps) => {
       [switchStyles.lively]: merged.lively,
     };
 
-    // 添加标签位置样式
+    // Add label position style
     if (
       merged.label &&
       merged.labelPosition &&

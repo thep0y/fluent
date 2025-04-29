@@ -5,6 +5,7 @@ export const toastBottom = createVar();
 
 const toastContainer = style({
   position: "fixed",
+  left: 0, // prevent toastContainer width from overflowing screen
   width: "100%",
   zIndex: 9999,
   pointerEvents: "none",

@@ -30,7 +30,7 @@ const Slider = (props: SliderProps) => {
     return getPercent(clampedValue, merged.min, merged.max);
   });
 
-  // 构建类名列表
+  // Build class list
   const classList = () => {
     const classes = {
       [slider.base]: true,
@@ -40,17 +40,11 @@ const Slider = (props: SliderProps) => {
       [slider.size[merged.size]]: true,
     };
 
-    // 添加尺寸样式
-    // if (merged.size && slider.size[merged.size]) {
-    //   classes[slider.size[merged.size]] = true;
-    // }
-
     return classes;
   };
 
   const style = () =>
     assignInlineVars({
-      // ...merged.style,
       [progressPercent]: `${valuePercent()}%`,
       [progressDirection]: merged.vertical ? "0deg" : "90deg",
       [stepsPercent]: merged.step

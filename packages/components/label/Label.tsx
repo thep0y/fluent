@@ -11,7 +11,7 @@ const Label = (props: LabelProps) => {
     props,
   );
 
-  // 构建类名列表
+  // Build class list
   const classList = () => {
     const classes = {
       [label.base]: true,
@@ -19,12 +19,12 @@ const Label = (props: LabelProps) => {
       [label.disabled]: merged.disabled,
     };
 
-    // 添加尺寸样式
+    // Add size style
     if (merged.size && label.size[merged.size]) {
       classes[label.size[merged.size]] = true;
     }
 
-    // 添加字重样式
+    // Add weight style
     if (merged.weight && label.weight[merged.weight]) {
       classes[label.weight[merged.weight]] = true;
     }
@@ -32,7 +32,7 @@ const Label = (props: LabelProps) => {
     return classes;
   };
 
-  // 处理必填标记
+  // Handle required marker
   const required = children(
     () =>
       merged.required && (

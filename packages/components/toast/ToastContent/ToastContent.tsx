@@ -137,7 +137,7 @@ const ToastContent: Component<ToastContentProps> = (props) => {
   );
 };
 
-// 辅助函数，根据位置获取对应的样式类
+// Helper function to get position-based style class
 const getPositionClass = (position: ToastPosition) => {
   switch (position) {
     case "top":
@@ -157,7 +157,7 @@ const getPositionClass = (position: ToastPosition) => {
   }
 };
 
-// 辅助函数，根据位置获取对应的退出动画样式类
+// Helper function to get position-based exit animation class
 const getExitingClass = (position: ToastPosition) => {
   switch (position) {
     case "top":
@@ -177,7 +177,7 @@ const getExitingClass = (position: ToastPosition) => {
   }
 };
 
-// 辅助函数，根据类型获取对应的样式类
+// Helper function to get type-based style class
 const getTypeClass = (type: ToastType) => {
   switch (type) {
     case "info":

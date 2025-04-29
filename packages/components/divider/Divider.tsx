@@ -8,7 +8,7 @@ const Divider = (props: DividerProps) => {
     props,
   );
 
-  // 构建类名列表
+  // Build class list
   const classList = () => {
     const classes = {
       [divider.base]: true,
@@ -18,22 +18,22 @@ const Divider = (props: DividerProps) => {
       [merged.class || ""]: !!merged.class,
     };
 
-    // 添加对齐样式
+    // Add alignment style
     if (merged.alignContent && divider.alignment[merged.alignContent]) {
       classes[divider.alignment[merged.alignContent]] = !!merged.children;
     }
 
-    // 添加外观样式
+    // Add appearance style
     if (merged.appearance && divider.appearance[merged.appearance]) {
       classes[divider.appearance[merged.appearance]] = true;
     }
 
-    // 添加内嵌样式
+    // Add inset style
     if (merged.inset) {
       classes[divider.inset] = true;
     }
 
-    // 为垂直分割线添加特定类名，用于CSS选择器
+    // Add specific class name for vertical dividers for CSS selectors
     if (merged.vertical) {
       classes["divider-vertical"] = true;
     }

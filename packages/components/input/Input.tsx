@@ -20,12 +20,12 @@ const Input = (props: InputProps) => {
     "contentAfter",
   ]);
 
-  // 创建内部状态管理值
+  // Create internal state to manage value
   const [internalValue, setInternalValue] = createSignal(
     local.defaultValue || "",
   );
 
-  // 构建类名列表
+  // Build class list
   const classList = () => {
     const classes = {
       [input.base]: true,
@@ -33,12 +33,12 @@ const Input = (props: InputProps) => {
       [input.disabled]: local.disabled,
     };
 
-    // 添加外观样式
+    // Add appearance style
     if (local.appearance && input.appearance[local.appearance]) {
       classes[input.appearance[local.appearance]] = true;
     }
 
-    // 添加尺寸样式
+    // Add size style
     if (local.size && input.size[local.size]) {
       classes[input.size[local.size]] = true;
     }
@@ -70,7 +70,7 @@ const Input = (props: InputProps) => {
     }
   };
 
-  // 构建内容
+  // Build content
   const contentBefore = children(
     () =>
       local.contentBefore && (

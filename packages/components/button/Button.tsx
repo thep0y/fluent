@@ -10,7 +10,7 @@ const Button = (props: ButtonProps) => {
   );
   const iconOnly = createMemo(() => !!merged.icon && !merged.children);
 
-  // 构建类名列表
+  // Build class list
   const classList = () => {
     const classes = {
       [button.base]: true,
@@ -19,16 +19,16 @@ const Button = (props: ButtonProps) => {
       [button.iconOnly.base]: iconOnly(),
     };
 
-    // 添加外观样式
+    // Add appearance style
     if (merged.appearance && button.appearance[merged.appearance]) {
       classes[button.appearance[merged.appearance]] = true;
     }
 
-    // 添加尺寸样式
+    // Add size style
     if (merged.size && button.size[merged.size]) {
       classes[button.size[merged.size]] = true;
 
-      // 添加尺寸特定的图标样式
+      // Add size-specific icon styles
       if (merged.icon) {
         if (merged.size === "small") {
           classes[button.icon.small] = true;
@@ -44,7 +44,7 @@ const Button = (props: ButtonProps) => {
       }
     }
 
-    // 添加形状样式
+    // Add shape style
     if (merged.shape && button.shape[merged.shape]) {
       classes[button.shape[merged.shape]] = true;
     }
@@ -52,7 +52,7 @@ const Button = (props: ButtonProps) => {
     return classes;
   };
 
-  // 构建内容
+  // Build content
   const resolved = children(() => (
     <>
       {merged.iconPosition !== "after" && merged.icon && (

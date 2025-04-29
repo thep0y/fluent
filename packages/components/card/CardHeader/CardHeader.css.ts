@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-// 基础卡片头部样式
+// Base card header style
 export const cardHeader = style({
   flexShrink: 0,
   display: "grid",
@@ -11,7 +11,7 @@ export const cardHeader = style({
   },
 });
 
-// 图片区域样式
+// Image area style
 export const image = style({
   gridRowStart: "span 2",
   gridColumnStart: "1",
@@ -19,23 +19,25 @@ export const image = style({
   display: "inline-flex",
 });
 
-// 标题区域样式
+// Header area style
 export const header = style({
   gridRowStart: "1",
   gridColumnStart: "2",
   display: "flex",
 });
 
-// 描述区域样式
+// Description area style
 export const description = style({
   gridRowStart: "2",
   gridColumnStart: "2",
   display: "flex",
 });
 
-// 操作区域样式
+// Action area style
 export const action = style({
-  gridColumnStart: "3",
   gridRowStart: "span 2",
+  gridColumnStart: "3",
   marginLeft: "var(--fui-CardHeader--gap)",
+  display: "flex",
+  alignItems: "center",
 });
