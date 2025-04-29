@@ -29,6 +29,7 @@ export default defineConfig({
           existsSync(indexFilePath) ||
           !existsSync(dir) ||
           (filePath.indexOf("/components/") === -1 &&
+            filePath.indexOf("/themes/") === -1 &&
             filePath.indexOf("/hooks/") === -1) ||
           filename !== "index.d.ts"
         ) {
