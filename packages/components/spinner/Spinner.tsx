@@ -1,5 +1,4 @@
 import { children, lazy, mergeProps, Show } from "solid-js";
-import { typographyStyles, type TypographyStyle } from "~/themes/typography";
 import type { SpinnerProps } from "./Spinner.types";
 import { spinner } from "./Spinner.css";
 
@@ -33,12 +32,7 @@ const Spinner = (props: SpinnerProps) => {
   const label = children(
     () =>
       merged.label && (
-        <LazyLabel
-          style={{
-            ...labelStyles[merged.size],
-            ...(merged.appearance === "inverted" ? labelStyles.inverted : {}),
-          }}
-        >
+        <LazyLabel class={spinner.labelSize[merged.size]}>
           {merged.label}
         </LazyLabel>
       ),
@@ -71,47 +65,6 @@ const Spinner = (props: SpinnerProps) => {
       </Show>
     </div>
   );
-};
-
-const labelStyles: Record<
-  NonNullable<SpinnerProps["size"]> | "inverted",
-  TypographyStyle | { color: string }
-> = {
-  inverted: {
-    color: "var(--colorNeutralForegroundStaticInverted)",
-  },
-
-  "extra-tiny": {
-    ...typographyStyles.body1,
-  },
-
-  tiny: {
-    ...typographyStyles.body1,
-  },
-
-  "extra-small": {
-    ...typographyStyles.body1,
-  },
-
-  small: {
-    ...typographyStyles.body1,
-  },
-
-  medium: {
-    ...typographyStyles.subtitle2,
-  },
-
-  large: {
-    ...typographyStyles.subtitle2,
-  },
-
-  "extra-large": {
-    ...typographyStyles.subtitle2,
-  },
-
-  huge: {
-    ...typographyStyles.subtitle1,
-  },
 };
 
 export default Spinner;

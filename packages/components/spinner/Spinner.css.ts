@@ -7,6 +7,8 @@ import {
 } from "@vanilla-extract/css";
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
+import { label } from "../label/Label.css";
+import { typographyVars } from "~/themes/typography";
 
 // Create animations
 const spinnerAnimation = keyframes({
@@ -106,10 +108,25 @@ const appearanceVariants = styleVariants({
   inverted: {}, // Defined using global style
 });
 
+globalStyle(`${appearanceVariants.inverted} .${label.base}`, {
+  color: themeContract.colorNeutralForegroundStaticInverted,
+});
+
 globalStyle(`${appearanceVariants.inverted} .${spinnerElement}`, {
   color: themeContract.colorNeutralStrokeOnBrand2,
   backgroundColor: themeContract.colorNeutralStrokeAlpha2,
 });
+
+// const labelVariants = styleVariants({
+//   "extra-tiny": typographyVars.body1,
+//   tiny: typographyVars.body1,
+//   "extra-small": typographyVars.body1,
+//   small: typographyVars.body1,
+//   medium: typographyVars.subtitle2,
+//   large: typographyVars.subtitle2,
+//   "extra-large": typographyVars.subtitle2,
+//   huge: typographyVars.subtitle1,
+// });
 
 // Size variants
 const sizeVariants = styleVariants({
@@ -174,6 +191,17 @@ globalStyle(`${sizeVariants.huge} .${spinnerElement}`, {
   height: "44px",
 });
 
+const spinnerLabelVariants = styleVariants({
+  "extra-tiny": typographyVars.body1,
+  tiny: typographyVars.body1,
+  "extra-small": typographyVars.body1,
+  small: typographyVars.body1,
+  medium: typographyVars.subtitle2,
+  large: typographyVars.subtitle2,
+  "extra-large": typographyVars.subtitle2,
+  huge: typographyVars.subtitle1,
+});
+
 // Export style object
 export const spinner = {
   base: baseSpinner,
@@ -181,4 +209,5 @@ export const spinner = {
   spinnerTail,
   appearance: appearanceVariants,
   size: sizeVariants,
+  labelSize: spinnerLabelVariants,
 };
