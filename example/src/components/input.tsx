@@ -1,6 +1,7 @@
 import { AiFillCamera, AiOutlineDollar, AiOutlineUser } from "solid-icons/ai";
 import { createEffect, createSignal } from "solid-js";
-import { Input, Label, darkThemeVars, type InputProps } from "@/index";
+import { Divider, Input, Label, darkThemeVars, type InputProps } from "@/index";
+import { box, field, fieldColumn } from "../themes/global.css";
 
 const Uncontrolled = () => {
   const onChange: InputProps["onChange"] = (value) => {
@@ -9,7 +10,7 @@ const Uncontrolled = () => {
   };
 
   return (
-    <div class="field">
+    <div class={field}>
       <Label>Uncontrolled input with default value</Label>
       <Input defaultValue="default value" onChange={onChange} />
     </div>
@@ -27,7 +28,7 @@ const Controlled = () => {
   createEffect(() => console.log(`New value: "${value()}"`));
 
   return (
-    <div class="field">
+    <div class={field}>
       <Label>Controlled input limiting the value to 20 characters</Label>
       <Input id="input-121" value={value()} onInput={handleInput} />
     </div>
@@ -39,12 +40,16 @@ const InputDemo = () => {
     padding: "10px",
   };
   return (
-    <div class="box">
-      <div class="field" style={style}>
+    <div class={box}>
+      <Divider appearance="strong">
+        <h2>Input</h2>
+      </Divider>
+
+      <div class={field} style={style}>
         <Input onInput={(v) => console.log(v)} />
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={style}>
           <Input appearance="underline" />
         </div>
@@ -66,7 +71,7 @@ const InputDemo = () => {
         </div>
       </div>
 
-      <div class="field-column" style={{ "margin-bottom": "20px" }}>
+      <div class={fieldColumn} style={{ "margin-bottom": "20px" }}>
         <div style={style}>
           <Input contentBefore={<AiOutlineUser />} />
         </div>
@@ -78,7 +83,7 @@ const InputDemo = () => {
         </div>
       </div>
 
-      <div class="field-column" style={{ "margin-bottom": "20px" }}>
+      <div class={fieldColumn} style={{ "margin-bottom": "20px" }}>
         <div style={style}>
           <Input disabled value="disabled" />
         </div>
@@ -103,7 +108,7 @@ const InputDemo = () => {
         </div>
       </div>
 
-      <div class="field-column" style={{ "margin-bottom": "20px" }}>
+      <div class={fieldColumn} style={{ "margin-bottom": "20px" }}>
         <div>
           <Label style={{ "padding-inline-end": "12px" }}>
             Sample inline input
@@ -119,11 +124,11 @@ const InputDemo = () => {
         </p>
       </div>
 
-      <div class="field-column" style={{ "margin-bottom": "20px" }}>
+      <div class={fieldColumn} style={{ "margin-bottom": "20px" }}>
         <Input placeholder="This is a placeholder" />
       </div>
 
-      <div class="field-column" style={{ "margin-bottom": "20px" }}>
+      <div class={fieldColumn} style={{ "margin-bottom": "20px" }}>
         <div style={style}>
           <Input size="small" />
         </div>

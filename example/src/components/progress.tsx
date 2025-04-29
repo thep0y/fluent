@@ -1,6 +1,7 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
 import ProgressBar from "@/components/progress/Progress";
 import { Divider, useInterval, useTimeout } from "@/index";
+import { box, fieldColumn } from "../themes/global.css";
 
 const ProgressDemo = () => {
   const [value, setValue] = createSignal(0);
@@ -33,12 +34,12 @@ const ProgressDemo = () => {
   };
 
   return (
-    <div class="box">
+    <div class={box}>
       <Divider appearance="strong">
         <h2>ProgressBar</h2>
       </Divider>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={style}>
           <ProgressBar value={value()} />
         </div>
@@ -48,7 +49,7 @@ const ProgressDemo = () => {
         </div>
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={style}>
           <ProgressBar value={75} color="error" />
         </div>
@@ -60,13 +61,13 @@ const ProgressDemo = () => {
         </div>
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={style}>
           <ProgressBar />
         </div>
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={style}>
           <ProgressBar value={50} shape="rounded" thickness="large" />
         </div>
@@ -76,7 +77,7 @@ const ProgressDemo = () => {
         </div>
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={style}>
           <ProgressBar value={50} thickness="medium" />
         </div>

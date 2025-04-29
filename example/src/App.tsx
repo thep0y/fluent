@@ -1,6 +1,7 @@
 import { For, lazy } from "solid-js";
 import ToastDemo from "./components/toast";
 import { h1 } from "./App.css";
+import { ToastProvider } from "@/index";
 
 const examples = [
   lazy(() => import("./components/button")),
@@ -12,16 +13,19 @@ const examples = [
   lazy(() => import("./components/tooltip")),
   lazy(() => import("./components/input")),
   lazy(() => import("./components/slider")),
-  lazy(() => import("./components/toast")),
-  //   lazy(() => import("./components/divider")),
 ];
 
 const App = () => {
   return (
     <>
-      {/* <For each={examples}>{(item) => item()}</For> */}
       <h1 class={h1}>Fluent Solid</h1>
-      <ToastDemo />
+
+      <For each={examples}>{(item) => item()}</For>
+
+      {/* Components under ToastProvider cannot use lazy loading import, otherwise the context will not be found */}
+      <ToastProvider>
+        <ToastDemo />
+      </ToastProvider>
     </>
   );
 };

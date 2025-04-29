@@ -7,6 +7,7 @@ import { VsCheck } from "solid-icons/vs";
 import { themeContract } from "@/themes/theme.css";
 import { vars } from "@/themes/var.css";
 import { Divider } from "@/index";
+import { box, field, fieldColumn } from "../themes/global.css";
 
 const buttonNonInteractive = {
   "background-color": themeContract.colorNeutralBackground1,
@@ -43,7 +44,7 @@ const LoadingButton = () => {
       <VsCheck
         color={
           loadingState() === "loaded"
-            ? "var(--colorStatusSuccessForeground1)"
+            ? themeContract.colorStatusSuccessForeground1
             : undefined
         }
       />
@@ -56,7 +57,7 @@ const LoadingButton = () => {
   };
 
   return (
-    <div class="field">
+    <div class={field}>
       <Button
         style={loadingState() === "initial" ? undefined : buttonNonInteractive}
         disabledFocusable={loadingState() !== "initial"}
@@ -72,22 +73,22 @@ const LoadingButton = () => {
 
 const ButtonDemo = () => {
   return (
-    <div class="box">
+    <div class={box}>
       <Divider appearance="strong">
         <h2>Button</h2>
       </Divider>
 
-      <div class="field">
+      <div class={field}>
         <Button>Example</Button>
       </div>
 
-      <div class="field">
+      <div class={field}>
         <Button>Rounded</Button>
         <Button shape="circular">Circular</Button>
         <Button shape="square">Square</Button>
       </div>
 
-      <div class="field">
+      <div class={field}>
         <Button icon={<AiFillHeart />}>Default</Button>
         <Button appearance="primary" icon={<AiFillHeart />}>
           Primary
@@ -103,7 +104,7 @@ const ButtonDemo = () => {
         </Button>
       </div>
 
-      <div class="field">
+      <div class={field}>
         <Button icon={<RiBusinessCalendarFill />}>
           With calendar icon before contents
         </Button>
@@ -113,22 +114,22 @@ const ButtonDemo = () => {
         <Button icon={<RiBusinessCalendarFill />} />
       </div>
 
-      <div class="field">
-        <div class="field">
+      <div class={fieldColumn}>
+        <div class={field}>
           <Button size="small">Small</Button>
           <Button size="small" icon={<RiBusinessCalendarFill />}>
             Small with calendar icon
           </Button>
           <Button size="small" icon={<RiBusinessCalendarFill />} />
         </div>
-        <div class="field">
+        <div class={field}>
           <Button>Medium</Button>
           <Button icon={<RiBusinessCalendarFill />}>
             Medium with calendar icon
           </Button>
           <Button icon={<RiBusinessCalendarFill />} />
         </div>
-        <div class="field">
+        <div class={field}>
           <Button size="large">Large</Button>
           <Button size="large" icon={<RiBusinessCalendarFill />}>
             Large with calendar icon
@@ -137,13 +138,13 @@ const ButtonDemo = () => {
         </div>
       </div>
 
-      <div class="field-column">
-        <div class="field">
+      <div class={fieldColumn}>
+        <div class={field}>
           <Button>Enabled state</Button>
           <Button disabled>Disabled state</Button>
           <Button disabledFocusable>Disabled focusable state</Button>
         </div>
-        <div class="field">
+        <div class={field}>
           <Button appearance="primary">Enabled state</Button>
           <Button appearance="primary" disabled>
             Disabled state
@@ -156,7 +157,7 @@ const ButtonDemo = () => {
 
       <LoadingButton />
 
-      <div class="field">
+      <div class={field}>
         <Button>Short text</Button>
         <Button style={{ width: "280px" }}>
           Long text wraps after it hits the max width of the component

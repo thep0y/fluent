@@ -1,11 +1,12 @@
 import type { ToastPosition, ToastType } from "@/components/toast";
-import { Button, useToast } from "@/index";
+import { Button, Divider, useToast } from "@/index";
 import {
   TbArrowCurveLeft,
   TbArrowCurveRight,
   TbArrowNarrowUp,
 } from "solid-icons/tb";
 import { For, type JSX } from "solid-js";
+import { box, field } from "../themes/global.css";
 
 const positions = (): [ToastPosition, JSX.Element][] =>
   [
@@ -33,9 +34,13 @@ const ToastDemo = () => {
   };
 
   return (
-    <div class="box">
+    <div class={box}>
+      <Divider appearance="strong">
+        <h2>Toast</h2>
+      </Divider>
+
       <div
-        class="field"
+        class={field}
         style={{
           display: "grid",
           padding: "24px 0",

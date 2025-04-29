@@ -1,17 +1,18 @@
 import Spinner from "@/components/spinner/Spinner";
-import { Divider } from "@/index";
+import { Divider, themeContract } from "@/index";
+import { box, field, fieldColumn } from "../themes/global.css";
 
 const SpinnerDemo = () => {
   return (
-    <div class="box">
+    <div class={box}>
       <Divider appearance="strong">
         <h2>Spinner</h2>
       </Divider>
 
-      <div class="field">
+      <div class={field}>
         <Spinner />
       </div>
-      <div class="field">
+      <div class={field}>
         <Spinner
           style={{ padding: "20px" }}
           appearance="primary"
@@ -22,14 +23,14 @@ const SpinnerDemo = () => {
           <Spinner
             style={{
               padding: "20px",
-              "background-color": "var(--colorBrandBackgroundStatic)",
+              "background-color": themeContract.colorBrandBackgroundStatic,
             }}
             appearance="inverted"
             label="Inverted Spinner"
           />
         </div>
       </div>
-      <div class="field-column">
+      <div class={fieldColumn}>
         <Spinner labelPosition="before" label="Label Position Before..." />
 
         <Spinner labelPosition="after" label="Label Position After..." />
@@ -38,7 +39,7 @@ const SpinnerDemo = () => {
 
         <Spinner labelPosition="below" label="Label Position Below..." />
       </div>
-      <div class="field-column">
+      <div class={fieldColumn}>
         <Spinner size="extra-tiny" label="Extra Tiny Spinner" />
 
         <Spinner size="tiny" label="Tiny Spinner" />
