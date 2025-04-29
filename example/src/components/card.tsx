@@ -9,14 +9,15 @@ import {
   Divider,
 } from "@/index";
 import { FaSolidReply, FaSolidShare } from "solid-icons/fa";
+import { box, field } from "../themes/global.css";
 
 const Cards = () => (
-  <div class="box">
+  <div class={box}>
     <Divider appearance="strong">
       <h2>Card</h2>
     </Divider>
 
-    <div class="field">
+    <div class={field}>
       <Card style={{ width: "720px" }}>
         <CardHeader
           image={

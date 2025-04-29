@@ -1,23 +1,24 @@
 import { Badge, Divider } from "@/index";
 import { BiSolidPaste } from "solid-icons/bi";
+import { box, field } from "../themes/global.css";
 
 const BadgeDemo = () => {
   return (
-    <div class="box">
+    <div class={box}>
       <Divider appearance="strong">
         <h2>Button</h2>
       </Divider>
 
-      <div class="field">
+      <div class={field}>
         <Badge />
       </div>
-      <div class="field">
+      <div class={field}>
         <Badge appearance="filled">999+</Badge>
         <Badge appearance="ghost">999+</Badge>
         <Badge appearance="outline">999+</Badge>
         <Badge appearance="tint">999+</Badge>
       </div>
-      <div class="field">
+      <div class={field}>
         <Badge size="tiny" />
         <Badge size="extra-small" />
         <Badge size="small" />
@@ -25,12 +26,12 @@ const BadgeDemo = () => {
         <Badge size="large" />
         <Badge size="extra-large" />{" "}
       </div>
-      <div class="field">
+      <div class={field}>
         <Badge shape="square" />
         <Badge shape="rounded" />
         <Badge shape="circular" />
       </div>
-      <div class="field">
+      <div class={field}>
         <Badge appearance="filled" color="brand">
           999+
         </Badge>
@@ -56,7 +57,7 @@ const BadgeDemo = () => {
           999+
         </Badge>
       </div>
-      <div class="field">
+      <div class={field}>
         <Badge size="medium" icon={<BiSolidPaste />} />
       </div>
     </div>

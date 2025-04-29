@@ -1,5 +1,6 @@
 import { createSignal } from "solid-js";
 import { Button, Divider, Label, Slider } from "@/index";
+import { box, fieldColumn } from "../themes/global.css";
 
 const wrapperStyle = {
   display: "flex",
@@ -65,12 +66,12 @@ const Vertical = () => {
 
 const SliderDemo = () => {
   return (
-    <div class="box">
+    <div class={box}>
       <Divider appearance="strong">
         <h2>Slider</h2>
       </Divider>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={wrapperStyle}>
           <Slider
             onChange={(v) => {
@@ -81,30 +82,30 @@ const SliderDemo = () => {
         </div>
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={wrapperStyle}>
           <Slider size="medium" defaultValue={20} style={style} />
           <Slider size="small" defaultValue={20} style={style} />
         </div>
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <Controlled />
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <Step />
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <MinMax />
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <Vertical />
       </div>
 
-      <div class="field-column">
+      <div class={fieldColumn}>
         <div style={wrapperStyle}>
           <Slider disabled style={style} />
         </div>

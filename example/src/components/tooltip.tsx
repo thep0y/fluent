@@ -6,6 +6,7 @@ import {
 } from "solid-icons/tb";
 import { For } from "solid-js";
 import { Button, Divider, themeContract, Tooltip } from "@/index";
+import { box, field } from "../themes/global.css";
 
 const positions = () =>
   [
@@ -29,7 +30,7 @@ const positions = () =>
 const TooltipGrid = (props: { withArrow?: boolean }) => {
   return (
     <div
-      class="field"
+      class={field}
       style={{
         display: "grid",
         padding: "24px 0",
@@ -67,7 +68,7 @@ const TooltipGrid = (props: { withArrow?: boolean }) => {
 };
 
 const TooltipDemo = () => (
-  <div class="box">
+  <div class={box}>
     <Divider appearance="strong">
       <h2>Tooltip</h2>
     </Divider>
@@ -77,7 +78,7 @@ const TooltipDemo = () => (
     <TooltipGrid withArrow />
 
     <div
-      class="field"
+      class={field}
       style={{ display: "flex", gap: "24px", "justify-content": "center" }}
     >
       <Tooltip
