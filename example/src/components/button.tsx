@@ -102,6 +102,9 @@ const ButtonDemo = () => {
         <Button appearance="transparent" icon={<AiFillHeart />}>
           Transparent
         </Button>
+        <Button appearance="danger" icon={<AiFillHeart />}>
+          Danger
+        </Button>
       </div>
 
       <div class={field}>

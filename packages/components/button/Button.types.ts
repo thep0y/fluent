@@ -5,7 +5,8 @@ type ButtonAppearance =
   | "primary"
   | "outline"
   | "subtle"
-  | "transparent";
+  | "transparent"
+  | "danger";
 type ButtonShape = "rounded" | "circular" | "square";
 
 /**
