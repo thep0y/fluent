@@ -18,7 +18,13 @@
       "correctness": {
         "useJsxKeyInIterable": "off"
       },
-      "style": { "noNonNullAssertion": "off" },
+      "style": {
+        "noNonNullAssertion": "off",
+        "useTemplate": {
+          "level": "warn",
+          "fix": "safe"
+        }
+      },
       "a11y": {
         "useKeyWithClickEvents": "off",
         "useSemanticElements": "off",
