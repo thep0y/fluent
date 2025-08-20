@@ -11,6 +11,10 @@ export const cardPreview = style({
       marginTop: `calc(${cardSize} * -1)`,
     },
 
+    [`${orientation.vertical} > :not([aria-hidden="true"])&:last-of-type`]: {
+      marginBottom: `calc(${cardSize} * -1)`,
+    },
+
     [`${orientation.horizontal} &`]: {
       marginBottom: `calc(${cardSize} * -1)`,
       marginTop: `calc(${cardSize} * -1)`,

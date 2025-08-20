@@ -3,6 +3,8 @@ import Default from "./Default";
 import Orientation from "./Orientation";
 import Selectable from "./Selectable";
 import { Size } from "./Size";
+import { Templates } from "./Templates";
+import { WithAction } from "./WithAction";
 
 const Cards = () => (
   <div>
@@ -11,6 +13,8 @@ const Cards = () => (
     <Appearance />
     <Size />
     <Selectable />
+    <WithAction />
+    <Templates />
   </div>
 );
 
