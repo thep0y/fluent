@@ -100,6 +100,7 @@ export const color = styleVariants({
   },
   important: {
     backgroundColor: themeContract.colorNeutralForeground1,
+    color: themeContract.colorNeutralBackground1,
   },
   informative: {
     backgroundColor: themeContract.colorNeutralBackground5,

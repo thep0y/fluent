@@ -1,4 +1,4 @@
-import { children, splitProps } from "solid-js";
+import { Show, splitProps } from "solid-js";
 
 import type { CardHeaderProps } from "./CardHeader.types";
 import {
@@ -23,16 +23,23 @@ export const CardHeader = (props: CardHeaderProps) => {
     [`${local.class}`]: !!local.class,
   });
 
-  const action = children(
-    () => local.action && <div class={actionStyle}>{local.action}</div>,
-  );
-
   return (
     <div {...others} classList={classList()}>
-      <div class={image}>{local.image}</div>
-      <div class={header}>{local.header}</div>
-      <div class={description}>{local.description}</div>
-      {action()}
+      <Show when={local.image}>
+        <div class={image}>{local.image}</div>
+      </Show>
+
+      <Show when={local.header}>
+        <div class={header}>{local.header}</div>
+      </Show>
+
+      <Show when={local.description}>
+        <div class={description}>{local.description}</div>
+      </Show>
+
+      <Show when={local.action}>
+        <div class={actionStyle}>{local.action}</div>
+      </Show>
     </div>
   );
 };

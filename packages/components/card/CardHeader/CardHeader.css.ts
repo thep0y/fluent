@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { orientation } from "../Card/Card.css";
 
 // Base card header style
 export const cardHeader = style({
@@ -8,6 +9,12 @@ export const cardHeader = style({
   alignItems: "center",
   vars: {
     "--fui-CardHeader--gap": "12px",
+  },
+
+  selectors: {
+    [`${orientation.horizontal} &`]: {
+      flexGrow: 1,
+    },
   },
 });
 

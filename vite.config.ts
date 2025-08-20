@@ -9,7 +9,7 @@ function resolve(str: string) {
   return path.resolve(__dirname, str);
 }
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "~/": `${resolve("packages")}/`,
@@ -18,7 +18,9 @@ export default defineConfig({
 
   plugins: [
     solid(),
-    vanillaExtractPlugin({ identifiers: "short" }),
+    vanillaExtractPlugin({
+      identifiers: mode === "staging" ? "debug" : "short",
+    }),
     dts({
       tsconfigPath: "./tsconfig.app.json",
       beforeWriteFile(filePath, content) {
@@ -91,6 +93,7 @@ export default defineConfig({
 
     rollupOptions: {
       external: [
+        "tabster",
         "solid-js",
         "solid-js/web",
         "solid-js/store",
@@ -119,4 +122,4 @@ export default defineConfig({
       ],
     },
   },
-});
+}));

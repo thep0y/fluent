@@ -1,5 +1,5 @@
 import type { JSX } from "solid-js";
-import type { HTMLSlotElementAttributes } from "~/types";
+import type { HTMLDivElementProps, HTMLInputElementProps } from "~/types";
 
 /**
  * Data sent from the selection events on a selectable card.
@@ -11,7 +11,8 @@ export type CardOnSelectData = {
 /**
  * Card component props.
  */
-export interface CardProps extends HTMLSlotElementAttributes<HTMLDivElement> {
+export interface CardProps
+  extends Omit<HTMLDivElementProps, "onSelectionChange"> {
   /**
    * Sets the appearance of the card.
    *
@@ -95,5 +96,5 @@ export interface CardProps extends HTMLSlotElementAttributes<HTMLDivElement> {
   /**
    * The internal checkbox element that renders when the card is selectable.
    */
-  checkbox?: JSX.Element;
+  checkbox?: Omit<HTMLInputElementProps, "type">;
 }

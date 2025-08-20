@@ -13,6 +13,8 @@ const examples = [
   lazy(() => import("./components/tooltip")),
   lazy(() => import("./components/input")),
   lazy(() => import("./components/slider")),
+  lazy(() => import("./components/textarea")),
+  lazy(() => import("./components/link")),
 ];
 
 const App = () => {

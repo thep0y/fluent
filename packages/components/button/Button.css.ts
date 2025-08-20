@@ -230,6 +230,24 @@ const appearanceVariants = styleVariants({
       },
     },
   },
+  danger: {
+    backgroundColor: themeContract.colorStatusDangerBackground3,
+    color: themeContract.colorNeutralForegroundOnBrand,
+    borderColor: themeContract.colorTransparentStroke,
+
+    selectors: {
+      "&:hover": {
+        backgroundColor: themeContract.colorStatusDangerBackground3Hover,
+        color: themeContract.colorNeutralForegroundOnBrand,
+        borderColor: themeContract.colorTransparentStroke,
+      },
+      "&:hover:active": {
+        backgroundColor: themeContract.colorStatusDangerBackground3Pressed,
+        color: themeContract.colorNeutralForegroundOnBrand,
+        borderColor: themeContract.colorTransparentStroke,
+      },
+    },
+  },
 });
 
 globalStyle(`${appearanceVariants.subtle}:hover ${iconStyle}`, {
