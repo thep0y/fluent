@@ -18,6 +18,7 @@ export type {
   CardPreviewProps,
 } from "~/components/card";
 export { Link, type LinkProps } from "~/components/link";
+export { Checkbox, type CheckboxProps } from "~/components/checkbox";
 
 export { ToastProvider, useToast } from "~/components/toast";
 
