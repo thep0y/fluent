@@ -54,7 +54,7 @@ export const Card = (props: CardProps) => {
     [styles.orientation[merged.orientation]]: true,
     [styles.appearance[merged.appearance]]: true,
     [styles.interactive[merged.appearance]]: isSelectableOrInteractive(),
-    [styles.selected[merged.appearance]]: selected(),
+    [styles.selected[merged.appearance]]: selectable() && selected(),
     [styles.selectableFocused]: selectable() && selectFocused(),
     [styles.focused]: !selectable(),
     [merged.class || ""]: !!merged.class,
