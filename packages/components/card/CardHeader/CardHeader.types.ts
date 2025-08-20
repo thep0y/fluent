@@ -6,17 +6,17 @@ export interface CardHeaderProps
   /**
    * Element used to render an image or avatar related to the card.
    */
-  image: JSX.Element;
+  image?: JSX.Element;
 
   /**
    * Element used to render the main header title.
    */
-  header: JSX.Element;
+  header?: JSX.Element;
 
   /**
    * Element used to render short descriptions related to the title.
    */
-  description: JSX.Element;
+  description?: JSX.Element;
 
   /**
    * Container that renders on the far end of the footer, used for action buttons.
