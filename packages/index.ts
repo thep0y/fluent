@@ -17,6 +17,7 @@ export type {
   CardHeaderProps,
   CardPreviewProps,
 } from "~/components/card";
+export { Link, type LinkProps } from "~/components/link";
 
 export { ToastProvider, useToast } from "~/components/toast";
 

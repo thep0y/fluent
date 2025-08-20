@@ -1,2 +1,6 @@
-export { Body1 } from "./presets/Body1/Body1";
-export { Caption1 } from "./presets/Caption1/Caption1";
+export { Body1 } from "./Body1";
+export { Caption1 } from "./Caption1";
+export { Subtitle1 } from "./Subtitle1";
+
+export { Text } from "./Text";
+export type { TextProps } from "./Text";

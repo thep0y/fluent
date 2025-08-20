@@ -8,6 +8,9 @@ export const box = style({
   justifyContent: "center",
   marginBottom: "40px",
   gap: "12px",
+  fontSize: "14px",
+  color: themeContract.colorNeutralForeground1,
+  lineHeight: vars.lineHeightBase300,
 });
 
 export const field = style({
