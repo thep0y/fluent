@@ -29,6 +29,40 @@ export const card = style({
     [cardBorderRadius]: vars.borderRadiusMedium,
     [cardSize]: vars.spacingHorizontalM,
   },
+
+  selectors: {
+    "&::after": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      content: '""',
+      pointerEvents: "none",
+      borderStyle: "solid",
+      borderWidth: vars.strokeWidthThin,
+      borderRadius: cardBorderRadius,
+    },
+  },
+});
+
+export const focused = style({
+  selectors: {
+    "&:focus": {
+      outlineStyle: "none",
+    },
+    // "&:focus-visible": {
+    //   outlineStyle: "none",
+    // },
+  },
+});
+
+export const selectableFocused = style({
+  selectors: {
+    "&:focus-within": {
+      outlineStyle: "none",
+    },
+  },
 });
 
 // Size variants
@@ -58,19 +92,42 @@ export const appearance = styleVariants({
   filled: {
     boxShadow: themeContract.shadow4,
     backgroundColor: themeContract.colorNeutralBackground1,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorTransparentStroke,
+      },
+    },
   },
   "filled-alternative": {
     boxShadow: themeContract.shadow4,
     backgroundColor: themeContract.colorNeutralBackground2,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorTransparentStroke,
+      },
+    },
   },
   outline: {
     boxShadow: "none",
-    backgroundColor: "transparent",
-    border: `${vars.strokeWidthThin} solid ${themeContract.colorNeutralStroke1}`,
+    backgroundColor: themeContract.colorTransparentBackground,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorNeutralStroke1,
+      },
+    },
   },
   subtle: {
     boxShadow: "none",
-    backgroundColor: themeContract.colorNeutralBackground2,
+    backgroundColor: themeContract.colorSubtleBackground,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorTransparentStroke,
+      },
+    },
   },
 });
 
@@ -84,14 +141,158 @@ export const orientation = styleVariants({
   },
 });
 
-// Selected state
-export const selected = style({
-  outline: `${vars.strokeWidthThick} solid ${themeContract.colorCompoundBrandStroke}`,
-  outlineOffset: "-1px",
+export const interactive = styleVariants({
+  filled: {
+    cursor: "pointer",
+    backgroundColor: themeContract.colorNeutralBackground1,
+    boxShadow: themeContract.shadow4,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorTransparentStroke,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground1Hover,
+        backgroundColor: themeContract.colorNeutralBackground1Hover,
+        boxShadow: themeContract.shadow8,
+      },
+      "&:active": {
+        backgroundColor: themeContract.colorNeutralBackground1Pressed,
+      },
+    },
+  },
+  "filled-alternative": {
+    cursor: "pointer",
+    backgroundColor: themeContract.colorNeutralBackground2,
+    boxShadow: themeContract.shadow4,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorTransparentStroke,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground2Hover,
+        backgroundColor: themeContract.colorNeutralBackground2Hover,
+        boxShadow: themeContract.shadow8,
+      },
+      "&:active": {
+        backgroundColor: themeContract.colorNeutralBackground2Pressed,
+      },
+    },
+  },
+  outline: {
+    cursor: "pointer",
+    backgroundColor: themeContract.colorTransparentBackground,
+    boxShadow: themeContract.shadow4,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorNeutralStroke1,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground1Hover,
+        backgroundColor: themeContract.colorTransparentBackgroundHover,
+      },
+      "&:hover::after": {
+        borderColor: themeContract.colorNeutralStroke1Hover,
+      },
+      "&:active": {
+        backgroundColor: themeContract.colorTransparentBackgroundPressed,
+      },
+      "&:active::after": {
+        borderColor: themeContract.colorNeutralStroke1Pressed,
+      },
+    },
+  },
+  subtle: {
+    cursor: "pointer",
+    backgroundColor: themeContract.colorSubtleBackground,
+    boxShadow: "none",
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorTransparentStroke,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground1Hover,
+        backgroundColor: themeContract.colorSubtleBackgroundHover,
+      },
+      "&:active": {
+        backgroundColor: themeContract.colorSubtleBackgroundPressed,
+      },
+    },
+  },
 });
 
-// Focus mode
-export const focusMode = style({
-  outline: `${vars.strokeWidthThin} solid ${themeContract.colorCompoundBrandStroke}`,
-  outlineOffset: "-1px",
+// Selected state
+export const selected = styleVariants({
+  filled: {
+    backgroundColor: themeContract.colorNeutralBackground1Selected,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorNeutralStroke1Selected,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground1Selected,
+        backgroundColor: themeContract.colorNeutralBackground1Selected,
+      },
+    },
+  },
+  "filled-alternative": {
+    backgroundColor: themeContract.colorNeutralBackground2Selected,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorNeutralStroke1Selected,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground2Selected,
+        backgroundColor: themeContract.colorNeutralBackground2Selected,
+      },
+    },
+  },
+  outline: {
+    backgroundColor: themeContract.colorTransparentBackgroundSelected,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorNeutralStroke1Selected,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground1Selected,
+        backgroundColor: themeContract.colorTransparentBackgroundSelected,
+      },
+    },
+  },
+  subtle: {
+    backgroundColor: themeContract.colorSubtleBackgroundSelected,
+
+    selectors: {
+      "&::after": {
+        borderColor: themeContract.colorNeutralStroke1Selected,
+      },
+      "&:hover": {
+        color: themeContract.colorNeutralForeground1Selected,
+        backgroundColor: themeContract.colorSubtleBackgroundSelected,
+      },
+    },
+  },
+});
+
+export const floatingAction = style({
+  zIndex: 1,
+  position: "absolute",
+  top: vars.spacingHorizontalXS,
+  right: vars.spacingHorizontalXS,
+});
+
+export const checkbox = style({
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  clipPath: "inset(50%)",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
 });

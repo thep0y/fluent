@@ -1,35 +1,62 @@
-import { mergeProps, splitProps } from "solid-js";
+import {
+  children,
+  createMemo,
+  createSignal,
+  mergeProps,
+  Show,
+  splitProps,
+} from "solid-js";
 
 import type { CardProps } from "./Card.types";
-import {
-  card,
-  size,
-  appearance,
-  orientation,
-  selected,
-  focusMode,
-} from "./Card.css";
+import { mergeCallbacks } from "~/utils/mergeCallbacks";
+import type { RequiredPick } from "~/types";
+
+import * as styles from "./Card.css";
+import { useCardInteractive } from "./useCard";
+
+type RequiredCardProps = RequiredPick<
+  CardProps,
+  "appearance" | "focusMode" | "orientation" | "size"
+>;
 
 export const Card = (props: CardProps) => {
+  let cardRef: HTMLDivElement | undefined;
+
   const merged = mergeProps(
     {
       appearance: "filled",
-      focusMode: "off",
       orientation: "vertical",
       size: "medium",
-      selected: false,
-      defaultSelected: false,
-    } as Required<CardProps>,
+      focusMode: "off",
+    } as RequiredCardProps,
     props,
   );
 
+  const selectable = createMemo(() =>
+    [merged.selected, merged.defaultSelected, merged.onSelectionChange].some(
+      (prop) => typeof prop !== "undefined",
+    ),
+  );
+  const { interactive, focusAttributes } = useCardInteractive(props);
+
+  const [selected, setSelected] = createSignal(
+    merged.defaultSelected ?? merged.selected,
+  );
+  const [selectFocused, setSelectFocused] = createSignal(false);
+
+  const isSelectableOrInteractive = createMemo(
+    () => interactive || selectable(),
+  );
+
   const classList = () => ({
-    [card]: true,
-    [size[merged.size]]: true,
-    [appearance[merged.appearance]]: true,
-    [orientation[merged.orientation]]: true,
-    [selected]: merged.defaultSelected ?? merged.selected,
-    [focusMode]: merged.focusMode !== "off",
+    [styles.card]: true,
+    [styles.size[merged.size]]: true,
+    [styles.orientation[merged.orientation]]: true,
+    [styles.appearance[merged.appearance]]: true,
+    [styles.interactive[merged.appearance]]: isSelectableOrInteractive(),
+    [styles.selected[merged.appearance]]: selected(),
+    [styles.selectableFocused]: selectable() && selectFocused(),
+    [styles.focused]: !selectable(),
     [merged.class || ""]: !!merged.class,
   });
 
@@ -45,10 +72,82 @@ export const Card = (props: CardProps) => {
     "onSelectionChange",
     "floatingAction",
     "checkbox",
+    "onClick",
+    "onKeyDown",
   ]);
 
+  const onKeyDownHandler = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onChangeHandler(e);
+    }
+  };
+
+  const onChangeHandler = (_: Event) => {
+    const newCheckedValue = !selected();
+    setSelected(newCheckedValue);
+    local.onSelectionChange?.({ selected: newCheckedValue });
+  };
+
+  const onClick = mergeCallbacks(
+    local.onClick as (
+      e: MouseEvent & { currentTarget: HTMLDivElement; target: Element },
+    ) => void,
+    onChangeHandler,
+  );
+  const onKeyDown = mergeCallbacks(
+    local.onKeyDown as (
+      e: KeyboardEvent & { currentTarget: HTMLDivElement; target: Element },
+    ) => void,
+    onKeyDownHandler,
+  );
+
+  const selectableCardProps = createMemo(() => {
+    if (!selectable()) {
+      return null;
+    }
+
+    return {
+      onClick,
+      onKeyDown,
+    };
+  });
+
+  const checkboxSlot = children(() => {
+    if (!selectable() || local.floatingAction) {
+      return null;
+    }
+
+    return (
+      <input
+        {...local.checkbox}
+        class={styles.checkbox}
+        type="checkbox"
+        checked={selected()}
+        onChange={onChangeHandler}
+        onFocus={() => setSelectFocused(true)}
+        onBlur={() => setSelectFocused(false)}
+      />
+    );
+  });
+
   return (
-    <div {...others} classList={classList()}>
+    <div
+      {...(selectable() ? null : focusAttributes)}
+      {...others}
+      {...selectableCardProps()}
+      ref={cardRef}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      classList={classList()}
+      role={selectable() ? "group" : undefined}
+    >
+      <Show when={local.floatingAction}>
+        <div class={styles.floatingAction}>{local.floatingAction}</div>
+      </Show>
+
+      {checkboxSlot()}
+
       {local.children}
     </div>
   );

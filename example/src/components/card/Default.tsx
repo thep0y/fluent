@@ -9,9 +9,9 @@ import {
   Divider,
 } from "@/index";
 import { FaSolidReply, FaSolidShare } from "solid-icons/fa";
-import { box, field } from "../themes/global.css";
+import { box, field } from "../../themes/global.css";
 
-const Cards = () => (
+const Default = () => (
   <div class={box}>
     <Divider appearance="strong">
       <h2>Card</h2>
@@ -23,7 +23,7 @@ const Cards = () => (
           image={
             <img
               src="https://raw.githubusercontent.com/microsoft/fluentui/master/packages/react-components/react-card/stories/src/assets/avatar_elvia.svg"
-              alt="Elvia Atkins avatar picture"
+              alt="Elvia Atkins"
             />
           }
           header={
@@ -54,7 +54,9 @@ const Cards = () => (
         </CardFooter>
       </Card>
     </div>
+
+    <div class={field}></div>
   </div>
 );
 
-export default Cards;
+export default Default;
