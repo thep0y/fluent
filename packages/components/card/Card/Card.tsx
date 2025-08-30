@@ -58,10 +58,12 @@ export const Card = (props: CardProps) => {
     [styles.selectableFocused]: selectable() && selectFocused(),
     [styles.focused]: !selectable(),
     [merged.class || ""]: !!merged.class,
+    ...merged.classList,
   });
 
   const [local, others] = splitProps(merged, [
     "class",
+    "classList",
     "children",
     "appearance",
     "focusMode",
