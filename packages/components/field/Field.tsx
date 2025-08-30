@@ -1,11 +1,15 @@
 import { lazy, Match, mergeProps, Show, splitProps, Switch } from "solid-js";
+import { Dynamic } from "solid-js/web";
+
+import { BiSolidErrorCircle } from "solid-icons/bi";
+import { AiFillWarning } from "solid-icons/ai";
+import { FaSolidCircleCheck } from "solid-icons/fa";
+
+import type { LabelProps } from "../label";
 
 import type { FieldProps } from "./Field.types";
 
 import * as styles from "./Field.css";
-import { BiSolidErrorCircle } from "solid-icons/bi";
-import { AiFillWarning } from "solid-icons/ai";
-import { FaSolidCircleCheck } from "solid-icons/fa";
 
 const Label = lazy(() => import("../label/Label"));
 
@@ -81,13 +85,20 @@ export const Field = (props: FieldProps) => {
   return (
     <div classList={rootClassList()} {...others}>
       <Show when={local.label}>
-        <Label
-          classList={labelClassList()}
-          required={local.required}
-          size={local.size}
+        <Show
+          when={typeof local.label === "string"}
+          fallback={
+            <Dynamic component={Label} {...(local.label as LabelProps)} />
+          }
         >
-          {local.label}
-        </Label>
+          <Label
+            classList={labelClassList()}
+            required={local.required}
+            size={local.size}
+          >
+            {local.label as string}
+          </Label>
+        </Show>
       </Show>
 
       {/* TODO: Size propagation to child elements not yet handled */}
