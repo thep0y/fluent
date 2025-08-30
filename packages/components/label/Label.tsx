@@ -15,8 +15,9 @@ const Label = (props: LabelProps) => {
   const classList = () => {
     const classes = {
       [label.base]: true,
-      [merged.class || ""]: !!merged.class,
       [label.disabled]: merged.disabled,
+      [merged.class || ""]: !!merged.class,
+      ...merged.classList,
     };
 
     // Add size style

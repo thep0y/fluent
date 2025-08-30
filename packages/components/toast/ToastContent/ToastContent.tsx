@@ -2,6 +2,7 @@ import {
   createEffect,
   createSignal,
   createUniqueId,
+  lazy,
   mergeProps,
   on,
   onCleanup,
@@ -12,8 +13,6 @@ import { VsClose } from "solid-icons/vs";
 
 import { usePausableTimeout } from "~/hooks";
 
-import { Button } from "~/components/button";
-
 import { ToastIcon } from "../ToastIcon";
 import type {
   ToastContentProps,
@@ -21,8 +20,11 @@ import type {
   ToastType,
 } from "./ToastContent.types";
 import { useToast } from "../ToastContext/ToastContext";
+
 import * as styles from "./ToastContent.css";
 import { toastMaxWidth } from "./ToastContent.css";
+
+const Button = lazy(() => import("~/components/button/Button"));
 
 /**
  * Toast content component - Renders toast content including icon, message and action buttons
