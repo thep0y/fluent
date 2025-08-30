@@ -19,6 +19,7 @@ export type {
 } from "~/components/card";
 export { Link, type LinkProps } from "~/components/link";
 export { Checkbox, type CheckboxProps } from "~/components/checkbox";
+export { Field, type FieldProps } from "~/components/field";
 
 export { ToastProvider, useToast } from "~/components/toast";
 
