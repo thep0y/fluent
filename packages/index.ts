@@ -10,6 +10,7 @@ export { Badge, type BadgeProps } from "~/components/badge";
 export { Tooltip, type TooltipProps } from "~/components/tooltip";
 export { Input, type InputProps } from "~/components/input";
 export { Slider, type SliderProps } from "~/components/slider";
+export { Textarea, type TextareaProps } from "~/components/textarea";
 export { Card, CardFooter, CardHeader, CardPreview } from "~/components/card";
 export type {
   CardProps,
