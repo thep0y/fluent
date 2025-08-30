@@ -1,5 +1,7 @@
-import { Text } from "../Text";
+import { lazy } from "solid-js";
 import type { TextPresetProps } from "../Text/Text.types";
+
+const Text = lazy(() => import("../Text/Text"));
 
 export const createPreset = (
   classList:
