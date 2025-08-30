@@ -1,5 +1,6 @@
 import type { JSX } from "solid-js";
 import type { HTMLElementProps } from "~/types";
+import type { LabelProps } from "../label";
 
 /**
  * The props added to the control inside the Field.
@@ -70,7 +71,7 @@ export interface FieldProps extends HTMLElementProps<"div"> {
   /**
    * The label associated with the field.
    */
-  label?: string;
+  label?: string | LabelProps;
 
   /**
    * A message about the validation state. By default, this is an error message, but it can be a success, warning,
