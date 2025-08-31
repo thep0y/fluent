@@ -224,15 +224,7 @@ const appearanceVariants = styleVariants({
   },
 });
 
-globalStyle(`${appearanceVariants.subtle}:hover ${iconStyle}`, {
-  color: themeContract.colorNeutralForeground2BrandHover,
-});
-
-globalStyle(`${appearanceVariants.subtle}:hover:active ${iconStyle}`, {
-  color: themeContract.colorNeutralForeground2BrandPressed,
-});
-
-// Button variants by size
+// Button variants by size:
 const sizeVariants = styleVariants({
   medium: {}, // Default size, defined in baseButton
   small: {
