@@ -14,9 +14,10 @@ const Button = (props: ButtonProps) => {
   const classList = () => {
     const classes = {
       [button.base]: true,
-      [merged.class || ""]: !!merged.class,
       [button.disabled]: disabled(),
       [button.iconOnly.base]: iconOnly(),
+      [merged.class || ""]: !!merged.class,
+      ...merged.classList,
     };
 
     // Add appearance style
