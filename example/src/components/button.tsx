@@ -156,6 +156,33 @@ const ButtonDemo = () => {
             Disabled focusable state
           </Button>
         </div>
+        <div class={field}>
+          <Button appearance="transparent">Enabled state</Button>
+          <Button appearance="transparent" disabled>
+            Disabled state
+          </Button>
+          <Button appearance="transparent" disabledFocusable>
+            Disabled focusable state
+          </Button>
+        </div>
+        <div class={field}>
+          <Button appearance="outline">Enabled state</Button>
+          <Button appearance="outline" disabled>
+            Disabled state
+          </Button>
+          <Button appearance="outline" disabledFocusable>
+            Disabled focusable state
+          </Button>
+        </div>
+        <div class={field}>
+          <Button appearance="subtle">Enabled state</Button>
+          <Button appearance="subtle" disabled>
+            Disabled state
+          </Button>
+          <Button appearance="subtle" disabledFocusable>
+            Disabled focusable state
+          </Button>
+        </div>
       </div>
 
       <LoadingButton />

@@ -78,8 +78,6 @@ const baseButton = style({
   verticalAlign: "middle",
   margin: "0px",
   overflow: "hidden",
-  backgroundColor: themeContract.colorNeutralBackground1,
-  color: themeContract.colorNeutralForeground1,
   border: `${vars.strokeWidthThin} solid ${themeContract.colorNeutralStroke1}`,
   fontFamily: vars.fontFamilyBase,
   outlineStyle: "none",
@@ -93,87 +91,79 @@ const baseButton = style({
   transitionTimingFunction: vars.curveEasyEase,
 
   selectors: {
+    "&:disabled": {
+      cursor: "not-allowed",
+    },
+
     [`&:not(${iconOnlyStyle})`]: {
       minWidth: "96px",
-    },
-    "&:hover": {
-      backgroundColor: themeContract.colorNeutralBackground1Hover,
-      borderColor: themeContract.colorNeutralStroke1Hover,
-      color: themeContract.colorNeutralForeground1Hover,
-      cursor: "pointer",
-    },
-    "&:hover:active": {
-      backgroundColor: themeContract.colorNeutralBackground1Pressed,
-      borderColor: themeContract.colorNeutralStroke1Pressed,
-      color: themeContract.colorNeutralForeground1Pressed,
-      outlineStyle: "none",
-    },
-  },
-});
-
-// Disabled state style
-const disabledStyle = style({
-  cursor: "not-allowed",
-  color: themeContract.colorNeutralForegroundDisabled,
-  borderColor: themeContract.colorNeutralStrokeDisabled,
-  backgroundColor: themeContract.colorNeutralBackgroundDisabled,
-
-  selectors: {
-    "&:hover": {
-      cursor: "not-allowed",
-      color: themeContract.colorNeutralForegroundDisabled,
-      borderColor: themeContract.colorNeutralStrokeDisabled,
-      backgroundColor: themeContract.colorNeutralBackgroundDisabled,
-    },
-    "&:hover:active": {
-      cursor: "not-allowed",
-      color: themeContract.colorNeutralForegroundDisabled,
-      borderColor: themeContract.colorNeutralStrokeDisabled,
-      backgroundColor: themeContract.colorNeutralBackgroundDisabled,
     },
   },
 });
 
 // Button variants by appearance
 const appearanceVariants = styleVariants({
-  secondary: {}, // Default style, defined in baseButton
-  primary: {
+  secondary: {
+    backgroundColor: themeContract.colorNeutralBackground1,
+    color: themeContract.colorNeutralForeground1,
+
     selectors: {
-      "&:not(:disabled)": {
-        color: themeContract.colorNeutralForegroundOnBrand,
-        backgroundColor: themeContract.colorBrandBackground,
-        borderColor: "transparent",
+      "&:disabled": {
+        color: themeContract.colorNeutralForegroundDisabled,
+        borderColor: themeContract.colorNeutralStrokeDisabled,
+        backgroundColor: themeContract.colorNeutralBackgroundDisabled,
       },
+
       "&:not(:disabled):hover": {
-        color: themeContract.colorNeutralForegroundOnBrand,
-        backgroundColor: themeContract.colorBrandBackgroundHover,
-        borderColor: "transparent",
+        backgroundColor: themeContract.colorNeutralBackground1Hover,
+        borderColor: themeContract.colorNeutralStroke1Hover,
+        color: themeContract.colorNeutralForeground1Hover,
+        cursor: "pointer",
       },
       "&:not(:disabled):hover:active": {
-        color: themeContract.colorNeutralForegroundOnBrand,
+        backgroundColor: themeContract.colorNeutralBackground1Pressed,
+        borderColor: themeContract.colorNeutralStroke1Pressed,
+        color: themeContract.colorNeutralForeground1Pressed,
+        outlineStyle: "none",
+      },
+    },
+  },
+  primary: {
+    borderColor: "transparent",
+    color: themeContract.colorNeutralForegroundOnBrand,
+
+    selectors: {
+      "&:disabled": {
+        color: themeContract.colorNeutralForegroundDisabled,
+        backgroundColor: themeContract.colorNeutralBackgroundDisabled,
+      },
+
+      "&:not(:disabled)": {
+        backgroundColor: themeContract.colorBrandBackground,
+      },
+      "&:not(:disabled):hover": {
+        backgroundColor: themeContract.colorBrandBackgroundHover,
+      },
+      "&:not(:disabled):hover:active": {
         backgroundColor: themeContract.colorBrandBackgroundPressed,
-        borderColor: "transparent",
-      },
-      [`&${disabledStyle}`]: {
-        borderColor: "transparent",
-      },
-      [`&${disabledStyle}:hover`]: {
-        borderColor: "transparent",
-      },
-      [`&${disabledStyle}:hover:active`]: {
-        borderColor: "transparent",
       },
     },
   },
   outline: {
     backgroundColor: themeContract.colorTransparentBackground,
+    borderColor: themeContract.colorNeutralStroke1,
 
     selectors: {
-      "&:hover": {
-        backgroundColor: themeContract.colorTransparentBackground,
+      "&:disabled": {
+        color: themeContract.colorNeutralForegroundDisabled,
+        borderColor: themeContract.colorNeutralStrokeDisabled,
       },
-      "&:hover:active": {
-        backgroundColor: themeContract.colorTransparentBackground,
+
+      "&:not(:disabled):hover": {
+        borderColor: themeContract.colorNeutralStroke1Hover,
+      },
+      "&:not(:disabled):hover:active": {
+        borderColor: themeContract.colorNeutralStroke1Pressed,
       },
     },
   },
@@ -183,23 +173,15 @@ const appearanceVariants = styleVariants({
     borderColor: "transparent",
 
     selectors: {
-      "&:hover": {
+      "&:disabled": {
+        color: themeContract.colorNeutralForegroundDisabled,
+      },
+      "&:not(:disabled):hover": {
         color: themeContract.colorNeutralForeground2Hover,
         backgroundColor: themeContract.colorSubtleBackgroundHover,
-        borderColor: "transparent",
       },
-      "&:hover:active": {
+      "&:not(:disabled):hover:active": {
         backgroundColor: themeContract.colorSubtleBackgroundPressed,
-        borderColor: "transparent",
-      },
-      "&:disabled": {
-        borderColor: "transparent",
-      },
-      "&:disabled:hover": {
-        borderColor: "transparent",
-      },
-      "&:disabled:hover:active": {
-        borderColor: "transparent",
       },
     },
   },
@@ -209,24 +191,16 @@ const appearanceVariants = styleVariants({
     borderColor: "transparent",
 
     selectors: {
-      "&:hover": {
+      "&:disabled": {
+        color: themeContract.colorNeutralForegroundDisabled,
+      },
+      "&:not(:disabled):hover": {
         color: themeContract.colorNeutralForeground2BrandHover,
         backgroundColor: themeContract.colorTransparentBackgroundHover,
-        borderColor: "transparent",
       },
-      "&:hover:active": {
+      "&:not(:disabled):hover:active": {
         color: themeContract.colorNeutralForeground2BrandPressed,
         backgroundColor: themeContract.colorTransparentBackgroundPressed,
-        borderColor: "transparent",
-      },
-      "&.fluent-button-disabled": {
-        borderColor: "transparent",
-      },
-      "&.fluent-button-disabled:hover": {
-        borderColor: "transparent",
-      },
-      "&.fluent-button-disabled:hover:active": {
-        borderColor: "transparent",
       },
     },
   },
@@ -318,7 +292,7 @@ export const button = {
   appearance: appearanceVariants,
   size: sizeVariants,
   shape: shapeVariants,
-  disabled: disabledStyle,
+  // disabled: disabledStyle,
   icon: {
     base: iconStyle,
     before: iconBeforeStyle,
