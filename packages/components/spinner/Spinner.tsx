@@ -2,9 +2,9 @@ import { children, lazy, mergeProps, Show } from "solid-js";
 import type { SpinnerProps } from "./Spinner.types";
 import { spinner } from "./Spinner.css";
 
-const LazyLabel = lazy(() => import("~/components/label/Label"));
+const LazyLabel = lazy(() => import("~/components/label"));
 
-const Spinner = (props: SpinnerProps) => {
+export const Spinner = (props: SpinnerProps) => {
   const merged = mergeProps(
     { size: "medium" as NonNullable<SpinnerProps["size"]> },
     props,
@@ -66,5 +66,3 @@ const Spinner = (props: SpinnerProps) => {
     </div>
   );
 };
-
-export default Spinner;

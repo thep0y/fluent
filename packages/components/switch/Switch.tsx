@@ -3,9 +3,9 @@ import { children, createSignal, lazy, mergeProps } from "solid-js";
 import type { SwitchProps } from "./Switch.types";
 import { switchStyles } from "./Switch.css";
 
-const LazyLabel = lazy(() => import("~/components/label/Label"));
+const LazyLabel = lazy(() => import("~/components/label"));
 
-const Switch = (props: SwitchProps) => {
+export const Switch = (props: SwitchProps) => {
   const merged = mergeProps(
     {
       indicator: <Indicator />,
@@ -97,5 +97,3 @@ const Switch = (props: SwitchProps) => {
 };
 
 const Indicator = () => <div class={switchStyles.defaultIndicator} />;
-
-export default Switch;

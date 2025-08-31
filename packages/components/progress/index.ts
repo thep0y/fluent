@@ -1,2 +1,2 @@
-export { default as ProgressBar } from "./Progress";
+export { ProgressBar as default } from "./Progress";
 export * from "./Progress.types";

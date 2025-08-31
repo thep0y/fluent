@@ -7,105 +7,12 @@ import {
 import { themeContract } from "~/themes/theme.css";
 import { vars } from "~/themes/var.css";
 
-// Create icon spacing variable
-export const iconSpacing = createVar();
-
-// Icon style
-const iconStyle = style({
-  vars: {
-    [iconSpacing]: vars.spacingHorizontalSNudge,
-  },
-  alignItems: "center",
-  display: "inline-flex",
-  justifyContent: "center",
-  fontSize: "20px",
-  height: "20px",
-  width: "20px",
-});
-
-const iconBeforeStyle = style({
-  marginRight: iconSpacing,
-});
-
-const iconAfterStyle = style({
-  marginLeft: iconSpacing,
-});
-
-// Icon-only button style
-const iconOnlyStyle = style({
-  minWidth: "32px",
-  maxWidth: "32px",
-  padding: "5px",
-});
-
-globalStyle(`${iconOnlyStyle} ${iconStyle}`, {
-  margin: 0,
-});
-
-// Small icon-only button
-const smallIconOnlyStyle = style({
-  minWidth: "24px",
-  maxWidth: "24px",
-});
-
-// Large icon-only button
-const largeIconOnlyStyle = style({
-  minWidth: "40px",
-  maxWidth: "40px",
-});
-
-// Small icon spacing
-const smallIconSpacingStyle = style({
-  vars: {
-    [iconSpacing]: vars.spacingHorizontalXS,
-  },
-});
-
-// Large icon spacing
-const largeIconSpacingStyle = style({
-  vars: {
-    [iconSpacing]: vars.spacingHorizontalSNudge,
-  },
-});
-
-// Base button style
-const baseButton = style({
-  alignItems: "center",
-  boxSizing: "border-box",
-  display: "inline-flex",
-  justifyContent: "center",
-  textDecorationLine: "none",
-  verticalAlign: "middle",
-  margin: "0px",
-  overflow: "hidden",
-  border: `${vars.strokeWidthThin} solid ${themeContract.colorNeutralStroke1}`,
-  fontFamily: vars.fontFamilyBase,
-  outlineStyle: "none",
-  padding: `5px ${vars.spacingHorizontalM}`,
-  borderRadius: vars.borderRadiusMedium,
-  fontSize: vars.fontSizeBase300,
-  fontWeight: vars.fontWeightSemibold,
-  lineHeight: vars.lineHeightBase300,
-  transitionDuration: vars.durationFaster,
-  transitionProperty: "background, border, color",
-  transitionTimingFunction: vars.curveEasyEase,
-
-  selectors: {
-    "&:disabled": {
-      cursor: "not-allowed",
-    },
-
-    [`&:not(${iconOnlyStyle})`]: {
-      minWidth: "96px",
-    },
-  },
-});
-
 // Button variants by appearance
 const appearanceVariants = styleVariants({
   secondary: {
     backgroundColor: themeContract.colorNeutralBackground1,
     color: themeContract.colorNeutralForeground1,
+    border: `${vars.strokeWidthThin} solid ${themeContract.colorNeutralStroke1}`,
 
     selectors: {
       "&:disabled": {
@@ -220,6 +127,115 @@ const appearanceVariants = styleVariants({
         color: themeContract.colorNeutralForegroundOnBrand,
         borderColor: themeContract.colorTransparentStroke,
       },
+    },
+  },
+});
+
+// Create icon spacing variable
+export const iconSpacing = createVar();
+
+// Icon style
+const iconStyle = style({
+  vars: {
+    [iconSpacing]: vars.spacingHorizontalSNudge,
+  },
+  alignItems: "center",
+  display: "inline-flex",
+  justifyContent: "center",
+  fontSize: "20px",
+  height: "20px",
+  width: "20px",
+
+  selectors: {
+    [`${appearanceVariants.subtle} &`]: {
+      color: themeContract.colorNeutralForeground2,
+    },
+
+    [`${appearanceVariants.subtle}:not(:disabled):hover &`]: {
+      color: themeContract.colorNeutralForeground2BrandHover,
+      backgroundColor: themeContract.colorSubtleBackgroundHover,
+    },
+
+    [`${appearanceVariants.subtle}:not(:disabled):hover:active &`]: {
+      color: themeContract.colorNeutralForeground2BrandPressed,
+      backgroundColor: themeContract.colorSubtleBackgroundPressed,
+    },
+  },
+});
+
+const iconBeforeStyle = style({
+  marginRight: iconSpacing,
+});
+
+const iconAfterStyle = style({
+  marginLeft: iconSpacing,
+});
+
+// Icon-only button style
+const iconOnlyStyle = style({
+  minWidth: "32px",
+  maxWidth: "32px",
+  padding: "5px",
+});
+
+globalStyle(`${iconOnlyStyle} ${iconStyle}`, {
+  margin: 0,
+});
+
+// Small icon-only button
+const smallIconOnlyStyle = style({
+  minWidth: "24px",
+  maxWidth: "24px",
+});
+
+// Large icon-only button
+const largeIconOnlyStyle = style({
+  minWidth: "40px",
+  maxWidth: "40px",
+});
+
+// Small icon spacing
+const smallIconSpacingStyle = style({
+  vars: {
+    [iconSpacing]: vars.spacingHorizontalXS,
+  },
+});
+
+// Large icon spacing
+const largeIconSpacingStyle = style({
+  vars: {
+    [iconSpacing]: vars.spacingHorizontalSNudge,
+  },
+});
+
+// Base button style
+const baseButton = style({
+  alignItems: "center",
+  boxSizing: "border-box",
+  display: "inline-flex",
+  justifyContent: "center",
+  textDecorationLine: "none",
+  verticalAlign: "middle",
+  margin: "0px",
+  overflow: "hidden",
+  fontFamily: vars.fontFamilyBase,
+  outlineStyle: "none",
+  padding: `5px ${vars.spacingHorizontalM}`,
+  borderRadius: vars.borderRadiusMedium,
+  fontSize: vars.fontSizeBase300,
+  fontWeight: vars.fontWeightSemibold,
+  lineHeight: vars.lineHeightBase300,
+  transitionDuration: vars.durationFaster,
+  transitionProperty: "background, border, color",
+  transitionTimingFunction: vars.curveEasyEase,
+
+  selectors: {
+    "&:disabled": {
+      cursor: "not-allowed",
+    },
+
+    [`&:not(${iconOnlyStyle})`]: {
+      minWidth: "96px",
     },
   },
 });

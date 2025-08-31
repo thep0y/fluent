@@ -11,7 +11,7 @@ import type { FieldProps } from "./Field.types";
 
 import * as styles from "./Field.css";
 
-const Label = lazy(() => import("../label/Label"));
+const Label = lazy(() => import("../label"));
 
 type RequiredProps<T extends keyof FieldProps> = NonNullable<FieldProps[T]>;
 

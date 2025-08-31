@@ -2,7 +2,7 @@ import { mergeProps, children, Show, splitProps } from "solid-js";
 import type { BadgeProps } from "./Badge.types";
 import { badge, size, appearance, shape, color, icon } from "./Badge.css";
 
-const Badge = (props: BadgeProps) => {
+export const Badge = (props: BadgeProps) => {
   const merged = mergeProps(
     {
       size: "medium" as NonNullable<BadgeProps["size"]>,
@@ -54,5 +54,3 @@ const Badge = (props: BadgeProps) => {
     </div>
   );
 };
-
-export default Badge;

@@ -2,7 +2,7 @@ import { mergeProps, createMemo, children } from "solid-js";
 import type { ButtonProps } from "./Button.types";
 import { button } from "./Button.css";
 
-const Button = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
   const merged = mergeProps(
     { type: "button", appearance: "secondary" as ButtonProps["appearance"] },
     props,
@@ -86,5 +86,3 @@ const Button = (props: ButtonProps) => {
     </button>
   );
 };
-
-export default Button;

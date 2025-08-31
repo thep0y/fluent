@@ -8,7 +8,7 @@ type RequiredProps<T extends keyof TextareaProps> = NonNullable<
   TextareaProps[T]
 >;
 
-const Textarea = (props: TextareaProps) => {
+export const Textarea = (props: TextareaProps) => {
   const [value, setValue] = createSignal(props.value ?? props.defaultValue);
 
   const merged = mergeProps(
@@ -69,5 +69,3 @@ const Textarea = (props: TextareaProps) => {
     </span>
   );
 };
-
-export default Textarea;

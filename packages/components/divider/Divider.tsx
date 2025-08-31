@@ -2,7 +2,7 @@ import { mergeProps, Show } from "solid-js";
 import type { DividerAlignment, DividerProps } from "./Divider.types";
 import { divider } from "./Divider.css";
 
-const Divider = (props: DividerProps) => {
+export const Divider = (props: DividerProps) => {
   const merged = mergeProps(
     { alignContent: "center" as DividerAlignment },
     props,
@@ -49,5 +49,3 @@ const Divider = (props: DividerProps) => {
     </div>
   );
 };
-
-export default Divider;

@@ -1,11 +1,11 @@
 import type { HTMLElementProps, RequiredPick } from "~/types";
-import type { Label } from "../label";
+import type { LabelProps } from "../label";
 
 export interface CheckboxSlots extends HTMLElementProps<"span"> {
   /**
    * The Checkbox's label.
    */
-  label?: typeof Label;
+  label?: string | LabelProps;
 
   /**
    * Hidden input that handles the checkbox's functionality.

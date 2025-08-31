@@ -5,7 +5,7 @@ import type { RequiredTextProps, TextProps } from "./Text.types";
 import * as styles from "./Text.css";
 import { Dynamic } from "solid-js/web";
 
-const Text = (props: TextProps) => {
+export const Text = (props: TextProps) => {
   const merged = mergeProps(
     {
       as: "span",
@@ -59,5 +59,3 @@ const Text = (props: TextProps) => {
 
   return <Dynamic component={local.as} {...others} classList={classList()} />;
 };
-
-export default Text;

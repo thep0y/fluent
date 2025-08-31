@@ -6,7 +6,7 @@ import { toastContainerStyle } from "./ToastContainer.css";
 /**
  * Toast container component - Manages toast position and animation effects
  */
-const ToastContainer: Component<ToastContainerProps> = (props) => {
+export const ToastContainer: Component<ToastContainerProps> = (props) => {
   return (
     <Portal
       ref={(el) => {
@@ -18,5 +18,3 @@ const ToastContainer: Component<ToastContainerProps> = (props) => {
     </Portal>
   );
 };
-
-export default ToastContainer;

@@ -9,7 +9,7 @@ import {
 import { clamp } from "~/utils/clamp";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
-const Slider = (props: SliderProps) => {
+export const Slider = (props: SliderProps) => {
   const merged = mergeProps(
     { min: 0, max: 100, size: "medium" as SliderSize },
     props,
@@ -80,5 +80,3 @@ const Slider = (props: SliderProps) => {
 const getPercent = (value: number, min: number, max: number) => {
   return max === min ? 0 : ((value - min) / (max - min)) * 100;
 };
-
-export default Slider;

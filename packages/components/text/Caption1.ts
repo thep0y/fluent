@@ -1,1 +1,1 @@
-export { Caption1 } from "./presets/Caption1/Caption1";
+export { Caption1 as default } from "./presets/Caption1/Caption1";

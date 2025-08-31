@@ -1,2 +1,2 @@
-export { default as ToastIcon } from "./ToastIcon";
+export { ToastIcon as default } from "./ToastIcon";
 export * from "./ToastIcon.types";

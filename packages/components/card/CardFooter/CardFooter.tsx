@@ -20,5 +20,3 @@ export const CardFooter = (
     </div>
   );
 };
-
-export default CardFooter;
