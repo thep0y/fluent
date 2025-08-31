@@ -1,1 +1,1 @@
-export { Subtitle1 } from "./presets/Subtitle1/Subtitle1";
+export { Subtitle1 as default } from "./presets/Subtitle1/Subtitle1";

@@ -1,2 +1,2 @@
-export { default as CardPreview } from "./CardPreview";
+export { CardPreview as default } from "./CardPreview";
 export type { CardPreviewProps } from "./CardPreview.types";

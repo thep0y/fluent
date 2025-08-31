@@ -5,10 +5,10 @@ export type {
   ToastType,
 } from "./ToastContent";
 
-export { ToastContainer } from "./ToastContainer";
+export { default as ToastContainer } from "./ToastContainer";
 export type { ToastContainerProps } from "./ToastContainer";
 
-export { ToastIcon } from "./ToastIcon";
+export { default as ToastIcon } from "./ToastIcon";
 export type { ToastIconProps } from "./ToastIcon";
 
 export { ToastProvider, useToast } from "./ToastContext/ToastContext";

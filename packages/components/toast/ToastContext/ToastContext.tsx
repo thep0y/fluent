@@ -11,11 +11,9 @@ import type {
   ToastContext as Context,
   ToastOptions,
 } from "./ToastContext.types";
-import ToastContent, {
-  type ToastContentProps,
-  type ToastPosition,
-} from "../ToastContent";
-import { ToastContainer } from "../ToastContainer";
+import type { ToastContentProps, ToastPosition } from "../ToastContent";
+import { ToastContent } from "../ToastContent/ToastContent";
+import { ToastContainer } from "../ToastContainer/ToastContainer";
 
 const ToastContext = createContext<Context>();
 

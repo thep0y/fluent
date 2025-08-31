@@ -3,7 +3,7 @@ import { splitProps, children } from "solid-js";
 import type { CardPreviewProps } from "./CardPreview.types";
 import { cardPreview, logo } from "./CardPreview.css";
 
-const CardPreview = (props: CardPreviewProps) => {
+export const CardPreview = (props: CardPreviewProps) => {
   const classList = () => ({
     [cardPreview]: true,
     [props.class || ""]: !!props.class,
@@ -22,5 +22,3 @@ const CardPreview = (props: CardPreviewProps) => {
     </div>
   );
 };
-
-export default CardPreview;

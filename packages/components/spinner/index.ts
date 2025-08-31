@@ -1,2 +1,2 @@
-export { default as Spinner } from "./Spinner";
+export { Spinner as default } from "./Spinner";
 export * from "./Spinner.types";

@@ -11,7 +11,7 @@ import { toastIconStyle } from "./ToastIcon.css";
 /**
  * Toast icon component - displays corresponding icon based on Toast type
  */
-const ToastIcon: Component<ToastIconProps> = (props) => {
+export const ToastIcon: Component<ToastIconProps> = (props) => {
   const iconMap = {
     info: <AiFillInfoCircle />,
     success: <AiFillCheckCircle />,
@@ -21,5 +21,3 @@ const ToastIcon: Component<ToastIconProps> = (props) => {
 
   return <span class={toastIconStyle[props.type]}>{iconMap[props.type]}</span>;
 };
-
-export default ToastIcon;

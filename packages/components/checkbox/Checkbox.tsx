@@ -1,11 +1,15 @@
-import { createSignal, mergeProps, Show } from "solid-js";
+import { createSignal, lazy, mergeProps, Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 import { FaSolidCheck } from "solid-icons/fa";
 
 import type { CheckboxProps, RequiredCheckboxProps } from "./Checkbox.types";
 
+import type { LabelProps } from "../label";
+
 import * as styles from "./Checkbox.css";
+
+const Label = lazy(() => import("../label"));
 
 export const Checkbox = (props: CheckboxProps) => {
   const merged = mergeProps(
@@ -67,7 +71,17 @@ export const Checkbox = (props: CheckboxProps) => {
       />
 
       <Show when={merged.labelPosition === "before" && merged.label}>
-        <Dynamic component={merged.label} classList={labelClassList()} />
+        <Show
+          when={typeof merged.label !== "string"}
+          fallback={
+            <Label classList={labelClassList()}>{merged.label as string}</Label>
+          }
+        >
+          <Label
+            classList={labelClassList()}
+            {...(merged.label as LabelProps)}
+          />
+        </Show>
       </Show>
 
       <Dynamic
@@ -82,7 +96,17 @@ export const Checkbox = (props: CheckboxProps) => {
       </Dynamic>
 
       <Show when={merged.labelPosition === "after" && merged.label}>
-        <Dynamic component={merged.label} classList={labelClassList()} />
+        <Show
+          when={typeof merged.label !== "string"}
+          fallback={
+            <Label classList={labelClassList()}>{merged.label as string}</Label>
+          }
+        >
+          <Label
+            classList={labelClassList()}
+            {...(merged.label as LabelProps)}
+          />
+        </Show>
       </Show>
     </span>
   );

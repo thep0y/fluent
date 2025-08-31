@@ -13,7 +13,7 @@ import { VsClose } from "solid-icons/vs";
 
 import { usePausableTimeout } from "~/hooks";
 
-import { ToastIcon } from "../ToastIcon";
+import ToastIcon from "../ToastIcon";
 import type {
   ToastContentProps,
   ToastPosition,
@@ -24,12 +24,12 @@ import { useToast } from "../ToastContext/ToastContext";
 import * as styles from "./ToastContent.css";
 import { toastMaxWidth } from "./ToastContent.css";
 
-const Button = lazy(() => import("~/components/button/Button"));
+const Button = lazy(() => import("~/components/button"));
 
 /**
  * Toast content component - Renders toast content including icon, message and action buttons
  */
-const ToastContent: Component<ToastContentProps> = (props) => {
+export const ToastContent: Component<ToastContentProps> = (props) => {
   const { removeToast } = useToast();
 
   const merged = mergeProps(
@@ -194,5 +194,3 @@ const getTypeClass = (type: ToastType) => {
       return styles.toastInfo;
   }
 };
-
-export default ToastContent;

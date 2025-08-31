@@ -8,7 +8,7 @@ import type {
 import { progress } from "./Progress.css";
 import { clampValue } from "~/utils/clampValue";
 
-const ProgressBar = (props: ProgressBarProps) => {
+export const ProgressBar = (props: ProgressBarProps) => {
   const merged = mergeProps(
     {
       max: 100,
@@ -63,5 +63,3 @@ const ProgressBar = (props: ProgressBarProps) => {
     </div>
   );
 };
-
-export default ProgressBar;

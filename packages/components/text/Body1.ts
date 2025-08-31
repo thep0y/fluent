@@ -1,1 +1,1 @@
-export { Body1 } from "./presets/Body1/Body1";
+export { Body1 as default } from "./presets/Body1/Body1";

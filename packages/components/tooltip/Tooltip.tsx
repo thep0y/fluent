@@ -13,7 +13,7 @@ import { useTimeout } from "~/hooks/useTimeout";
 import { calculateOffsets, type OffsetNullable } from "./position";
 import { createSignal } from "solid-js";
 
-const Tooltip = (props: TooltipProps) => {
+export const Tooltip = (props: TooltipProps) => {
   let tooltipRef: HTMLDivElement | undefined;
   let triggerRef: HTMLElement | undefined;
 
@@ -212,5 +212,3 @@ const Tooltip = (props: TooltipProps) => {
     </>
   );
 };
-
-export default Tooltip;

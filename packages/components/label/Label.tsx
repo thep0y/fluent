@@ -2,7 +2,7 @@ import { mergeProps, children } from "solid-js";
 import type { LabelProps } from "./Label.types";
 import { label } from "./Label.css";
 
-const Label = (props: LabelProps) => {
+export const Label = (props: LabelProps) => {
   const merged = mergeProps(
     {
       size: "medium" as NonNullable<LabelProps["size"]>,
@@ -44,12 +44,10 @@ const Label = (props: LabelProps) => {
   );
 
   return (
-    // biome-ignore lint/a11y/noLabelWithoutControl:
+    // biome-ignore lint/a11y/noLabelWithoutControl: We know this is a label, not a control
     <label classList={classList()} style={merged.style}>
       {merged.children}
       {required()}
     </label>
   );
 };
-
-export default Label;

@@ -2,7 +2,7 @@ import { children, createSignal, mergeProps, splitProps } from "solid-js";
 import type { InputProps } from "./Input.types";
 import { input } from "./Input.css";
 
-const Input = (props: InputProps) => {
+export const Input = (props: InputProps) => {
   const merged = mergeProps({ type: "text" as InputProps["type"] }, props);
 
   const [local, others] = splitProps(merged, [
@@ -105,5 +105,3 @@ const Input = (props: InputProps) => {
     </span>
   );
 };
-
-export default Input;

@@ -1,4 +1,2 @@
-import ToastContent from "./ToastContent";
-
-export default ToastContent;
+export { ToastContent as default } from "./ToastContent";
 export * from "./ToastContent.types";
