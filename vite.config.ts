@@ -3,10 +3,51 @@ import solid from "vite-plugin-solid";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import dts from "vite-plugin-dts";
 import path from "node:path";
-import { existsSync, writeFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
 
 function resolve(str: string) {
   return path.resolve(__dirname, str);
+}
+
+function getEntries() {
+  const dirs = [
+    path.resolve(__dirname, "packages/components"),
+    path.resolve(__dirname, "packages/themes"),
+  ];
+  const entries: Record<string, string> = {
+    index: path.resolve(__dirname, "packages/index.ts"),
+  };
+
+  function walk(dir: string, parent: string, prefix = "") {
+    const items = readdirSync(dir, { withFileTypes: true });
+    items.forEach((item) => {
+      const fullPath = path.resolve(dir, item.name);
+      const relativePath = prefix ? `${prefix}/${item.name}` : item.name;
+
+      if (item.isDirectory()) {
+        walk(fullPath, parent, relativePath);
+      } else if (
+        item.isFile() &&
+        item.name.endsWith(".ts") &&
+        !item.name.endsWith(".d.ts") &&
+        !item.name.endsWith(".types.ts")
+      ) {
+        const name = relativePath.replace(/\.ts$/, "");
+        entries[`${parent}/${name}`] = fullPath;
+      }
+    });
+  }
+
+  try {
+    dirs.forEach((dir) => {
+      const parent = path.basename(dir);
+      walk(dir, parent);
+    });
+  } catch (error) {
+    console.warn("Components directory not found", error);
+  }
+
+  return entries;
 }
 
 export default defineConfig(({ mode }) => ({
@@ -23,30 +64,8 @@ export default defineConfig(({ mode }) => ({
     }),
     dts({
       tsconfigPath: "./tsconfig.app.json",
-      beforeWriteFile(filePath, content) {
-        const filename = path.basename(filePath);
-        const dir = path.dirname(filePath);
-        const indexFilePath = path.join(dir, "index.js");
-        if (
-          existsSync(indexFilePath) ||
-          !existsSync(dir) ||
-          (filePath.indexOf("/components/") === -1 &&
-            filePath.indexOf("/themes/") === -1 &&
-            filePath.indexOf("/hooks/") === -1) ||
-          filename !== "index.d.ts"
-        ) {
-          return { filePath, content };
-        }
-        const lines = content
-          .split("\n")
-          .filter(
-            (line) =>
-              !line.startsWith("export type") && !line.endsWith(".types';"),
-          );
-
-        writeFileSync(indexFilePath, lines.join("\n"));
-        return { filePath, content };
-      },
+      insertTypesEntry: true,
+      rollupTypes: false,
     }),
 
     {
@@ -87,39 +106,31 @@ export default defineConfig(({ mode }) => ({
     cssMinify: true,
     outDir: "lib",
     lib: {
-      entry: resolve("packages/index.ts"),
+      entry: getEntries(),
+      formats: ["es"],
       name: "fluent-solid",
     },
 
     rollupOptions: {
       external: [
         "tabster",
-        "solid-js",
-        "solid-js/web",
-        "solid-js/store",
-        "solid-icons/ai",
-        "solid-icons/vs",
-        "solid-icons/tb",
         /^@vanilla-extract\/.*$/,
+        /^solid-js(\/.*)?$/,
+        /^solid-icons\/.*$/,
       ],
-      preserveEntrySignatures: "strict",
-      input: ["packages/index.ts"],
-      output: [
-        {
-          preserveModules: true,
-          format: "es",
-          entryFileNames: "[name].js",
-          dir: "lib",
-          preserveModulesRoot: "packages",
-          assetFileNames: ({ names }) => {
-            const filename = path
-              .basename(names[0])
-              .replace(".ts.vanilla.css", "");
-            const dir = path.parse(names[0]).dir;
-            return `${dir}/styles/${filename}`;
-          },
+      output: {
+        entryFileNames: "[name].js",
+        dir: "lib",
+        preserveModules: true,
+        preserveModulesRoot: "packages",
+        assetFileNames: ({ names }) => {
+          const filename = path
+            .basename(names[0])
+            .replace(".ts.vanilla.css", "");
+          const dir = path.parse(names[0]).dir;
+          return `${dir}/styles/${filename}`;
         },
-      ],
+      },
     },
   },
 }));
