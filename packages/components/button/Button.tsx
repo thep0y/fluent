@@ -3,7 +3,10 @@ import type { ButtonProps } from "./Button.types";
 import { button } from "./Button.css";
 
 const Button = (props: ButtonProps) => {
-  const merged = mergeProps({ type: "button" }, props);
+  const merged = mergeProps(
+    { type: "button", appearance: "secondary" as ButtonProps["appearance"] },
+    props,
+  );
 
   const disabled = createMemo(
     () => merged.isLoading || merged.disabled || merged.disabledFocusable,
@@ -14,7 +17,7 @@ const Button = (props: ButtonProps) => {
   const classList = () => {
     const classes = {
       [button.base]: true,
-      [button.disabled]: disabled(),
+      // [button.disabled]: disabled(),
       [button.iconOnly.base]: iconOnly(),
       [merged.class || ""]: !!merged.class,
       ...merged.classList,
