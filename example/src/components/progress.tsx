@@ -1,5 +1,5 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
-import ProgressBar from "@/components/progress/Progress";
+import ProgressBar from "@/components/progress";
 import { Divider, useInterval, useTimeout } from "@/index";
 import { box, fieldColumn } from "../themes/global.css";
 

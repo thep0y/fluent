@@ -1,4 +1,4 @@
-import Spinner from "@/components/spinner/Spinner";
+import Spinner from "@/components/spinner";
 import { Divider, themeContract } from "@/index";
 import { box, field, fieldColumn } from "../themes/global.css";
 

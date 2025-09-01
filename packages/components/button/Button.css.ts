@@ -57,8 +57,8 @@ const appearanceVariants = styleVariants({
     },
   },
   outline: {
+    border: `${vars.strokeWidthThin} solid ${themeContract.colorNeutralStroke1}`,
     backgroundColor: themeContract.colorTransparentBackground,
-    borderColor: themeContract.colorNeutralStroke1,
 
     selectors: {
       "&:disabled": {

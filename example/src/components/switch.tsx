@@ -1,4 +1,4 @@
-import Switch from "@/components/switch/Switch";
+import Switch from "@/components/switch";
 import { Divider } from "@/index";
 import { createSignal } from "solid-js";
 import { box, field } from "../themes/global.css";
