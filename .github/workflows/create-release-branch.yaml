@@ -42,7 +42,7 @@ jobs:
       - name: Create and push release branch
         run: |
           git checkout -b release
-          git add package.json package-lock.json
+          git add package.json
           git commit -m "Bump version to ${{ env.VERSION }}"
           git push origin release --force
 
