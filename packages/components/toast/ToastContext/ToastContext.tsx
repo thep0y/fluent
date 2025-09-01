@@ -117,19 +117,6 @@ export const ToastProvider = (props: {
     } as ToastContentProps);
   };
 
-  // Render toast container for specified position
-  const renderToastContainer = (position: ToastPosition) => {
-    return (
-      <Show when={toasts[position].length > 0}>
-        <ToastContainer position={position}>
-          <For each={toasts[position]}>
-            {(toast) => <ToastContent {...toast} />}
-          </For>
-        </ToastContainer>
-      </Show>
-    );
-  };
-
   // All possible positions
   const positions: ToastPosition[] = [
     "top",
@@ -154,7 +141,17 @@ export const ToastProvider = (props: {
     >
       {props.children}
 
-      {positions.map((position) => renderToastContainer(position))}
+      <For each={positions}>
+        {(position) => (
+          <Show when={toasts[position].length > 0}>
+            <ToastContainer position={position}>
+              <For each={toasts[position]}>
+                {(toast) => <ToastContent {...toast} />}
+              </For>
+            </ToastContainer>
+          </Show>
+        )}
+      </For>
     </ToastContext.Provider>
   );
 };
