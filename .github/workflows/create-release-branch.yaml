@@ -45,6 +45,8 @@ jobs:
           git add package.json
           git commit -m "Bump version to ${{ env.VERSION }}"
           git push origin release --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Push version update to main
         run: |
