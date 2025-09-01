@@ -1,8 +1,4 @@
-import {
-  globalStyle,
-  createThemeContract,
-  assignVars,
-} from "@vanilla-extract/css";
+import { createThemeContract, assignVars } from "@vanilla-extract/css";
 
 export const themeContract = createThemeContract({
   colorNeutralForeground1: null,
@@ -367,7 +363,6 @@ export const themeContract = createThemeContract({
   shadow64Brand: null,
 });
 
-// export const lightTheme = createTheme(themeContract, {
 export const lightThemeVars = {
   colorNeutralForeground1: "#242424",
   colorNeutralForeground1Hover: "#242424",
@@ -731,7 +726,6 @@ export const lightThemeVars = {
   shadow64Brand: "0 0 8px rgba(0, 0, 0, 0.3), 0 32px 64px rgba(0, 0, 0, 0.25)",
 };
 
-// export const darkTheme = createTheme(themeContract, {
 export const darkThemeVars = {
   colorNeutralForeground1: "#ffffff",
   colorNeutralForeground1Hover: "#ffffff",
@@ -1095,17 +1089,5 @@ export const darkThemeVars = {
   shadow64Brand: "0 0 8px rgba(0, 0, 0, 0.3), 0 32px 64px rgba(0, 0, 0, 0.25)",
 };
 
-const lightTheme = assignVars(themeContract, lightThemeVars);
-const darkTheme = assignVars(themeContract, darkThemeVars);
-
-globalStyle(":root", {
-  backgroundColor: themeContract.colorNeutralBackground2,
-  "@media": {
-    "(prefers-color-scheme: light)": {
-      vars: lightTheme,
-    },
-    "(prefers-color-scheme: dark)": {
-      vars: darkTheme,
-    },
-  },
-});
+export const lightTheme = assignVars(themeContract, lightThemeVars);
+export const darkTheme = assignVars(themeContract, darkThemeVars);
