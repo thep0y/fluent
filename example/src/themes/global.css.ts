@@ -21,7 +21,7 @@ export const field = style({
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: themeContract.colorNeutralBackground3,
+  backgroundColor: "rgb(250, 250, 250)",
   boxSizing: "border-box",
   gap: vars.spacingHorizontalS,
 });
@@ -34,7 +34,7 @@ export const fieldColumn = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: themeContract.colorNeutralBackground3,
+  backgroundColor: "rgb(250, 250, 250)",
   boxSizing: "border-box",
   gap: vars.spacingVerticalS,
 

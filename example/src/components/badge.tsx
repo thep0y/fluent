@@ -6,7 +6,7 @@ const BadgeDemo = () => {
   return (
     <div class={box}>
       <Divider appearance="strong">
-        <h2>Button</h2>
+        <h2>Badge</h2>
       </Divider>
 
       <div class={field}>
@@ -59,6 +59,11 @@ const BadgeDemo = () => {
       </div>
       <div class={field}>
         <Badge size="medium" icon={<BiSolidPaste />} />
+      </div>
+      <div class={field}>
+        <Badge size="medium" icon={<BiSolidPaste />}>
+          Paste
+        </Badge>
       </div>
     </div>
   );
