@@ -120,3 +120,20 @@ jobs:
               release_id: process.env.release_id,
               draft: false,
             })
+
+  cleanup-release-branch:
+    needs: [publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: success()
+    steps:
+      - name: Delete release branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.git.deleteRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'heads/release'
+            })
