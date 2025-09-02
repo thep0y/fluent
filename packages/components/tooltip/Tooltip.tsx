@@ -117,6 +117,9 @@ export const Tooltip = (props: TooltipProps) => {
       return;
     }
 
+    // Cancel any pending hide timeout
+    clearDelayTimeout();
+
     setDelayTimeout(() => {
       setVisible(true);
       merged.onVisibleChange?.({ visible: true });
@@ -137,11 +140,17 @@ export const Tooltip = (props: TooltipProps) => {
       ignoreNextFocusEvent = document.activeElement === event.target;
     }
 
-    setDelayTimeout(() => {
-      setVisible(false);
-      setTooltipOffset({ left: 0, top: 0 });
-      merged.onVisibleChange?.({ visible: false });
-    }, delay);
+    // Cancel any pending show timeout
+    clearDelayTimeout();
+
+    // Only set hide timeout if tooltip is currently visible
+    if (visible()) {
+      setDelayTimeout(() => {
+        setVisible(false);
+        setTooltipOffset({ left: 0, top: 0 });
+        merged.onVisibleChange?.({ visible: false });
+      }, delay);
+    }
   };
 
   const resolved = children(() => merged.children);
