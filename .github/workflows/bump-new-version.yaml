@@ -126,7 +126,7 @@ jobs:
         id: publish-release
         uses: actions/github-script@v7
         env:
-          release_id: ${{ needs.create-release-branch.outputs.release_id }}
+          release_id: ${{ needs.create-release.outputs.release_id }}
         with:
           script: |
             github.rest.repos.updateRelease({
