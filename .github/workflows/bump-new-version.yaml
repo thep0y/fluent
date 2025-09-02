@@ -13,7 +13,7 @@ on:
           - major
 
 jobs:
-  create-release-branch:
+  create-release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -24,11 +24,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: lts/*
 
       - name: Setup Git
         run: |
@@ -48,8 +49,6 @@ jobs:
           git add package.json
           git commit -m "Bump version to ${{ env.VERSION }}"
           git push origin release --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Build changelog
         id: github_release_changelog
@@ -67,6 +66,8 @@ jobs:
         env:
           changelog: ${{ steps.github_release_changelog.outputs.changelog }}
         with:
+          retries: 3
+          retry-exempt-status-codes: 400,401,403,404,422
           script: |
             const { data } = await github.rest.repos.createRelease({
               owner: context.repo.owner,
@@ -83,26 +84,38 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    needs: [create-release-branch]
+    needs: create-release
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: release
 
-      - name: Set node version to 20
+      - name: Set node version to lts
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
+          node-version: lts/*
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Cache frontend dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun
+            node_modules/
+          key: ${{ runner.os }}-frontend-${{ hashFiles('**/bun.lockb', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-frontend-
 
       - name: Install deps
-        run: npm install
-
-      - name: Install tsc-alias
-        run: npm i -g tsc-alias
+        run: bun install
 
       - name: Build
-        run: npm run build
+        run: bun run build
 
       - run: npm ci
       - run: npm publish
@@ -127,20 +140,28 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    needs: [publish]
+    needs: publish
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Push version update to main
         run: |
+          git fetch origin release:release
           git checkout main
-          git merge release --ff-only  # 或者使用 cherry-pick 获取版本更新的 commit
+          git merge release --ff-only
           git push origin main
 
   cleanup-release-branch:
-    needs: [publish]
+    needs: update-main-branch-version
     runs-on: ubuntu-latest
     permissions:
       contents: write
