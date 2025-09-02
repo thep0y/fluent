@@ -1,5 +1,16 @@
-import { style } from "@vanilla-extract/css";
-import { themeContract } from "@/themes/theme.css";
+import { globalStyle, style } from "@vanilla-extract/css";
+import { themeContract, lightTheme, darkTheme } from "@/themes/theme.css";
+
+globalStyle(":root", {
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      vars: darkTheme,
+    },
+    "(prefers-color-scheme: light)": {
+      vars: lightTheme,
+    },
+  },
+});
 
 export const h1 = style({
   fontSize: "2rem",
