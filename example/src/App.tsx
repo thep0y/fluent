@@ -1,6 +1,6 @@
 import { For, lazy } from "solid-js";
 import { h1 } from "./App.css";
-import { ToastProvider } from "@/index";
+import { ToastProvider, TooltipProvider } from "@/index";
 
 const examples = [
   lazy(() => import("./components/button")),
@@ -21,9 +21,11 @@ const examples = [
 const App = () => {
   return (
     <ToastProvider>
-      <h1 class={h1}>Fluent Solid</h1>
+      <TooltipProvider>
+        <h1 class={h1}>Fluent Solid</h1>
 
-      <For each={examples}>{(item) => item()}</For>
+        <For each={examples}>{(item) => item()}</For>
+      </TooltipProvider>
     </ToastProvider>
   );
 };
