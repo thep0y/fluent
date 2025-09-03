@@ -11,6 +11,7 @@ export {
 } from "~/components/progress";
 export { default as Badge, type BadgeProps } from "~/components/badge";
 export { default as Tooltip, type TooltipProps } from "~/components/tooltip";
+export { TooltipProvider } from "~/components/tooltip";
 export { default as Input, type InputProps } from "~/components/input";
 export { default as Slider, type SliderProps } from "~/components/slider";
 export { default as Textarea, type TextareaProps } from "~/components/textarea";

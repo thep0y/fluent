@@ -5,17 +5,27 @@ import {
   children,
   onCleanup,
   Show,
+  createUniqueId,
+  createSignal,
 } from "solid-js";
 import { Portal } from "solid-js/web";
+
 import type { TooltipProps } from "./Tooltip.types";
-import { tooltip } from "./Tooltip.css";
-import { useTimeout } from "~/hooks/useTimeout";
+
 import { calculateOffsets, type OffsetNullable } from "./position";
-import { createSignal } from "solid-js";
+import { useTooltipContext } from "./TooltipContext";
+
+import { tooltip } from "./Tooltip.css";
 
 export const Tooltip = (props: TooltipProps) => {
   let tooltipRef: HTMLDivElement | undefined;
   let triggerRef: HTMLElement | undefined;
+
+  // Create unique ID
+  const tooltipId = createUniqueId();
+
+  // Get global tooltip context
+  const tooltipContext = useTooltipContext();
 
   // Used to skip showing the tooltip in certain situations when the trigger is focused.
   let ignoreNextFocusEvent = false;
@@ -36,7 +46,21 @@ export const Tooltip = (props: TooltipProps) => {
   const [arrowOffset, setArrowOffset] = createSignal<OffsetNullable>({});
   const [visible, setVisible] = createSignal(merged.visible);
 
-  const [setDelayTimeout, clearDelayTimeout] = useTimeout();
+  // 监听全局tooltip状态变化
+  createEffect(() => {
+    const currentId = tooltipContext.currentTooltipId();
+    const shouldBeVisible = currentId === tooltipId;
+
+    if (visible() !== shouldBeVisible) {
+      setVisible(shouldBeVisible);
+      if (shouldBeVisible) {
+        merged.onVisibleChange?.({ visible: true });
+      } else {
+        setTooltipOffset({ left: 0, top: 0 });
+        merged.onVisibleChange?.({ visible: false });
+      }
+    }
+  });
 
   const arrowStyle = createMemo(() => {
     const { left, right, top } = arrowOffset();
@@ -82,7 +106,10 @@ export const Tooltip = (props: TooltipProps) => {
   });
 
   onCleanup(() => {
-    clearDelayTimeout();
+    // 清理时隐藏当前tooltip
+    if (tooltipContext.currentTooltipId() === tooltipId) {
+      tooltipContext.hideAllTooltips();
+    }
   });
 
   // Build class list
@@ -117,13 +144,8 @@ export const Tooltip = (props: TooltipProps) => {
       return;
     }
 
-    // Cancel any pending hide timeout
-    clearDelayTimeout();
-
-    setDelayTimeout(() => {
-      setVisible(true);
-      merged.onVisibleChange?.({ visible: true });
-    }, merged.showDelay);
+    // 使用全局tooltip管理器
+    tooltipContext.showTooltip(tooltipId, merged.showDelay);
   };
 
   // Listener for onPointerLeave and onBlur on the trigger element
@@ -140,17 +162,8 @@ export const Tooltip = (props: TooltipProps) => {
       ignoreNextFocusEvent = document.activeElement === event.target;
     }
 
-    // Cancel any pending show timeout
-    clearDelayTimeout();
-
-    // Only set hide timeout if tooltip is currently visible
-    if (visible()) {
-      setDelayTimeout(() => {
-        setVisible(false);
-        setTooltipOffset({ left: 0, top: 0 });
-        merged.onVisibleChange?.({ visible: false });
-      }, delay);
-    }
+    // 使用全局tooltip管理器
+    tooltipContext.hideTooltip(tooltipId, delay);
   };
 
   const resolved = children(() => merged.children);
