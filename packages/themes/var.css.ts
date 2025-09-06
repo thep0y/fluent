@@ -33,7 +33,7 @@ export const vars = createGlobalTheme(":root", {
 
   fontFamilyBase:
     '"Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
-  fontFamilyMonospace: '"Consolas, "Courier New", Courier, monospace"',
+  fontFamilyMonospace: 'Consolas, "Courier New", Courier, monospace',
   fontFamilyNumeric:
     'Bahnschrift, "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
 
