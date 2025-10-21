@@ -28,6 +28,7 @@ const ToastDemo = () => {
   const showToast = (position: ToastPosition, type: ToastType) => {
     toast.addToast({
       position,
+      duration: Math.random() * 5000,
       message: `This is a ${type} message`,
       type,
     });
