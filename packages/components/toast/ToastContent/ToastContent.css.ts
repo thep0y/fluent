@@ -108,7 +108,9 @@ export const toast = style({
   pointerEvents: "auto",
   animationDuration: vars.durationSlow,
   animationFillMode: "both",
-  transition: `opacity ${vars.durationSlow}, transform ${vars.durationSlow}`,
+  transition:
+    `opacity ${vars.durationSlow} cubic-bezier(0.33, 0, 0.67, 1), transform ${vars.durationSlow} cubic-bezier(0.33, 0, 0.67, 1)` +
+    `, margin ${vars.durationSlow} cubic-bezier(0.33, 0, 0.67, 1)`,
   fontFamily: vars.fontFamilyBase,
 });
 
@@ -165,6 +167,28 @@ export const toastBottomLeftExiting = style({
 
 export const toastBottomRightExiting = style({
   animationName: toastSlideRightExit,
+});
+
+export const toastCollapsing = style({
+  animationName: keyframes({
+    from: {
+      maxHeight: "100px",
+      transform: "scaleY(1)",
+    },
+    to: {
+      maxHeight: 0,
+      transform: "scaleY(0)",
+      margin: 0,
+      padding: 0,
+      borderWidth: 0,
+    },
+  }),
+  animationDuration: vars.durationUltraFast,
+  // animationTimingFunction: "cubic-bezier(0.33, 0, 0.67, 1)",
+  animationFillMode: "both",
+  overflow: "hidden",
+  transformOrigin: "top center",
+  opacity: 0,
 });
 
 // Toast content style

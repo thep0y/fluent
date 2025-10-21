@@ -46,18 +46,27 @@ export const ToastContent: Component<ToastContentProps> = (props) => {
 
   const [visible, setVisible] = createSignal(true);
   const [exiting, setExiting] = createSignal(false);
+  const [collapsing, setCollapsing] = createSignal(false);
 
   // Close Toast with animation
   const close = () => {
     setExiting(true);
-    // Wait for animation to complete before removing
-    const id = setTimeout(() => {
-      setVisible(false);
-      merged.onClose?.();
-      clearTimer();
-      removeToast(merged.position, merged.id);
-      clearTimeout(id);
-    }, 300); // Matches CSS animation duration
+    // Wait for exit animation to complete before starting collapse
+    const exitingId = setTimeout(() => {
+      setCollapsing(true);
+
+      // Wait for collapse animation to complete before removing from DOM
+      const collapsingId = setTimeout(() => {
+        setVisible(false);
+        merged.onClose?.();
+        clearTimer();
+
+        removeToast(merged.position, merged.id);
+
+        clearTimeout(collapsingId);
+        clearTimeout(exitingId);
+      }, 50); // Matches `toastCollapsing` CSS animation duration
+    }, 300); // Matches `toastExiting` CSS animation duration
   };
 
   const {
@@ -98,6 +107,7 @@ export const ToastContent: Component<ToastContentProps> = (props) => {
     [styles.toast]: true,
     [getPositionClass(merged.position)]: true,
     [getExitingClass(merged.position)]: exiting(),
+    [styles.toastCollapsing]: collapsing(),
   });
 
   return (
