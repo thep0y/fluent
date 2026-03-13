@@ -1,8 +1,8 @@
 import { CgInfo } from "solid-icons/cg";
 import {
-  TbArrowCurveLeft,
-  TbArrowCurveRight,
-  TbArrowNarrowUp,
+  TbOutlineArrowCurveLeft,
+  TbOutlineArrowCurveRight,
+  TbOutlineArrowNarrowUp,
 } from "solid-icons/tb";
 import { For } from "solid-js";
 import { Button, Divider, themeContract, Tooltip } from "@/index";
@@ -10,21 +10,21 @@ import { box, field } from "../themes/global.css";
 
 const positions = () =>
   [
-    ["above-start", <TbArrowCurveLeft />],
-    ["above", <TbArrowNarrowUp />],
-    ["above-end", <TbArrowCurveRight />],
+    ["above-start", <TbOutlineArrowCurveLeft />],
+    ["above", <TbOutlineArrowNarrowUp />],
+    ["above-end", <TbOutlineArrowCurveRight />],
 
-    ["before-top", <TbArrowCurveRight style={{ rotate: "-90deg" }} />],
-    ["before", <TbArrowNarrowUp style={{ rotate: "-90deg" }} />],
-    ["before-bottom", <TbArrowCurveLeft style={{ rotate: "-90deg" }} />],
+    ["before-top", <TbOutlineArrowCurveRight style={{ rotate: "-90deg" }} />],
+    ["before", <TbOutlineArrowNarrowUp style={{ rotate: "-90deg" }} />],
+    ["before-bottom", <TbOutlineArrowCurveLeft style={{ rotate: "-90deg" }} />],
 
-    ["after-top", <TbArrowCurveLeft style={{ rotate: "90deg" }} />],
-    ["after", <TbArrowNarrowUp style={{ rotate: "90deg" }} />],
-    ["after-bottom", <TbArrowCurveRight style={{ rotate: "90deg" }} />],
+    ["after-top", <TbOutlineArrowCurveLeft style={{ rotate: "90deg" }} />],
+    ["after", <TbOutlineArrowNarrowUp style={{ rotate: "90deg" }} />],
+    ["after-bottom", <TbOutlineArrowCurveRight style={{ rotate: "90deg" }} />],
 
-    ["below-start", <TbArrowCurveRight style={{ rotate: "180deg" }} />],
-    ["below", <TbArrowNarrowUp style={{ rotate: "180deg" }} />],
-    ["below-end", <TbArrowCurveLeft style={{ rotate: "180deg" }} />],
+    ["below-start", <TbOutlineArrowCurveRight style={{ rotate: "180deg" }} />],
+    ["below", <TbOutlineArrowNarrowUp style={{ rotate: "180deg" }} />],
+    ["below-end", <TbOutlineArrowCurveLeft style={{ rotate: "180deg" }} />],
   ] as const;
 
 const TooltipGrid = (props: { withArrow?: boolean }) => {

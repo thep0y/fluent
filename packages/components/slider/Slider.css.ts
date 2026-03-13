@@ -6,20 +6,20 @@ import { vars } from "~/themes/var.css";
  * CSS Variable Definitions
  */
 // Progress-related variables
-export const progressDirection = createVar("--fui-Slider--direction");
-export const progressPercent = createVar("--fui-Slider--progress");
-export const stepsPercent = createVar("--fui-Slider--steps-percent");
+export const progressDirection = createVar();
+export const progressPercent = createVar();
+export const stepsPercent = createVar();
 
 // Color-related variables
-export const thumbColor = createVar("--fui-Slider--thumb-color");
-export const progressColor = createVar("--fui-Slider--progress-color");
-export const railColor = createVar("--fui-Slider--rail-color");
+export const thumbColor = createVar();
+export const progressColor = createVar();
+export const railColor = createVar();
 
 // Size-related variables
-const railSize = createVar("--fui-Slider--rail-size");
-const innerThumbRadius = createVar("--fui-Slider--inner-thumb-radius");
-const thumbSize = createVar("--fui-Slider--thumb-size");
-const thumbPosition = createVar("--fui-Slider--thumb-position");
+const railSize = createVar();
+const innerThumbRadius = createVar();
+const thumbSize = createVar();
+const thumbPosition = createVar();
 
 /**
  * Base Style Definitions

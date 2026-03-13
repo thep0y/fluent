@@ -1,22 +1,22 @@
 import type { ToastPosition, ToastType } from "@/components/toast";
 import { Button, Divider, useToast } from "@/index";
 import {
-  TbArrowCurveLeft,
-  TbArrowCurveRight,
-  TbArrowNarrowUp,
+  TbOutlineArrowCurveLeft,
+  TbOutlineArrowCurveRight,
+  TbOutlineArrowNarrowUp,
 } from "solid-icons/tb";
 import { For, type JSX } from "solid-js";
 import { box, field } from "../themes/global.css";
 
 const positions = (): [ToastPosition, JSX.Element][] =>
   [
-    ["top-left", <TbArrowCurveLeft />],
-    ["top", <TbArrowNarrowUp />],
-    ["top-right", <TbArrowCurveRight />],
+    ["top-left", <TbOutlineArrowCurveLeft />],
+    ["top", <TbOutlineArrowNarrowUp />],
+    ["top-right", <TbOutlineArrowCurveRight />],
 
-    ["bottom-left", <TbArrowCurveRight style={{ rotate: "180deg" }} />],
-    ["bottom", <TbArrowNarrowUp style={{ rotate: "180deg" }} />],
-    ["bottom-right", <TbArrowCurveLeft style={{ rotate: "180deg" }} />],
+    ["bottom-left", <TbOutlineArrowCurveRight style={{ rotate: "180deg" }} />],
+    ["bottom", <TbOutlineArrowNarrowUp style={{ rotate: "180deg" }} />],
+    ["bottom-right", <TbOutlineArrowCurveLeft style={{ rotate: "180deg" }} />],
   ] as const;
 
 const toastTypes = ["info", "success", "warning", "error"] as const;
